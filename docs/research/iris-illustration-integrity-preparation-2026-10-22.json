@@ -1,0 +1,1791 @@
+{
+  "body": "(7) Iris",
+  "status": "Research-only illustration preparation and retained scientific product integrity audit; no dossier109 or production adoption",
+  "preparations": [
+    {
+      "path": "data/research-sources/iris-7-local-view-preparation-2026-10-22.json",
+      "sha256": "7aa51f463b43b130b6cb29c0a9b7fc406a91cc51a6149609e80185432505638e",
+      "record": {
+        "date": "2026-10-22",
+        "body": "(7) Iris",
+        "status": "Independent built-in imagined local-view research preparation only; no dossier109 or production embedding",
+        "generation": {
+          "tool": "built-in image_gen",
+          "referenceImages": [],
+          "prompt": "Create one independent scientific concept illustration, wide landscape16:9, of a hypothetical close local view on asteroid (7) Iris. This is a temporary IMAGINED visualization for an astronomy explorer, not an observation, mapped site, reconstructed topography or survivable landing. Use no reference image and do not copy any observed body's map or terrain, including Moon, Mars, Vesta, Lutetia or Eros. Do not trace the Iris SPHERE deconvolved brightness patterns, ADAM model facets, putative named craters or image-processing artifacts. Compose a camera looking obliquely across an invented grey-brown granular stony surface, scattered modest angular blocks and shallow irregular depressions, with a gently uneven distant horizon and black sky. Terrain scale, grains, materials, chemistry, colour, porosity, lighting, attitude, exposure and horizon orientation are all artistic assumptions; no specific meteorite fraction or measured regolith depth. Grounded photographic-quality concept art with restrained detail, neither dramatic canyon nor giant freshly exposed impact. Sun is outside frame, no visible astronomical disk, no planets or moons, no prominent stars, no atmosphere haze/clouds, no plume, exposed liquid/ocean, organisms, people, equipment or spacecraft. Black sky is merely a scene assumption, not proof of atmospheric absence. Do not imply dated coordinates or rotation phase. Place a clear dark footer band within the picture with exactly two legible white lines: 'IRIS \u2014 IMAGINED LOCAL VIEW' and 'Terrain, materials, colour and lighting are hypothetical'. Ensure both lines fit fully inside the frame. Independent invented scene, no globe map.",
+          "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2f8d0a8a-7d48-44c9-ae28-6bf3617f9786.png",
+          "researchOriginal": "data/research-sources/iris-7-generated-surfaceImage-original-2026-10-22.png",
+          "bytes": 3095060,
+          "dimensions": [
+            1672,
+            941
+          ],
+          "sha256": "2aa9d31ba94fa793a2ee517e596b357cfd787b1219ea5a53bd3cde5dba9aeb80",
+          "defaultSha256": "2aa9d31ba94fa793a2ee517e596b357cfd787b1219ea5a53bd3cde5dba9aeb80"
+        },
+        "scienceReferences": [
+          "docs/research/iris-primary-shape-uncertainty-assessment-2026-10-22.json",
+          "docs/research/iris-native-dataset-assessment-2026-10-22.json"
+        ],
+        "limits": [
+          "Terrain, grains, blocks, material chemistry/fractions/porosity, grey-brown colour, light, exposure, attitude and scale are imagined; no measured local regolith or mapped site.",
+          "No observed-body map or skin used. Iris deconvolved brightness/model facets/nicknamed putative craters are not adopted as terrain.",
+          "Sun and all astronomical disks off frame; no angular/raster size calculation or photometry claim.",
+          "Black sky assumed, not atmospheric absence; no plume/ocean/biology/survivable landing or dated coordinate/phase.",
+          "OriginalPNG/default copy preserved; no master/preview/dossier109/production embedding/catalogue/map/model/shape/codec change.",
+          "Native dataset/calibration/source-lineage/terms and substantial lossless capacity recovery remain open; no fresh tests/build/browser claim."
+        ],
+        "visualReview": "Original1672x941inspected; both footer lines readable, invented granular surface/blocks/low relief and black sky; no astronomical disk or angular claim."
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-sky-view-preparation-2026-10-22.json",
+      "sha256": "c59a24d3cca084cd9ae3e73de7eb74d359a43c39bec8174c1ca49f3a2630e132",
+      "record": {
+        "date": "2026-10-22",
+        "body": "(7) Iris",
+        "status": "Independent built-in imagined sky-view research preparation only; no dossier109 or production embedding",
+        "generation": {
+          "tool": "built-in image_gen",
+          "referenceImages": [],
+          "prompt": "Create one independently invented scientific concept illustration for an astronomy explorer, landscape16:9, hypothetical sky-facing view from asteroid (7) Iris. No reference images, no reuse of any prior generated image or observed body map/skin. This is an IMAGINED temporary visualization, not a photograph, mapped site, shape reconstruction, dated viewpoint or survivable landing. Compose a low invented grey-brown rocky rim across the bottom quarter with small angular stones, then a large empty black sky; choose a restrained oblique horizon and subtle hard side lighting, no dramatic canyon. All terrain relief, grains, materials, chemistry, porosity, colour, attitude, exposure, light and horizon orientation invented. Do not trace SPHERE deconvolved brightness, ADAM facets or putative crater nicknames. Do not use Moon/Mars/Vesta/Lutetia/Eros as a surface reference. Sun is outside frame and all astronomical disks are absent from frame: no Sun, planet, moon, asteroid disk or prominent stars. This omission and black sky are artistic choices, not claims of physical absence or atmosphere limits. No nebula, glow, haze, cloud, plume, liquid ocean, organisms, people, vehicles or spacecraft. No coordinates, rotation phase, time or measured geography. Grounded photographic-quality concept art, dark restrained surface detail, clean sky. Add a legible dark footer band fully inside the picture with exactly two white text lines: 'IRIS \u2014 IMAGINED SKY VIEW' and 'Terrain, materials, colour and lighting are hypothetical'. Both lines must fit and be readable. Not a globe map.",
+          "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e4e45236-5b97-45ca-af86-7fc48f9d3644.png",
+          "researchOriginal": "data/research-sources/iris-7-generated-skyImage-original-2026-10-22.png",
+          "bytes": 1321235,
+          "dimensions": [
+            1672,
+            941
+          ],
+          "sha256": "23033fbc4e47be240140477fdd19677990e02f775d6a113d12855a8cb3aad20d",
+          "defaultSha256": "23033fbc4e47be240140477fdd19677990e02f775d6a113d12855a8cb3aad20d"
+        },
+        "scienceReferences": [
+          "docs/research/iris-primary-shape-uncertainty-assessment-2026-10-22.json",
+          "docs/research/iris-native-dataset-assessment-2026-10-22.json"
+        ],
+        "limits": [
+          "Terrain, grains, blocks, material chemistry/fractions/porosity, grey-brown colour, light, exposure, attitude and scale are imagined; no measured local regolith or mapped site.",
+          "No observed-body map or skin used. Iris deconvolved brightness/model facets/nicknamed putative craters are not adopted as terrain.",
+          "Sun and all astronomical disks off frame; no angular/raster size calculation or photometry claim.",
+          "Black sky assumed, not atmospheric absence; no plume/ocean/biology/survivable landing or dated coordinate/phase.",
+          "OriginalPNG/default copy preserved; no master/preview/dossier109/production embedding/catalogue/map/model/shape/codec change.",
+          "Native dataset/calibration/source-lineage/terms and substantial lossless capacity recovery remain open; no fresh tests/build/browser claim."
+        ],
+        "visualReview": "Original1672x941inspected; bothfooterlines readable, low invented stony rim below emptyblacksky, noastronomicaldisk/angularclaim. Blacksky and absentdisks are artistic omission, not physicalabsence."
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-master-preview-preparation-2026-10-22.json",
+      "sha256": "faae0d28949a4ea3758baa9510562efd4a3eb8f623f2201caaf157f1b554257d",
+      "record": {
+        "status": "Research preparation only; originals unchanged, no embedding or new dossier",
+        "assets": [
+          {
+            "role": "surfaceImage",
+            "kind": "master",
+            "path": "data/research-sources/iris-7-surfaceImage-master-2026-10-22.jpg",
+            "bytes": 390192,
+            "sha256": "f159d0d1118cca66b4b8ae6a1cc1714db607ce1c66580a642b7e3edebd11db87",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "encoding": "JPEG quality85, Lanczos resize from preserved generated original, optimize=True"
+          },
+          {
+            "role": "surfaceImage",
+            "kind": "preview",
+            "path": "data/research-sources/iris-7-surfaceImage-preview-2026-10-22.jpg",
+            "bytes": 11650,
+            "sha256": "3aff60c15260afd19efa2698a0165f58ab714ac9381c3238b907d73d05e6aae4",
+            "dimensions": [
+              256,
+              144
+            ],
+            "encoding": "JPEG quality80, Lanczos resize from preserved generated original, optimize=True"
+          },
+          {
+            "role": "skyImage",
+            "kind": "master",
+            "path": "data/research-sources/iris-7-skyImage-master-2026-10-22.jpg",
+            "bytes": 154819,
+            "sha256": "8434b6a622d5df60ce5c38d4d6a52e59182889cf46c04ef9767b2ff45b071c49",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "encoding": "JPEG quality85, Lanczos resize from preserved generated original, optimize=True"
+          },
+          {
+            "role": "skyImage",
+            "kind": "preview",
+            "path": "data/research-sources/iris-7-skyImage-preview-2026-10-22.jpg",
+            "bytes": 5177,
+            "sha256": "bb134744dc0537ea029939fab628404005304b75c33b6e1c44b57e6b608f882f",
+            "dimensions": [
+              256,
+              144
+            ],
+            "encoding": "JPEG quality80, Lanczos resize from preserved generated original, optimize=True"
+          }
+        ],
+        "limits": [
+          "Generated illustration derivatives only; no native science transformed.",
+          "Both originals/default copies/full prompts preserved and hash checked.",
+          "Small preview footers require explicit IMAGINED card labels.",
+          "Terrain, materials, chemistry, colour, lighting, attitude, exposure and scale invented; no registered site, astronomical disk or angular calibration."
+        ],
+        "productionChange": false,
+        "visualInspection": "Both full masters and both previews visually inspected. Master footer lines readable; small preview annotations require explicit IMAGINED card labels. Invented local stony relief and sky-facing rim, no astronomical disk, registered site or angular calibration claim.",
+        "twoPreviewRawJpegBytes": 16827,
+        "budgetMeaning": "Raw generated-preview JPEG bytes only, not WebP80 embedding or standalone increment; native/text/wrapper overhead additional."
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-sphere-acquisition-preparation-2026-10-22.json",
+      "sha256": "4af9ef60bb1a9db058f037a778b770da5b2f5d2ac0136f9179aa33bd087f5065",
+      "record": {
+        "date": "2026-10-22",
+        "status": "Research-only original CDSdeconvolvedSPHERE acquisitions; no raw exposure, calibrated colour, map or production adoption",
+        "files": [
+          {
+            "file": "1_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/1_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "3486c0ec412906f8513d6004b1088ef8e93bbf7e848b43e8c98c1be287038674",
+            "inventoryRow": "034.85865+23.43451 0.00363 256 256 2017-10-10T03:56:12.859  582 1_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "2_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/2_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-2_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "abea9da1655f6b27d444f69615e03b7d2764d7e8e0b3e5045818b9630219cc99",
+            "inventoryRow": "034.85853+23.43446 0.00363 256 256 2017-10-10T03:57:22.911  582 2_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "3_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/3_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-3_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "6eba68e122e79b1ec784ddc216b517873c4142dc6463c89d64fa96d242b79b52",
+            "inventoryRow": "034.85841+23.43442 0.00363 256 256 2017-10-10T03:58:33.092  582 3_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "4_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/4_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-4_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "ffcde424752f7b000410a3369035002e0af8a93d36303e0a32cbf4432a4bfd10",
+            "inventoryRow": "034.85829+23.43438 0.00363 256 256 2017-10-10T03:59:43.690  582 4_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "5_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/5_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-5_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "5e1911e0d682b6c263c17e841c2dccab34407b756829f6e8acc9ac539022edc7",
+            "inventoryRow": "034.85816+23.43433 0.00363 256 256 2017-10-10T04:00:55.103  582 5_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "6_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/6_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-6_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "b0a89dbe313772cc7df4ba938021811fdcc5a125efe9525804758a9d1b983b74",
+            "inventoryRow": "034.85742+23.43398 0.00363 256 256 2017-10-10T04:07:50.335  582 6_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "7_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/7_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-7_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "12662381b7802ff2504e84689a767934fa43ed196f24c5832a020f056c7876b8",
+            "inventoryRow": "034.85730+23.43394 0.00363 256 256 2017-10-10T04:09:01.099  582 7_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "8_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/8_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-8_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "d32939d2d7257b97f16200e8982e2160238a886db7c4f1b71ef59536d5106c91",
+            "inventoryRow": "034.85718+23.43389 0.00363 256 256 2017-10-10T04:10:12.307  582 8_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "9_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/9_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-9_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "38ccf29876198e81793f688894d558d2869ea7029b65084f561aa043183b0edd",
+            "inventoryRow": "034.85706+23.43385 0.00363 256 256 2017-10-10T04:11:22.236  582 9_SRobj.fits  VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "10_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/10_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-10_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "a9e43b146b87d873d5f7d9b84c2738ec19bf3479a9a36649d2ea008c55eca5b1",
+            "inventoryRow": "034.85694+23.43381 0.00363 256 256 2017-10-10T04:12:32.342  582 10_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "11_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/11_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-11_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "2a537b92a0e632e78c4eee682411f35223023f29a35e921c0d288360fc6caa78",
+            "inventoryRow": "034.71580+23.37300 0.00363 256 256 2017-10-11T04:40:41.903  582 11_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "12_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/12_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-12_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "a050c5e09b749ebf0a695549b5f0c8f4ffb2ceb8a82a5c57e313197135f00135",
+            "inventoryRow": "034.71566+23.37295 0.00363 256 256 2017-10-11T04:41:53.558  582 12_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "13_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/13_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-13_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "8e55a274fadf397d7e6d644a76e35c4fbcf833429a1f1d1e112985b0c1701170",
+            "inventoryRow": "034.71553+23.37290 0.00363 256 256 2017-10-11T04:43:05.751  582 13_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "14_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/14_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-14_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "ab746d9c5eec59d33e29c1b43f91c6df1db4cf7a2f30878845efec74fad3afcc",
+            "inventoryRow": "034.71541+23.37285 0.00363 256 256 2017-10-11T04:44:16.291  582 14_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "15_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/15_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-15_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "f86c10a0524597ff9b9f9e029c2361a7e46c38d7da00dc2a49df59bb45fef307",
+            "inventoryRow": "034.71528+23.37281 0.00363 256 256 2017-10-11T04:45:26.731  582 15_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "16_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/16_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-16_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "ba20a4e333d8174af63f37270f837a74a8cdb5badfd1d46d17683a879440c3ce",
+            "inventoryRow": "034.70958+23.37082 0.00363 256 256 2017-10-11T05:34:41.303  582 16_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "17_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/17_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-17_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "4c0a300d3fe6eaca00f2050280c889ddc62b514a9855237fa1f1bf2661ef7bdd",
+            "inventoryRow": "034.70946+23.37077 0.00363 256 256 2017-10-11T05:35:52.690  582 17_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "18_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/18_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-18_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "14f36a3ef476813bf5a512a9d997cd758f6baf7532ae45614eede9c28eaa2b7d",
+            "inventoryRow": "034.70932+23.37071 0.00363 256 256 2017-10-11T05:37:04.748  582 18_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "19_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/19_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-19_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "50b8367f277166a45d2c3d0e3524d9dc2bfdc5d04a2a300f07c6e4acabfbfdb2",
+            "inventoryRow": "034.70919+23.37066 0.00363 256 256 2017-10-11T05:38:15.694  582 19_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "20_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/20_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-20_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "c062353a9351ad08bda44b9de6d437dfc33ea79f69f9ad8f0f2e07071eb2f8c4",
+            "inventoryRow": "034.70906+23.37061 0.00363 256 256 2017-10-11T05:39:25.172  582 20_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "21_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/21_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-21_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "d2facb74ddf074c82f2f35a85a79920a543cca1ecf92ce5f40ffab91342d4a32",
+            "inventoryRow": "034.70390+23.36852 0.00363 256 256 2017-10-11T06:28:33.889  582 21_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "22_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/22_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-22_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "7032da892dc1104d67b91a0b50fb56770159c3953be88697cf5a949bba24517b",
+            "inventoryRow": "034.70377+23.36847 0.00363 256 256 2017-10-11T06:29:45.671  582 22_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "23_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/23_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-23_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "f989970900228884a76b4069932aaf4f028562eaf2b87afd958292f986570603",
+            "inventoryRow": "034.70363+23.36842 0.00363 256 256 2017-10-11T06:30:57.187  582 23_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "24_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/24_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-24_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "c203ab47756be3d9d946b343cc252f64071fdb9cb2bbcd1690ff5a777c300996",
+            "inventoryRow": "034.70351+23.36836 0.00363 256 256 2017-10-11T06:32:07.751  582 24_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          },
+          {
+            "file": "25_SRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/25_SRobj.fits",
+            "path": "data/research-sources/iris-7-cds-25_SRobj-original-2026-10-22.fits",
+            "bytes": 593280,
+            "sha256": "3b027dd55980aedc00eb842f28de55381d544b7c22cbd281e0d48fd6a0ffd648",
+            "inventoryRow": "034.70338+23.36831 0.00363 256 256 2017-10-11T06:33:18.272  582 25_SRobj.fits VLT/SPHERE/Zimpol, Project ID: 199.C-0074"
+          }
+        ],
+        "limits": [
+          "25SPHERE products only;22Keck/NaCo inventory products not acquired by this preparation.",
+          "Native FITS arrays remain unchanged; source availability does not establish reuse terms or processing/calibration/registered-geography validation.",
+          "No current tests/build/browser claim or production input change."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-sphere-header-preparation-2026-10-22.json",
+      "sha256": "25d1e1a1e327704e9fed89c7d021563bda8d1a50128e8aa5ac8eba3cda0c8ac0",
+      "record": {
+        "date": "2026-10-22",
+        "status": "Research-only25product header/source consistency and display preparation; no raw calibration/registration adoption",
+        "acquisitionPreparationSha256": "4af9ef60bb1a9db058f037a778b770da5b2f5d2ac0136f9179aa33bd087f5065",
+        "rows": [
+          {
+            "file": "1_SRobj.fits",
+            "dateObs": "2017-10-10T03:56:12.859",
+            "dateCreated": "2017-10-10T08:36:01",
+            "archiveFile": "SPHER.2017-10-10T03:56:12.859.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "d541126120b594522f682b62a28d8176aa48ba9923580204a0c8cd47a5492536",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 0.34354650517794894,
+            "storedMaximum": 12712.579690004897,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "2_SRobj.fits",
+            "dateObs": "2017-10-10T03:57:22.911",
+            "dateCreated": "2017-10-10T08:37:25",
+            "archiveFile": "SPHER.2017-10-10T03:57:22.911.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-2_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "6411fd8694921b6e9e1c1a0f87cf61e972b2264a4b52ef0f82c145082641b327",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 6.479756784977964,
+            "storedMaximum": 11700.925429414532,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "3_SRobj.fits",
+            "dateObs": "2017-10-10T03:58:33.092",
+            "dateCreated": "2017-10-10T08:38:40",
+            "archiveFile": "SPHER.2017-10-10T03:58:33.092.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-3_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "867866468f33455ff7cd31ee5996c56bb3dc54c2d38c6907103a35fd291f2ce1",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 6.918217717701313,
+            "storedMaximum": 11777.422045579999,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "4_SRobj.fits",
+            "dateObs": "2017-10-10T03:59:43.690",
+            "dateCreated": "2017-10-10T08:39:58",
+            "archiveFile": "SPHER.2017-10-10T03:59:43.691.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-4_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "598561ac5740269c4992a79404d13986466313565269cf37553ecc9137538ec2",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 9.735972865076373,
+            "storedMaximum": 11526.575125633419,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "5_SRobj.fits",
+            "dateObs": "2017-10-10T04:00:55.103",
+            "dateCreated": "2017-10-10T08:41:08",
+            "archiveFile": "SPHER.2017-10-10T04:00:55.103.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-5_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "3422792761a48ddf9cc02e8af5b318cb9ecf9854f066d2c8470d8c93ee44cc41",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 0.0009022684098067157,
+            "storedMaximum": 12794.301620079059,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "6_SRobj.fits",
+            "dateObs": "2017-10-10T04:07:50.335",
+            "dateCreated": "2017-10-10T08:43:13",
+            "archiveFile": "SPHER.2017-10-10T04:07:50.336.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-6_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "a26e5341cdc0741d224759d56be37cae4b94b04120855614f4df4580e333e32d",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 0.0017102988999582879,
+            "storedMaximum": 15504.504514281005,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "7_SRobj.fits",
+            "dateObs": "2017-10-10T04:09:01.099",
+            "dateCreated": "2017-10-10T08:44:22",
+            "archiveFile": "SPHER.2017-10-10T04:09:01.099.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-7_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "a7b04ec01bbdf19fd0ab0f600b578c29e5892ecce5a043164b46be73f95d3634",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 5.338403062865524e-05,
+            "storedMaximum": 13925.395187377384,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "8_SRobj.fits",
+            "dateObs": "2017-10-10T04:10:12.307",
+            "dateCreated": "2017-10-10T08:45:43",
+            "archiveFile": "SPHER.2017-10-10T04:10:12.307.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-8_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "72966eff138d9f1d36d315f219127ab3bc39ede910b8a405806ef965fe43fd3b",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 3.559757582969913e-05,
+            "storedMaximum": 14418.462126564342,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "9_SRobj.fits",
+            "dateObs": "2017-10-10T04:11:22.236",
+            "dateCreated": "2017-10-10T08:46:56",
+            "archiveFile": "SPHER.2017-10-10T04:11:22.236.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-9_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "61886324fea4bf85c46040cfa043aa52aae81bb8075a3123a6428b0fbe498da9",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 4.986203582031543e-07,
+            "storedMaximum": 14502.725372374864,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "10_SRobj.fits",
+            "dateObs": "2017-10-10T04:12:32.342",
+            "dateCreated": "2017-10-10T08:48:07",
+            "archiveFile": "SPHER.2017-10-10T04:12:32.342.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-10_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "e10dc3ffb45e9146d0c369397620b90ddc86f70818341ae74f7c650a81448aa0",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 6.770427994061656e-05,
+            "storedMaximum": 15078.687430911274,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "11_SRobj.fits",
+            "dateObs": "2017-10-11T04:40:41.903",
+            "dateCreated": "2017-10-11T12:27:46",
+            "archiveFile": "SPHER.2017-10-11T04:40:41.904.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-11_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "79264fbb6bc937c0eaf19235572aaa7747632f3a0fd6eb28d9fe6d116ba52c02",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 4.61548561888987e-07,
+            "storedMaximum": 14647.500384835372,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "12_SRobj.fits",
+            "dateObs": "2017-10-11T04:41:53.558",
+            "dateCreated": "2017-10-11T12:29:00",
+            "archiveFile": "SPHER.2017-10-11T04:41:53.559.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-12_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "ee57853745e50058a2fcdeb0904838b991b6078252444c3a437798374ec27737",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 3.2574417270104777e-07,
+            "storedMaximum": 14453.770551474141,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "13_SRobj.fits",
+            "dateObs": "2017-10-11T04:43:05.751",
+            "dateCreated": "2017-10-11T12:31:23",
+            "archiveFile": "SPHER.2017-10-11T04:43:05.752.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-13_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "7b1e20a659d7e6361ed70c4756f6ca76aea7a4e397db74ab52c6e612103b6abd",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 1.2876419501983036e-06,
+            "storedMaximum": 14504.671266869635,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "14_SRobj.fits",
+            "dateObs": "2017-10-11T04:44:16.291",
+            "dateCreated": "2017-10-11T12:32:32",
+            "archiveFile": "SPHER.2017-10-11T04:44:16.291.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-14_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "ddf0fafbf561a50d1f26079a907361e5e7ca39434be925bc6f10340943bc1dce",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 3.737891461385621e-08,
+            "storedMaximum": 15052.381982009201,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "15_SRobj.fits",
+            "dateObs": "2017-10-11T04:45:26.731",
+            "dateCreated": "2017-10-11T12:33:39",
+            "archiveFile": "SPHER.2017-10-11T04:45:26.732.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-15_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "ce06ca5f3c6bcb6fe65040d0fb2d03666af619d661550b6830bc0c55068ddcb8",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 2.7361081426395578e-06,
+            "storedMaximum": 14716.136728568561,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "16_SRobj.fits",
+            "dateObs": "2017-10-11T05:34:41.303",
+            "dateCreated": "2017-10-11T18:41:05",
+            "archiveFile": "SPHER.2017-10-11T05:34:41.304.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-16_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "654fbca1ee90378998c3a5a7a7b54d698a081157bca285c73304a8c46af846df",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 0.00012799005264637855,
+            "storedMaximum": 11569.768493625468,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "17_SRobj.fits",
+            "dateObs": "2017-10-11T05:35:52.690",
+            "dateCreated": "2017-10-11T18:42:26",
+            "archiveFile": "SPHER.2017-10-11T05:35:52.690.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-17_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "99f09bf2792a2fa1a35a843874d1dfb45337b65d3fcbe260f331defc18d12151",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 0.003283887710750432,
+            "storedMaximum": 13497.39237319631,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "18_SRobj.fits",
+            "dateObs": "2017-10-11T05:37:04.748",
+            "dateCreated": "2017-10-11T18:43:56",
+            "archiveFile": "SPHER.2017-10-11T05:37:04.749.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-18_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "f59c028a444272b64723a35446707853d1e111d7987a0b822bb0e1b8ddab5c44",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 0.00015597387111217236,
+            "storedMaximum": 13647.244717975616,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "19_SRobj.fits",
+            "dateObs": "2017-10-11T05:38:15.694",
+            "dateCreated": "2017-10-11T18:46:25",
+            "archiveFile": "SPHER.2017-10-11T05:38:15.694.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-19_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "6afbbbb6150addba069a174372c4e8dea73800c4a9fac8ce18a458263eb3af05",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 0.06560546479705134,
+            "storedMaximum": 14155.39018898899,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "20_SRobj.fits",
+            "dateObs": "2017-10-11T05:39:25.172",
+            "dateCreated": "2017-10-11T18:47:33",
+            "archiveFile": "SPHER.2017-10-11T05:39:25.172.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-20_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "3aaea5ce6848040ea61aaa431bcba09f9a8cdaa280b062cef5f7dd6a485a164d",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 0.0008023728160347812,
+            "storedMaximum": 14432.885141833709,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "21_SRobj.fits",
+            "dateObs": "2017-10-11T06:28:33.889",
+            "dateCreated": "2017-10-11T18:50:14",
+            "archiveFile": "SPHER.2017-10-11T06:28:33.889.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-21_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "c822d9f8caa0ad839194e9458dd328a9f4401a4bbfaaea6d240a4e007265ce45",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 7.191418994342072e-05,
+            "storedMaximum": 10756.108033619059,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "22_SRobj.fits",
+            "dateObs": "2017-10-11T06:29:45.671",
+            "dateCreated": "2017-10-11T18:55:41",
+            "archiveFile": "SPHER.2017-10-11T06:29:45.672.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-22_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "a7cb3eb3dc1957ba2cbf17adc35aff00dcbc9327f1aa32c443d7e735a18efc44",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 1.2497066189900956e-07,
+            "storedMaximum": 8220.080151338798,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "23_SRobj.fits",
+            "dateObs": "2017-10-11T06:30:57.187",
+            "dateCreated": "2017-10-11T18:58:16",
+            "archiveFile": "SPHER.2017-10-11T06:30:57.188.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-23_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "f5d75c7b9bd47c887ad11a98bb01c53fea65854d2b0e0d84a09af2de8bb3617e",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 8.879629971806484e-06,
+            "storedMaximum": 8437.428665938814,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "24_SRobj.fits",
+            "dateObs": "2017-10-11T06:32:07.751",
+            "dateCreated": "2017-10-11T18:59:48",
+            "archiveFile": "SPHER.2017-10-11T06:32:07.752.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-24_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "9b80a6be0f9851bc9457a306a2ec906e59bfe7cf3f1b1fa025ad930e0d610efd",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 2.7708732367862898e-05,
+            "storedMaximum": 9373.152418939428,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          },
+          {
+            "file": "25_SRobj.fits",
+            "dateObs": "2017-10-11T06:33:18.272",
+            "dateCreated": "2017-10-11T19:01:33",
+            "archiveFile": "SPHER.2017-10-11T06:33:18.272.fits",
+            "object": "7 Iris",
+            "instrument": "SPHERE",
+            "headerPath": "data/research-sources/iris-7-cds-25_SRobj-original-2026-10-22.header.txt",
+            "headerSha256": "9c6b83fcdef9e1f5e86dad0b32537521b3e0ecd74308415f007ba8ec97b93042",
+            "dataOffset": 66240,
+            "all65536Finite": true,
+            "storedMinimum": 4.783481979675772e-05,
+            "storedMaximum": 10175.643150603782,
+            "N_Rcards": [
+              "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+              "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+            ]
+          }
+        ],
+        "diagnostic": {
+          "path": "data/research-sources/iris-7-cds-sphere-contact-diagnostic-2026-10-22.png",
+          "sha256": "862dd1293bdbb20bd022ebd3ec21ab1bdd4e65b3c6fa99321012a3445da76077",
+          "display": "25original256square arrays, stored row order, independently min/max mapped to8bit grayscale per product; filename labels. Intensities are not comparable between cells. No north/east/body orientation, angular/raster diameter or visibleRGB claim.",
+          "visuallyInspected": true,
+          "visualNotes": "Whole25cell contact sheet inspected. Soft disk outline/brightness vary across rows; backgrounds include weak rectangular structure and isolated dark/bright specks. None assigned as measured craters, stars, local chemistry or complete geography. Individually normalized intensities not compared as photometry. No angular/raster disk measurement or observer phase fit."
+        },
+        "limits": [
+          "DATE-OBS matches each corresponding CDSlist string; matching inherited metadata is not independent raw archive verification.",
+          "Archive product filenames point to inherited provenance only; detector processing/PSF/deconvolution chain not independently reconstructed.",
+          "Five visual columns reflect listed order, not independently re-fitted rotation phases or registered geography.",
+          "All originals/header records preserved; no production embedding, dossier109, map/model/shape/catalogue/codec change or fresh tests/build/browser claim."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-inherited-exposure-metadata-preparation-2026-10-22.json",
+      "sha256": "6c656507d2790e6c2be1484b3e07fb9c6571a16da6c04716354ba749c12f4e6c",
+      "record": {
+        "status": "Read-only inherited-header/source consistency preparation; not raw archive, exposure integration or calibration validation",
+        "inputs": [
+          {
+            "path": "data/research-sources/iris-7-cds-sphere-acquisition-preparation-2026-10-22.json",
+            "sha256": "4af9ef60bb1a9db058f037a778b770da5b2f5d2ac0136f9179aa33bd087f5065"
+          },
+          {
+            "path": "data/research-sources/iris-7-cds-sphere-header-preparation-2026-10-22.json",
+            "sha256": "25d1e1a1e327704e9fed89c7d021563bda8d1a50128e8aa5ac8eba3cda0c8ac0"
+          }
+        ],
+        "verifiedOriginalProducts": 25,
+        "verifiedBytes": 14832000,
+        "dateGroups": {
+          "2017-10-10": 10,
+          "2017-10-11": 15
+        },
+        "uniqueInheritedArchiveNames": 25,
+        "rows": [
+          {
+            "file": "1_SRobj.fits",
+            "sourceSha256": "3486c0ec412906f8513d6004b1088ef8e93bbf7e848b43e8c98c1be287038674",
+            "dateObs": "2017-10-10T03:56:12.859",
+            "archiveFile": "SPHER.2017-10-10T03:56:12.859.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "2_SRobj.fits",
+            "sourceSha256": "abea9da1655f6b27d444f69615e03b7d2764d7e8e0b3e5045818b9630219cc99",
+            "dateObs": "2017-10-10T03:57:22.911",
+            "archiveFile": "SPHER.2017-10-10T03:57:22.911.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "3_SRobj.fits",
+            "sourceSha256": "6eba68e122e79b1ec784ddc216b517873c4142dc6463c89d64fa96d242b79b52",
+            "dateObs": "2017-10-10T03:58:33.092",
+            "archiveFile": "SPHER.2017-10-10T03:58:33.092.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "4_SRobj.fits",
+            "sourceSha256": "ffcde424752f7b000410a3369035002e0af8a93d36303e0a32cbf4432a4bfd10",
+            "dateObs": "2017-10-10T03:59:43.690",
+            "archiveFile": "SPHER.2017-10-10T03:59:43.691.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "5_SRobj.fits",
+            "sourceSha256": "5e1911e0d682b6c263c17e841c2dccab34407b756829f6e8acc9ac539022edc7",
+            "dateObs": "2017-10-10T04:00:55.103",
+            "archiveFile": "SPHER.2017-10-10T04:00:55.103.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "6_SRobj.fits",
+            "sourceSha256": "b0a89dbe313772cc7df4ba938021811fdcc5a125efe9525804758a9d1b983b74",
+            "dateObs": "2017-10-10T04:07:50.335",
+            "archiveFile": "SPHER.2017-10-10T04:07:50.336.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "7_SRobj.fits",
+            "sourceSha256": "12662381b7802ff2504e84689a767934fa43ed196f24c5832a020f056c7876b8",
+            "dateObs": "2017-10-10T04:09:01.099",
+            "archiveFile": "SPHER.2017-10-10T04:09:01.099.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "8_SRobj.fits",
+            "sourceSha256": "d32939d2d7257b97f16200e8982e2160238a886db7c4f1b71ef59536d5106c91",
+            "dateObs": "2017-10-10T04:10:12.307",
+            "archiveFile": "SPHER.2017-10-10T04:10:12.307.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "9_SRobj.fits",
+            "sourceSha256": "38ccf29876198e81793f688894d558d2869ea7029b65084f561aa043183b0edd",
+            "dateObs": "2017-10-10T04:11:22.236",
+            "archiveFile": "SPHER.2017-10-10T04:11:22.236.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "10_SRobj.fits",
+            "sourceSha256": "a9e43b146b87d873d5f7d9b84c2738ec19bf3479a9a36649d2ea008c55eca5b1",
+            "dateObs": "2017-10-10T04:12:32.342",
+            "archiveFile": "SPHER.2017-10-10T04:12:32.342.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "11_SRobj.fits",
+            "sourceSha256": "2a537b92a0e632e78c4eee682411f35223023f29a35e921c0d288360fc6caa78",
+            "dateObs": "2017-10-11T04:40:41.903",
+            "archiveFile": "SPHER.2017-10-11T04:40:41.904.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "12_SRobj.fits",
+            "sourceSha256": "a050c5e09b749ebf0a695549b5f0c8f4ffb2ceb8a82a5c57e313197135f00135",
+            "dateObs": "2017-10-11T04:41:53.558",
+            "archiveFile": "SPHER.2017-10-11T04:41:53.559.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "13_SRobj.fits",
+            "sourceSha256": "8e55a274fadf397d7e6d644a76e35c4fbcf833429a1f1d1e112985b0c1701170",
+            "dateObs": "2017-10-11T04:43:05.751",
+            "archiveFile": "SPHER.2017-10-11T04:43:05.752.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "14_SRobj.fits",
+            "sourceSha256": "ab746d9c5eec59d33e29c1b43f91c6df1db4cf7a2f30878845efec74fad3afcc",
+            "dateObs": "2017-10-11T04:44:16.291",
+            "archiveFile": "SPHER.2017-10-11T04:44:16.291.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "15_SRobj.fits",
+            "sourceSha256": "f86c10a0524597ff9b9f9e029c2361a7e46c38d7da00dc2a49df59bb45fef307",
+            "dateObs": "2017-10-11T04:45:26.731",
+            "archiveFile": "SPHER.2017-10-11T04:45:26.732.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "16_SRobj.fits",
+            "sourceSha256": "ba20a4e333d8174af63f37270f837a74a8cdb5badfd1d46d17683a879440c3ce",
+            "dateObs": "2017-10-11T05:34:41.303",
+            "archiveFile": "SPHER.2017-10-11T05:34:41.304.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "17_SRobj.fits",
+            "sourceSha256": "4c0a300d3fe6eaca00f2050280c889ddc62b514a9855237fa1f1bf2661ef7bdd",
+            "dateObs": "2017-10-11T05:35:52.690",
+            "archiveFile": "SPHER.2017-10-11T05:35:52.690.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "18_SRobj.fits",
+            "sourceSha256": "14f36a3ef476813bf5a512a9d997cd758f6baf7532ae45614eede9c28eaa2b7d",
+            "dateObs": "2017-10-11T05:37:04.748",
+            "archiveFile": "SPHER.2017-10-11T05:37:04.749.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "19_SRobj.fits",
+            "sourceSha256": "50b8367f277166a45d2c3d0e3524d9dc2bfdc5d04a2a300f07c6e4acabfbfdb2",
+            "dateObs": "2017-10-11T05:38:15.694",
+            "archiveFile": "SPHER.2017-10-11T05:38:15.694.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "20_SRobj.fits",
+            "sourceSha256": "c062353a9351ad08bda44b9de6d437dfc33ea79f69f9ad8f0f2e07071eb2f8c4",
+            "dateObs": "2017-10-11T05:39:25.172",
+            "archiveFile": "SPHER.2017-10-11T05:39:25.172.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "21_SRobj.fits",
+            "sourceSha256": "d2facb74ddf074c82f2f35a85a79920a543cca1ecf92ce5f40ffab91342d4a32",
+            "dateObs": "2017-10-11T06:28:33.889",
+            "archiveFile": "SPHER.2017-10-11T06:28:33.889.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "22_SRobj.fits",
+            "sourceSha256": "7032da892dc1104d67b91a0b50fb56770159c3953be88697cf5a949bba24517b",
+            "dateObs": "2017-10-11T06:29:45.671",
+            "archiveFile": "SPHER.2017-10-11T06:29:45.672.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "23_SRobj.fits",
+            "sourceSha256": "f989970900228884a76b4069932aaf4f028562eaf2b87afd958292f986570603",
+            "dateObs": "2017-10-11T06:30:57.187",
+            "archiveFile": "SPHER.2017-10-11T06:30:57.188.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "24_SRobj.fits",
+            "sourceSha256": "c203ab47756be3d9d946b343cc252f64071fdb9cb2bbcd1690ff5a777c300996",
+            "dateObs": "2017-10-11T06:32:07.751",
+            "archiveFile": "SPHER.2017-10-11T06:32:07.752.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          },
+          {
+            "file": "25_SRobj.fits",
+            "sourceSha256": "3b027dd55980aedc00eb842f28de55381d544b7c22cbd281e0d48fd6a0ffd648",
+            "dateObs": "2017-10-11T06:33:18.272",
+            "archiveFile": "SPHER.2017-10-11T06:33:18.272.fits",
+            "inheritedSubIntegrations": "20",
+            "inheritedSequenceTimeSeconds": "61.29684"
+          }
+        ],
+        "limits": [
+          "NDIT and sequence-time fields copied as inherited header strings; not independently verified exposure duration, total integration, coadd grouping or detector efficiency.",
+          "No multiplication of NDIT by sequence time or inference of raw processing/PSF lineage.",
+          "DATE-OBS/inventory agreement and unique ARCFILE names are metadata consistency only; no raw file downloaded or archive association independently verified.",
+          "All original FITS/header/PNG/master/preview sources preserved. No science image transformed, angular/raster size measured, registration, visible colour, photometry or local chemistry established.",
+          "No production/public/registry/catalogue/model/shape/codec changes or fresh test/build/browser claim."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-checksum-diagnostic-preparation-2026-10-22.json",
+      "sha256": "ffec69c98bcf464fa0b6c0502ca391b38a3b99b0f865659eacd00d69d690290c",
+      "record": {
+        "status": "Read-only FITS checksum diagnostic preparation; no source repair or raw processing inference",
+        "input": {
+          "path": "data/research-sources/iris-7-cds-sphere-acquisition-preparation-2026-10-22.json",
+          "sha256": "4af9ef60bb1a9db058f037a778b770da5b2f5d2ac0136f9179aa33bd087f5065"
+        },
+        "method": "Sum big-endian32bit words with repeated end-around carry. Data includes stored padding; whole-file diagnostic is valid all-ones criterion only for a single-HDU file. Independent library cross-check and complete extension audit remain open.",
+        "rows": [
+          {
+            "file": "1_SRobj.fits",
+            "sourceSha256": "3486c0ec412906f8513d6004b1088ef8e93bbf7e848b43e8c98c1be287038674",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "936839404",
+            "computedPaddedDataOnesComplementSum": 936839404,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "kc1Omc0Lkc0Lkc0L",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "2_SRobj.fits",
+            "sourceSha256": "abea9da1655f6b27d444f69615e03b7d2764d7e8e0b3e5045818b9630219cc99",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "2834119521",
+            "computedPaddedDataOnesComplementSum": 2834119521,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "9JAoAIAn3IAn9IAn",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "3_SRobj.fits",
+            "sourceSha256": "6eba68e122e79b1ec784ddc216b517873c4142dc6463c89d64fa96d242b79b52",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "734477227",
+            "computedPaddedDataOnesComplementSum": 734477227,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "53KcA2KZ62KaA2KY",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "4_SRobj.fits",
+            "sourceSha256": "ffcde424752f7b000410a3369035002e0af8a93d36303e0a32cbf4432a4bfd10",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "1276793599",
+            "computedPaddedDataOnesComplementSum": 1276793599,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "4daU5dXT4daT4dWT",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "5_SRobj.fits",
+            "sourceSha256": "5e1911e0d682b6c263c17e841c2dccab34407b756829f6e8acc9ac539022edc7",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "1008140321",
+            "computedPaddedDataOnesComplementSum": 1008140321,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "2iUF4ZS92fSC2ZS9",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "6_SRobj.fits",
+            "sourceSha256": "b0a89dbe313772cc7df4ba938021811fdcc5a125efe9525804758a9d1b983b74",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "2131672213",
+            "computedPaddedDataOnesComplementSum": 2131672213,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "9ARkC7Rk9ARkC7Rk",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "7_SRobj.fits",
+            "sourceSha256": "12662381b7802ff2504e84689a767934fa43ed196f24c5832a020f056c7876b8",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "3507500377",
+            "computedPaddedDataOnesComplementSum": 3507500377,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "CaAaEY2SCa8YCW8Y",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "8_SRobj.fits",
+            "sourceSha256": "d32939d2d7257b97f16200e8982e2160238a886db7c4f1b71ef59536d5106c91",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "2408912599",
+            "computedPaddedDataOnesComplementSum": 2408912599,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "RhfBThc9RhcARhc9",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "9_SRobj.fits",
+            "sourceSha256": "38ccf29876198e81793f688894d558d2869ea7029b65084f561aa043183b0edd",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "383269562",
+            "computedPaddedDataOnesComplementSum": 383269562,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "QNT5QNQ2QNQ2QNQ2",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "10_SRobj.fits",
+            "sourceSha256": "a9e43b146b87d873d5f7d9b84c2738ec19bf3479a9a36649d2ea008c55eca5b1",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "2385530501",
+            "computedPaddedDataOnesComplementSum": 2385530501,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "9X0AAU083U0A9U05",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "11_SRobj.fits",
+            "sourceSha256": "2a537b92a0e632e78c4eee682411f35223023f29a35e921c0d288360fc6caa78",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "1924656337",
+            "computedPaddedDataOnesComplementSum": 1924656337,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "7fAFAZ597fAEAZ39",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "12_SRobj.fits",
+            "sourceSha256": "a050c5e09b749ebf0a695549b5f0c8f4ffb2ceb8a82a5c57e313197135f00135",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "3990692010",
+            "computedPaddedDataOnesComplementSum": 3990692010,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "1rGo1oFm1oFm1oFm",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "13_SRobj.fits",
+            "sourceSha256": "8e55a274fadf397d7e6d644a76e35c4fbcf833429a1f1d1e112985b0c1701170",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "657907614",
+            "computedPaddedDataOnesComplementSum": 657907614,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "NFDfOF9eNFCeNF9e",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "14_SRobj.fits",
+            "sourceSha256": "ab746d9c5eec59d33e29c1b43f91c6df1db4cf7a2f30878845efec74fad3afcc",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "2653794312",
+            "computedPaddedDataOnesComplementSum": 2653794312,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "ZGU5h9R5ZER5f9R5",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "15_SRobj.fits",
+            "sourceSha256": "f86c10a0524597ff9b9f9e029c2361a7e46c38d7da00dc2a49df59bb45fef307",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "441978057",
+            "computedPaddedDataOnesComplementSum": 441978057,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "iAaal8WZiAaai5UY",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "16_SRobj.fits",
+            "sourceSha256": "ba20a4e333d8174af63f37270f837a74a8cdb5badfd1d46d17683a879440c3ce",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "3353242865",
+            "computedPaddedDataOnesComplementSum": 3353242865,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "9IdHHGZ99GdGEGZ9",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "17_SRobj.fits",
+            "sourceSha256": "4c0a300d3fe6eaca00f2050280c889ddc62b514a9855237fa1f1bf2661ef7bdd",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "3358682080",
+            "computedPaddedDataOnesComplementSum": 3358682080,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "9RinIQil9QilGQil",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "18_SRobj.fits",
+            "sourceSha256": "14f36a3ef476813bf5a512a9d997cd758f6baf7532ae45614eede9c28eaa2b7d",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "1500460434",
+            "computedPaddedDataOnesComplementSum": 1500460434,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "5SAoAR8n5RAnAR7n",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "19_SRobj.fits",
+            "sourceSha256": "50b8367f277166a45d2c3d0e3524d9dc2bfdc5d04a2a300f07c6e4acabfbfdb2",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "3554307575",
+            "computedPaddedDataOnesComplementSum": 3554307575,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "2pAA3n812nA82n78",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "20_SRobj.fits",
+            "sourceSha256": "c062353a9351ad08bda44b9de6d437dfc33ea79f69f9ad8f0f2e07071eb2f8c4",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "1177080175",
+            "computedPaddedDataOnesComplementSum": 1177080175,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "SAoiT9niSAniS7ni",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "21_SRobj.fits",
+            "sourceSha256": "d2facb74ddf074c82f2f35a85a79920a543cca1ecf92ce5f40ffab91342d4a32",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "1843042982",
+            "computedPaddedDataOnesComplementSum": 1843042982,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "5iiGAifD7ifDAifD",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "22_SRobj.fits",
+            "sourceSha256": "7032da892dc1104d67b91a0b50fb56770159c3953be88697cf5a949bba24517b",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "1096505132",
+            "computedPaddedDataOnesComplementSum": 1096505132,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "MFgkNEZhMEdhMEZh",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "23_SRobj.fits",
+            "sourceSha256": "f989970900228884a76b4069932aaf4f028562eaf2b87afd958292f986570603",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "2434322997",
+            "computedPaddedDataOnesComplementSum": 2434322997,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "MYVaOWVYMWVaMWVY",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "24_SRobj.fits",
+            "sourceSha256": "c203ab47756be3d9d946b343cc252f64071fdb9cb2bbcd1690ff5a777c300996",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "867490249",
+            "computedPaddedDataOnesComplementSum": 867490249,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "LHhWLHeWLHeWLHeW",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          },
+          {
+            "file": "25_SRobj.fits",
+            "sourceSha256": "3b027dd55980aedc00eb842f28de55381d544b7c22cbd281e0d48fd6a0ffd648",
+            "headerBytes": 66240,
+            "totalBytes": 593280,
+            "declaredDatasum": "3642210200",
+            "computedPaddedDataOnesComplementSum": 3642210200,
+            "declaredDataSumMatches": true,
+            "declaredChecksum": "YYUYYWUYYWUYYWUY",
+            "computedWholeFileOnesComplementSum": 4294967295,
+            "wholeFileSumIsAllOnes": true
+          }
+        ],
+        "summary": {
+          "products": 25,
+          "declaredDatasumMatches": 25,
+          "wholeFileAllOnes": 25
+        },
+        "limits": [
+          "Retained source SHA256 is transport identity, distinct from inherited FITS CHECKSUM/DATASUM.",
+          "A mismatch does not establish download corruption, original detector integrity, cause, processing epoch or whether inherited cards were recomputed after deconvolution.",
+          "All originals unchanged; no header rewrite, source replacement, calibration/photometry/registration/terrain claim, production embedding or fresh tests/build/browser claim."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-hdu-structure-preparation-2026-10-22.json",
+      "sha256": "42793d24e3f79929143d7397ba1be008bc5147240d130b26615fc2c774b8c901",
+      "record": {
+        "status": "Read-only single-primary-HDU and checksum arithmetic cross-check preparation",
+        "priorDiagnostic": {
+          "path": "data/research-sources/iris-7-cds-checksum-diagnostic-preparation-2026-10-22.json",
+          "sha256": "ffec69c98bcf464fa0b6c0502ca391b38a3b99b0f865659eacd00d69d690290c"
+        },
+        "rows": [
+          {
+            "file": "1_SRobj.fits",
+            "sourceSha256": "3486c0ec412906f8513d6004b1088ef8e93bbf7e848b43e8c98c1be287038674",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "2_SRobj.fits",
+            "sourceSha256": "abea9da1655f6b27d444f69615e03b7d2764d7e8e0b3e5045818b9630219cc99",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "3_SRobj.fits",
+            "sourceSha256": "6eba68e122e79b1ec784ddc216b517873c4142dc6463c89d64fa96d242b79b52",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "4_SRobj.fits",
+            "sourceSha256": "ffcde424752f7b000410a3369035002e0af8a93d36303e0a32cbf4432a4bfd10",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "5_SRobj.fits",
+            "sourceSha256": "5e1911e0d682b6c263c17e841c2dccab34407b756829f6e8acc9ac539022edc7",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "6_SRobj.fits",
+            "sourceSha256": "b0a89dbe313772cc7df4ba938021811fdcc5a125efe9525804758a9d1b983b74",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "7_SRobj.fits",
+            "sourceSha256": "12662381b7802ff2504e84689a767934fa43ed196f24c5832a020f056c7876b8",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "8_SRobj.fits",
+            "sourceSha256": "d32939d2d7257b97f16200e8982e2160238a886db7c4f1b71ef59536d5106c91",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "9_SRobj.fits",
+            "sourceSha256": "38ccf29876198e81793f688894d558d2869ea7029b65084f561aa043183b0edd",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "10_SRobj.fits",
+            "sourceSha256": "a9e43b146b87d873d5f7d9b84c2738ec19bf3479a9a36649d2ea008c55eca5b1",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "11_SRobj.fits",
+            "sourceSha256": "2a537b92a0e632e78c4eee682411f35223023f29a35e921c0d288360fc6caa78",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "12_SRobj.fits",
+            "sourceSha256": "a050c5e09b749ebf0a695549b5f0c8f4ffb2ceb8a82a5c57e313197135f00135",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "13_SRobj.fits",
+            "sourceSha256": "8e55a274fadf397d7e6d644a76e35c4fbcf833429a1f1d1e112985b0c1701170",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "14_SRobj.fits",
+            "sourceSha256": "ab746d9c5eec59d33e29c1b43f91c6df1db4cf7a2f30878845efec74fad3afcc",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "15_SRobj.fits",
+            "sourceSha256": "f86c10a0524597ff9b9f9e029c2361a7e46c38d7da00dc2a49df59bb45fef307",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "16_SRobj.fits",
+            "sourceSha256": "ba20a4e333d8174af63f37270f837a74a8cdb5badfd1d46d17683a879440c3ce",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "17_SRobj.fits",
+            "sourceSha256": "4c0a300d3fe6eaca00f2050280c889ddc62b514a9855237fa1f1bf2661ef7bdd",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "18_SRobj.fits",
+            "sourceSha256": "14f36a3ef476813bf5a512a9d997cd758f6baf7532ae45614eede9c28eaa2b7d",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "19_SRobj.fits",
+            "sourceSha256": "50b8367f277166a45d2c3d0e3524d9dc2bfdc5d04a2a300f07c6e4acabfbfdb2",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "20_SRobj.fits",
+            "sourceSha256": "c062353a9351ad08bda44b9de6d437dfc33ea79f69f9ad8f0f2e07071eb2f8c4",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "21_SRobj.fits",
+            "sourceSha256": "d2facb74ddf074c82f2f35a85a79920a543cca1ecf92ce5f40ffab91342d4a32",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "22_SRobj.fits",
+            "sourceSha256": "7032da892dc1104d67b91a0b50fb56770159c3953be88697cf5a949bba24517b",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "23_SRobj.fits",
+            "sourceSha256": "f989970900228884a76b4069932aaf4f028562eaf2b87afd958292f986570603",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "24_SRobj.fits",
+            "sourceSha256": "c203ab47756be3d9d946b343cc252f64071fdb9cb2bbcd1690ff5a777c300996",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          },
+          {
+            "file": "25_SRobj.fits",
+            "sourceSha256": "3b027dd55980aedc00eb842f28de55381d544b7c22cbd281e0d48fd6a0ffd648",
+            "headerBytes": 66240,
+            "dataBytes": 524288,
+            "dataPaddingBytes": 2752,
+            "extensionBytes": 0,
+            "zeroDataPadding": true,
+            "bscaleCard": null,
+            "bzeroCard": null,
+            "bunitCard": null,
+            "checksumSecondImplementationAgrees": true
+          }
+        ],
+        "verifiedProducts": 25,
+        "method": "Primary header BITPIX/NAXIS dimensions determine exact padded data extent; file length ends at that extent. Second checksum implementation sums independent high/low16bit NumPy lanes with end-around carry, compared against earlier32bit-word implementation.",
+        "limits": [
+          "EXTEND=T permits extensions but these retained files contain no bytes beyond the primary padded array; this is file structure only.",
+          "Checksum arithmetic agreement is not independent astronomy-library validation, raw detector verification, PSF reconstruction or calibrated science.",
+          "Absent BUNIT/BSCALE/BZERO cards do not identify physical units or validate processing normalization.",
+          "All source bytes unchanged; no production change, new dossier, embedding, photometry, geography, angular calculation or fresh tests/build/browser claim."
+        ]
+      }
+    }
+  ],
+  "scienceReferences": [
+    "docs/research/iris-primary-shape-uncertainty-assessment-2026-10-22.json",
+    "docs/research/iris-native-dataset-assessment-2026-10-22.json"
+  ],
+  "findings": [
+    "Two independently generated original PNG/default copies and complete prompts preserved. Both1536JPEG85 masters and256JPEG80 previews inspected; master footers readable, preview labels require explicit IMAGINED cards.",
+    "Two raw preview JPEGs total16827bytes; this is not WebP80 embedding or standalone increment and excludes native images/text/wrappers.",
+    "25 unchanged CDS SPHERE deconvolved FITS products total14832000bytes. Ten DATE-OBS strings on2017-10-10 and15 on2017-10-11 match inventory; inherited metadata is not independent raw archive identity.",
+    "All25 retain exact single-primary-HDU file extents and zero data padding.32bit-word and separate16bit-lane checksum implementations agree; declared DATASUM and whole-file all-ones checks pass. No independent astronomy-library cross-check.",
+    "Whole25product grayscale contact diagnostic inspected previously; per-cell normalization is not comparable photometry, measured terrain or calibrated visibleRGB."
+  ],
+  "limits": [
+    "All terrain, grains, materials, chemistry/fractions/porosity, colour, light, exposure, attitude and scale in generated views imagined; no analog skin, mapped site or trace of putative named craters/model facets.",
+    "Sun and astronomical disks off frame; no angular/raster size or photometry claim; black sky/omissions do not establish physical absence. No plume/ocean/biology/survivable landing.",
+    "NDIT and sequence time remain inherited strings; no inferred total integration, raw coadd chain, PSF/calibration reconstruction or scene registration.",
+    "Checksum agreement establishes stored-byte consistency only, not detector accuracy, scientific normalization, licence or provenance chain.",
+    "Product-specific reuse terms, source JPEG/crop lineage, raw exposure association and physical registration remain open. Full38author CDS credit retained in referenced native audit.",
+    "All prior original PNG/master/native/map/model/shape/catalogue/codec bytes preserved. No new dossier, native embedding or production change. Lossless capacity and remaining backlog active."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "preservation": {
+      "baseline": "a63d799",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": [
+        "src/data/bespoke.js",
+        "src/data/moons.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "docs/research/bespoke-queue.json"
+      ],
+      "dossiers": 108,
+      "moonEntries": 63,
+      "nativeCardsExactBytesAndMime": 87,
+      "currentReadableSha256": "bfc66338f490dd840d8ff54bb857d95580962b8eab06681cd9da8ab913a68230",
+      "fullBuild": {
+        "pass": true,
+        "htmlBytes": 15982346,
+        "headroomBytes": 17654,
+        "gateBytes": 16000000
+      },
+      "freshBrowserClaim": false,
+      "completeCurrentFullHtmlRestorationClaim": false
+    },
+    "referencedFilesHashVerified": 40,
+    "bothDefaultOriginalsByteEqual": true,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false
+  }
+}
