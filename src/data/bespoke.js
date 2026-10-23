@@ -18834,6 +18834,212 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "hygiea": {
+    "id": "hygiea",
+    "name": "Hygiea",
+    "kind": "asteroid",
+    "aliases": [
+      "Hygiea",
+      "10 Hygiea",
+      "(10) Hygiea",
+      "10 Hygiea (A849 GA)"
+    ],
+    "researchDate": "2026-10-23",
+    "previewWidth": 256,
+    "nativeSurface": "No registered globe or digital shape adopted. Processed ESO optical context is separate from independently imagined local and sky views.",
+    "measured": [
+      "Identity: asteroid10 Hygiea. ESO processed SPHERE/VLT R-band context published2019-10-28; exact acquisitionUTC/raw product/exposure/coadd association remains open.",
+      "Catalogue radius203.6km, mass1.05e20kg and synodic13.828h retained. JPL effective diameter407.12±6.8km from IRAS22 observations is not a resolved axis or local normal. GM7km3/s2 cites Scholl1987 without sigma; no precise mass error inferred."
+    ],
+    "modelled": [
+      "Vernazza2019 ADAM/MISTRAL fit has SEMIAXES225±5,215±5,212±10km and volume-equivalent radius217±7km; not full diameters, local normals or replacement catalogue values. Sidereal13.82559±.00005h differs from catalogue synodic rotation. Equatorial poleRA319±3/Dec−46±3 not applied as a current attitude.",
+      "Adopted mass8.32±.8e19kg combined with fitted volume yields1944±250kg/m3 bulk density; not measured local composition, porosity or chemical fractions. Near-sphericity/dwarf-planet proposal does not establish an IAU classification change.",
+      "Authors selected2017-06-23/2017-07-20images for reflectance mapping: about one third of the surface covered by the complete dataset, not whole-set~95percent coverage. ADAM projection, overlapping brightness adjustment and assumed7.2percent mean geometric albedo do not remove all shadow/topography ambiguity. No registered map adopted.",
+      "Impact simulations assume monolithic basalt and initial2000kg/m3 density with~6km model resolution; these are simulation inputs, not measured local material or image resolution. Collision/family/rounding interpretations are models, not directly observed history."
+    ],
+    "unknown": [
+      "Exact ESO disk epoch/raw product, exposure/filter/coadd/PSF and physical-frame registration remain open. Paper Figure2 top panels are shape-model projections with red spin axes, bottom panels deconvolved observed images; none transferred to a globe or current viewpoint.",
+      "Processed monochrome R-band brightness/soft limb/black background are not calibrated visibleRGB, uniquely local terrain or atmospheric absence. Original TIFF and same-size largeJPEG decoded values differ; screen rendition resizes/reencodes and is not full-pixel preservation of the original.",
+      "Local chemistry/fractions, grain/block scale, normal/attitude, phase, visible colour, coverage and calibrated photometry unknown. C taxonomy, IRAS albedo and colour indices do not establish a local mineral map. No newest-observation claim.",
+      "Retained publisher TIFF and screenJPEG each contain explicit XMP CC BY4 International usage text and full credit. Live terms access previously503, not newly fetched. Paper ORBi terms/final-version and supplementary observation-table/figure crosswalk remain open; no paper figure or blanket raw-data licence adopted."
+    ],
+    "assumed": [
+      "All generated relief/craters/depressions/blocks/grains, chemistry/fractions, neutral-grey colour, scale, orientation/horizon/phase/light/exposure imagined independently; no observed-body analog skin or SPHERE brightness template. No dated site, exposed interior, atmosphere/plume/liquid/ocean/biology/people/craft/survivable landing implication. Black sky/omitted stars not measured absence.",
+      "Sun and all astronomical disks outside both frames. Representative orbital semimajor axis3.150974033963701AU is only angular-helper context, not current ephemeris, local normal, jointfit, illumination or photometry. No raster disk measured; helper colour/irradiance discarded.",
+      "Local and sky illustrations are hypothetical unregistered views. IMAGINED card labels identify that status at small display sizes; no registered globe or digital shape is established."
+    ],
+    "surfaceLabel": "IMAGINED · HYGIEA LOCAL VIEW",
+    "skyLabel": "IMAGINED · SKY FROM HYGIEA",
+    "skyCaption": "Hypothetical unregistered horizon. Sun off frame; terrain, material, colour, attitude and lighting invented.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "203.6 KM · CATALOGUE"
+      ],
+      [
+        "MASS",
+        "1.05e20 KG · CATALOGUE"
+      ],
+      [
+        "ROTATION",
+        "13.828 H · SYNODIC CATALOGUE"
+      ],
+      [
+        "SURFACE",
+        "NO REGISTERED GLOBE"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 3.150974033963701,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Sun · representative geometry, off frame",
+      "angularDiameterDeg": 0.16912373169518696,
+      "centreDiscWidthFraction": 0.0014758840522756623,
+      "irradianceEarth": 0.10071875560240039,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [
+      {
+        "url": "/references/hygiea-eso1918a-screen.jpg",
+        "tier": "measured",
+        "label": "NATIVE · HYGIEA PROCESSED R-BAND",
+        "credit": "ESO/P. Vernazza et al./MISTRAL algorithm (ONERA/CNRS)",
+        "source": "https://cdn.eso.org/images/screen/eso1918a.jpg",
+        "sourcePage": "https://www.eso.org/public/images/eso1918a/",
+        "observationDate": null,
+        "publicationDate": "2019-10-28",
+        "description": "Processed SPHERE/VLT monochrome R-band disk. Exact acquisition/product crosswalk remains open; soft limb and brightness structure do not establish local regolith, calibrated visible colour or registered geography.",
+        "processing": "Unchanged ESO-served1280x824screenJPEG. Publisher resized/reencoded rendition, not full-pixel preservation of retained2490x1602TIFF; no local native transformation.",
+        "terms": "Publisher-embedded XMP in this screenJPEG and retained TIFF explicitly states Creative Commons Attribution4.0International. Full credit retained; no endorsement. Paper/raw-product permissions remain separate.",
+        "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af",
+        "sourceSha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af",
+        "bytes": 30635,
+        "width": 1280,
+        "height": 824
+      }
+    ],
+    "references": [
+      {
+        "title": "ESO · SPHERE image of Hygiea and processing credit",
+        "url": "https://www.eso.org/public/images/eso1918a/"
+      },
+      {
+        "title": "ESO image usage terms · embedded image noticeCCBY4",
+        "url": "https://www.eso.org/public/outreach/copyright/"
+      },
+      {
+        "title": "A basin-free spherical shape as an outcome of a giant impact on asteroid Hygiea",
+        "url": "https://doi.org/10.1038/s41550-019-0915-8",
+        "authors": [
+          "P. Vernazza",
+          "L. Jorda",
+          "P. Ševeček",
+          "M. Brož",
+          "M. Viikinkoski",
+          "J. Hanuš",
+          "B. Carry",
+          "A. Drouard",
+          "M. Ferrais",
+          "M. Marsset",
+          "F. Marchis",
+          "M. Birlan",
+          "E. Podlewska-Gaca",
+          "E. Jehin",
+          "P. Bartczak",
+          "G. Dudzinski",
+          "J. Berthier",
+          "J. Castillo-Rogez",
+          "F. Cipriani",
+          "F. Colas",
+          "F. DeMeo",
+          "C. Dumas",
+          "J. Durech",
+          "R. Fetick",
+          "T. Fusco",
+          "J. Grice",
+          "M. Kaasalainen",
+          "A. Kryszczynska",
+          "P. Lamy",
+          "H. Le Coroller",
+          "A. Marciniak",
+          "T. Michalowski",
+          "P. Michel",
+          "N. Rambaux",
+          "T. Santana-Ros",
+          "P. Tanga",
+          "F. Vachier",
+          "A. Vigan",
+          "O. Witasse",
+          "B. Yang",
+          "M. Gillon",
+          "Z. Benkhaldoun",
+          "R. Szakats",
+          "R. Hirsch",
+          "R. Duffard",
+          "A. Chapman",
+          "J. L. Maestre"
+        ]
+      },
+      {
+        "title": "ORBi retained manuscript · version and figure terms separate",
+        "url": "https://orbi.uliege.be/bitstream/2268/241008/1/Hygiea2019preprint.pdf"
+      },
+      {
+        "title": "JPL Small-Body Database · IRAS/synodic reference alternatives",
+        "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=10&phys-par=true"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/hygiea-surface-image.jpg",
+      "previewUrl": "/bespoke/hygiea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-22",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hygiea-10-generated-surfaceImage-original-2026-10-22.png",
+      "sourceSha256": "25accb291aeeb5ff37c97c83a3e0dfee3397ace1c2d383e60f272505717d9807",
+      "sha256": "e6880a90f6b2d36f00442f23fee12ae0e8825c4e89946e87d70b44de7a02021b",
+      "previewSha256": "746b970201fcb1e78d6ebf261703348a717eaf51de90795dc638a84d7d53cae7",
+      "bytes": 313614,
+      "previewBytes": 9493,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/hygiea-sky-image.jpg",
+      "previewUrl": "/bespoke/hygiea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-22",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hygiea-10-generated-skyImage-original-2026-10-22.png",
+      "sourceSha256": "ece57f82eddff83353d73efa90bea35a2827a14535ec816aa6346d9e27d40a44",
+      "sha256": "a38b0909aa8720f3f9feb4ba6ffe8e5e69f752ca0fbfc01ceadac568cef2936d",
+      "previewSha256": "f88614389a26fb1218d3a64c3902df85a4ba53fd530f6cbe7fdd9eff2336785a",
+      "bytes": 128328,
+      "previewBytes": 4356,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

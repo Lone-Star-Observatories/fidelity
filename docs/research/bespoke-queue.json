@@ -1043,10 +1043,11 @@
       "parent": null,
       "kind": "asteroid",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "No registered globe or digital shape adopted. Processed ESO optical context is separate from independently imagined local and sky views.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "hygiea"
     },
     {
       "id": "sol-juno",

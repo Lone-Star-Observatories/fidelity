@@ -1,0 +1,1784 @@
+{
+  "date": "2026-10-23",
+  "bodyId": "hygiea",
+  "scienceAssessment": {
+    "date": "2026-10-22",
+    "issue": 3,
+    "body": {
+      "id": "hygiea",
+      "designation": "10 Hygiea (A849 GA)",
+      "status": "Research-only; no dossier109 or production adoption"
+    },
+    "scope": "Targeted source, native-rendition and fitted-parameter audit. Not all-page visual review, supplement review, independent reduction, shape reconstruction or physical registration.",
+    "primary": {
+      "doi": "10.1038/s41550-019-0915-8",
+      "repository": "https://orbi.uliege.be/handle/2268/241008",
+      "pdfUrl": "https://orbi.uliege.be/bitstream/2268/241008/1/Hygiea2019preprint.pdf",
+      "source": {
+        "path": "data/research-sources/hygiea-10-orbi-primary-2026-10-22.pdf",
+        "sha256": "3e9abb7da4a749a33aaff9c73e14edccb259b163ee627fa48d1bc8d7c05cf292",
+        "pages": 33
+      },
+      "authorsAsPrinted": [
+        "P. Vernazza",
+        "L. Jorda",
+        "P. \u0160eve\u010dek",
+        "M. Bro\u017e",
+        "M. Viikinkoski",
+        "J. Hanu\u0161",
+        "B. Carry",
+        "A. Drouard",
+        "M. Ferrais",
+        "M. Marsset",
+        "F. Marchis",
+        "M. Birlan",
+        "E. Podlewska-Gaca",
+        "E. Jehin",
+        "P. Bartczak",
+        "G. Dudzinski",
+        "J. Berthier",
+        "J. Castillo-Rogez",
+        "F. Cipriani",
+        "F. Colas",
+        "F. DeMeo",
+        "C. Dumas",
+        "J. Durech",
+        "R. Fetick",
+        "T. Fusco",
+        "J. Grice",
+        "M. Kaasalainen",
+        "A. Kryszczynska",
+        "P. Lamy",
+        "H. Le Coroller",
+        "A. Marciniak",
+        "T. Michalowski",
+        "P. Michel",
+        "N. Rambaux",
+        "T. Santana-Ros",
+        "P. Tanga",
+        "F. Vachier",
+        "A. Vigan",
+        "O. Witasse",
+        "B. Yang",
+        "M. Gillon",
+        "Z. Benkhaldoun",
+        "R. Szakats",
+        "R. Hirsch",
+        "R. Duffard",
+        "A. Chapman",
+        "J. L. Maestre"
+      ],
+      "authorCount": 47,
+      "visualReviewPages": [
+        1,
+        4,
+        10,
+        16,
+        31
+      ],
+      "targetedTextReviewedPages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10,
+        11,
+        16,
+        17
+      ],
+      "parserCaution": "pypdf emitted wrong-pointing-object warnings for multiple PDF objects; all 33 pages extracted, but extraction alone is not visual or content-completeness verification. Original PDF bytes unchanged.",
+      "supplementInventoryCaution": "Retained 33-page file includes main text/methods/references and four main figures. Supplementary observation tables cited in text are not present as extracted tables; do not claim their review or exact publisher disk epoch association.",
+      "licence": {
+        "status": "Research-only source-terms inventory; no paper figure redistribution or production adoption",
+        "source": "data/research-sources/hygiea-10-orbi-usage-2026-10-22.html",
+        "termsUrl": "https://orbi.uliege.be/page/user-license",
+        "findings": [
+          "General repository usage text allows reading, downloading, indexing and other specified uses.",
+          "General text excludes commercial use and describes the grant as non-exclusive and non-transmissible.",
+          "A Creative Commons licence applicable to a particular archived work takes precedence according to the repository text; none has been independently established for this file.",
+          "General text also restricts modifications and summaries and requests express permission for uses outside its terms.",
+          "Repository terms are not an ESO imagery licence or a verified publisher-version licence."
+        ],
+        "limits": [
+          "No permission request or external message sent.",
+          "Paper-specific notice, publisher-version crosswalk and full scientific review remain pending."
+        ]
+      },
+      "versionCaution": "Repository calls file publisher postprint although filename says preprint. Repository date2019-10-01 is not an observation date; publisher release2019-10-28 is distinct. Final-version crosswalk remains open."
+    },
+    "fittedParameters": {
+      "semiaxesKm": [
+        225,
+        215,
+        212
+      ],
+      "semiaxesReportedUncertaintiesKm": [
+        5,
+        5,
+        10
+      ],
+      "volumeEquivalentRadiusKm": 217,
+      "radiusReportedUncertaintyKm": 7,
+      "rotationPeriodHours": 13.82559,
+      "rotationReportedUncertaintyHours": 5e-05,
+      "poleEquatorialDegrees": {
+        "ra": 319,
+        "dec": -46,
+        "reportedUncertainties": [
+          3,
+          3
+        ]
+      },
+      "adoptedMassKg": 8.32e+19,
+      "massReportedUncertaintyKg": 8e+18,
+      "derivedDensityKgM3": 1944,
+      "densityReportedUncertaintyKgM3": 250,
+      "limits": [
+        "Semi-axes are not diameters; fitted global dimensions are not local surface normals.",
+        "Mass estimate combined with fitted volume yields density; no direct local composition or porosity measurement.",
+        "MISTRAL deconvolution, parametric PSF and ADAM fit not independently reproduced. Facet brightness freedom and smoothing are model assumptions.",
+        "Near-sphericity and dwarf-planet proposal do not establish an IAU roster change.",
+        "No silent replacement of existing IRAS-derived catalogue radius, historical mass or synodic rotation."
+      ]
+    },
+    "native": {
+      "screen": {
+        "status": "research preparation only; not embedded or adopted",
+        "retrievedAt": "2026-10-22T18:22:55.221329+00:00",
+        "sourceUrl": "https://cdn.eso.org/images/screen/eso1918a.jpg",
+        "finalUrl": "https://cdn.eso.org/images/screen/eso1918a.jpg",
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/hygiea-10-eso1918a-screen-2026-10-22.jpg",
+        "bytes": 30635,
+        "sha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af",
+        "publisherPage": "https://www.eso.org/public/images/eso1918a/",
+        "credit": "ESO/P. Vernazza et al./MISTRAL algorithm (ONERA/CNRS)",
+        "publisherRelease": "2019-10-28 17:00; not an observation timestamp",
+        "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+        "termsStatus": "direct page returned 503; licence not independently verified this preparation",
+        "limits": [
+          "No acquisition UTC or exact raw product association verified.",
+          "Native processed optical R 645 nm imagery is not calibrated visible colour or registered surface geography.",
+          "Publisher dwarf-planet possibility does not establish an IAU classification change.",
+          "No catalogue, dossier, map, shape, codec or production asset change."
+        ],
+        "visualInspection": {
+          "completed": true,
+          "description": "Grayscale processed blurred disk on black background; broad light/dark structure and softened limb. No resolved local regolith or calibrated visible RGB inferred.",
+          "pixelDimensions": [
+            1280,
+            824
+          ],
+          "dimensionStatus": "image dimensions only; no angular or raster diameter calculation"
+        }
+      },
+      "largerRenditions": {
+        "retrievedAt": "2026-10-22T18:35:47.688743+00:00",
+        "status": "research only; no production adoption",
+        "files": [
+          {
+            "url": "https://cdn.eso.org/images/original/eso1918a.tif",
+            "finalUrl": "https://cdn.eso.org/images/original/eso1918a.tif",
+            "path": "data/research-sources/hygiea-10-eso1918a-original-2026-10-22.tif",
+            "bytes": 1300754,
+            "sha256": "11e74172cc5a24467b1004526e3a68784bfd8d1c2e387b322788f49946d2f6c1",
+            "contentType": "image/tiff",
+            "decodedDimensions": [
+              2490,
+              1602
+            ],
+            "mode": "RGB",
+            "format": "TIFF",
+            "tiffTagNames": [
+              "256",
+              "257",
+              "258",
+              "259",
+              "262",
+              "34377",
+              "270",
+              "273",
+              "277",
+              "278",
+              "279",
+              "282",
+              "283",
+              "284",
+              "296",
+              "34665",
+              "305",
+              "306",
+              "34675",
+              "33723",
+              "700",
+              "317",
+              "254"
+            ]
+          },
+          {
+            "url": "https://cdn.eso.org/images/large/eso1918a.jpg",
+            "finalUrl": "https://cdn.eso.org/images/large/eso1918a.jpg",
+            "path": "data/research-sources/hygiea-10-eso1918a-large-2026-10-22.jpg",
+            "bytes": 110370,
+            "sha256": "0ae9f96191a45bb19e4e5c1ab35041d63638bd907224a1e4e0bd69bfbbfaf012",
+            "contentType": "image/jpeg",
+            "decodedDimensions": [
+              2490,
+              1602
+            ],
+            "mode": "L",
+            "format": "JPEG"
+          }
+        ],
+        "credit": "ESO/P. Vernazza et al./MISTRAL algorithm (ONERA/CNRS)",
+        "limits": [
+          "Original TIFF and publisher large JPEG retained unchanged; pixel equality and processing lineage not established.",
+          "Terms endpoint and related release returned 503; no licence inference.",
+          "Release timestamp is not observation date; exact acquisition and raw product association remain open."
+        ],
+        "visualInspection": {
+          "originalTiffDecodedDiagnosticInspected": true,
+          "description": "Broad grayscale disk structure, softened limb and black background; no local regolith or calibrated visible-colour inference.",
+          "diagnosticPath": "data/research-sources/hygiea-10-eso1918a-original-inspection-2026-10-22.png",
+          "diagnosticSha256": "91673c00f51e7e653bbe478a2a6cb84055360b1408f2a27ce5fe36e42b03035d",
+          "diagnosticStatus": "local RGB decoding for inspection only, not a publisher original or production asset",
+          "largeJpegVisualInspectionPending": false,
+          "largeJpegInspected": true
+        }
+      },
+      "pixelComparison": {
+        "status": "research-only decoded-pixel comparison; no resampling, replacement or production adoption",
+        "files": [
+          {
+            "path": "data/research-sources/hygiea-10-eso1918a-original-2026-10-22.tif",
+            "sha256": "11e74172cc5a24467b1004526e3a68784bfd8d1c2e387b322788f49946d2f6c1"
+          },
+          {
+            "path": "data/research-sources/hygiea-10-eso1918a-large-2026-10-22.jpg",
+            "sha256": "0ae9f96191a45bb19e4e5c1ab35041d63638bd907224a1e4e0bd69bfbbfaf012"
+          }
+        ],
+        "dimensions": [
+          2490,
+          1602
+        ],
+        "originalRGBChannelsEqual": true,
+        "largeJpegStoredMode": "L",
+        "rgbDecodedPixelEqual": false,
+        "meanAbsoluteChannelDifference": 0.33619296160923345,
+        "maxAbsoluteChannelDifference": 6,
+        "limits": [
+          "Same dimensions and visual similarity do not establish identical pixel values, processing lineage or raw product identity.",
+          "RGB storage and grayscale channel equality do not establish calibrated visible colour or photometry.",
+          "No angular, physical scale or raster diameter calculation performed."
+        ]
+      },
+      "limitation": "R-band processed monochrome disk is not calibrated visible RGB, local regolith or a registered globe. TIFF and JPEG differ in decoded values; no exact pixel lineage asserted. Earlier preparation uncertainty is superseded only by the recorded comparison, not by a calibration claim."
+    },
+    "reflectanceMap": {
+      "sourcePage": 10,
+      "visuallyVerified": true,
+      "selectedEpochs": [
+        "2017-06-23",
+        "2017-07-20"
+      ],
+      "coverage": "Authors say selected images sample about one third of surface covered by the complete observation set; do not transfer whole-set approximately 95 percent coverage to reflectance map.",
+      "method": "Authors project using ADAM shape, adjust overlapping brightness and normalize to assumed average geometric albedo 7.2 percent.",
+      "limitation": "Albedo and shadows cannot always be separated; local topographic illumination not accurately corrected. Not calibrated visible RGB or an independently reproduced registered global map.",
+      "publisherImageAssociation": "Exact eso1918a epoch/product crosswalk remains open."
+    },
+    "reflectanceFeatures": "Page11 text describes brightness features, shadow enhancement and two inferred craters; supplement figures not acquired. Ceres comparison is separate-body evidence and supplies no Hygiea skin.",
+    "figure2": {
+      "page": 31,
+      "captionDistinction": "Top panels shape-model projections with red spin axes; bottom panels deconvolved observed images. Do not label model projections as native observations.",
+      "printedTimestampStrings": [
+        "2017-06-23T03:52:59",
+        "2017-07-22T01:57:29",
+        "2017-07-22T03:35:13",
+        "2017-08-22T23:05:43",
+        "2017-08-15T00:34:45",
+        "2017-07-20T04:24:40",
+        "2018-08-26T08:04:38",
+        "2018-08-25T05:45:03",
+        "2018-09-08T04:34:31",
+        "2018-09-08T06:21:14",
+        "2018-09-11T04:55:31",
+        "2018-08-26T05:24:48"
+      ],
+      "timeStandard": "Not explicitly identified in this figure caption; no verified raw UTC/product mapping.",
+      "ordering": "Retained panel order; not chronological.",
+      "publisherDiskCrosswalk": "Not established; resemblance does not establish exact eso1918a pixel/product/epoch identity.",
+      "scale": "Printed 100 km bar is publisher annotation; no new angular or raster calculation."
+    },
+    "impactModel": "Page16 visually verifies assumed monolithic basalt properties and 2000 kg/m3 initial density, SPH model resolution about 6 km; these are simulation assumptions, not measured local chemistry, regolith grain size or image resolution. No independent simulation reproduction.",
+    "dataAvailability": {
+      "printedUrl": "http://observations.lam.fr/astero/",
+      "attemptedUrl": "https://observations.lam.fr/astero/",
+      "webResult": "417 Expectation Failed",
+      "responseRetained": false,
+      "hash": null,
+      "interpretation": "Failed access is not evidence that models are absent. No shape/model/raw image downloaded or adopted."
+    },
+    "catalogueComparison": {
+      "status": "research-only catalogue/reference comparison; no adoption or production modification",
+      "sourcePath": "data/research-sources/hygiea-10-jpl-sbdb-full-precision-2026-10-22.json",
+      "sourceSha256": "4afe537f98d31cf69a6850f81596bb9bdcd49174279413a7569b66768f7c559f",
+      "cataloguePath": "src/data/moons.js",
+      "epochAndSixOrbitalElementsExactAsJSNumbers": true,
+      "catalogueValues": [
+        2461200.5,
+        3.150974033963701,
+        0.1067092741240963,
+        3.829529946447122,
+        283.1198927508594,
+        312.4242387344704,
+        252.0344242359649
+      ],
+      "physicalReferenceDistinctions": [
+        "SBDB effective diameter407.12\u00b16.8km cites IRAS IMPS V6.0,22 observations; this is not a resolved axis or local normal. Existing203.6km radius is rounded half-diameter context, not newly measured.",
+        "GM7 km3/s2 has no sigma reported and cites Scholl1987; no precise mass uncertainty or local chemistry inferred. Existing1.05e20kg remains unchanged.",
+        "Rotation13.828h is explicitly synodic LCDB Rev2023October; do not silently substitute shape-model sidereal precision.",
+        "Geometric albedo.0717\u00b1.002 and B-V/U-B indices do not establish resolved calibrated visible-colour geography or an image transfer.",
+        "Tholen and SMASSII C categories do not establish mineral fractions, density or porosity."
+      ],
+      "limits": [
+        "Individual underlying IRAS,1987 mass and later rotation references not yet reviewed.",
+        "Exact native-image UTC/raw product, shape orientation and photometry remain open.",
+        "No angular or raster-size calculation performed."
+      ]
+    },
+    "open": [
+      "Exact ESO publisher disk epoch/raw product, filter/exposure/coadd association and licence.",
+      "Separate supplementary observation tables/figures and final paper version.",
+      "Released digital model bytes, coordinate frame, orientation and current scene registration.",
+      "Independent photometric calibration and full reference audit."
+    ],
+    "preservation": {
+      "productionChanges": false,
+      "newDossier": false,
+      "newEmbedding": false,
+      "newMap": false,
+      "newModel": false,
+      "newCatalogueValues": false,
+      "codecChange": false
+    },
+    "retainedFiles": [
+      {
+        "path": "data/research-sources/hygiea-10-catalogue-reference-preparation-2026-10-22.json",
+        "bytes": 1579,
+        "sha256": "ade24f4e203beda9ae32c0a396ef6abf03968c02d3db3096028ff793c430282a"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso-acquisition-preparation-2026-10-22.json",
+        "bytes": 1125,
+        "sha256": "5b4b5ac939f6532a781f8c9676cac97a43998d357c9fb002a799dae048fadfbd"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso-native-preparation-2026-10-22.json",
+        "bytes": 1575,
+        "sha256": "2625a900efedc7d6109cfa11ee300920ba3d653c9f746ba42041abc0c534daef"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso-pixel-comparison-preparation-2026-10-22.json",
+        "bytes": 1044,
+        "sha256": "9b19fd89c8ddaff8451a0259db4eac27ef7a946e1ca0957a9d7a2a9442b7b612"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso-renditions-preparation-2026-10-22.json",
+        "bytes": 2470,
+        "sha256": "35ee8493617b7614c60e665275ecc2d2d5b2d8349e43280041ce2c8560c74b5f"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso-tiff-metadata-preparation-2026-10-22.json",
+        "bytes": 44217,
+        "sha256": "8fd97332edc5d41bd2db251629309eaaf91ea0397c362010bdd819717397fc87"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso1918a-large-2026-10-22.jpg",
+        "bytes": 110370,
+        "sha256": "0ae9f96191a45bb19e4e5c1ab35041d63638bd907224a1e4e0bd69bfbbfaf012"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso1918a-original-2026-10-22.tif",
+        "bytes": 1300754,
+        "sha256": "11e74172cc5a24467b1004526e3a68784bfd8d1c2e387b322788f49946d2f6c1"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso1918a-original-inspection-2026-10-22.png",
+        "bytes": 1178831,
+        "sha256": "91673c00f51e7e653bbe478a2a6cb84055360b1408f2a27ce5fe36e42b03035d"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-eso1918a-screen-2026-10-22.jpg",
+        "bytes": 30635,
+        "sha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-jpl-acquisition-preparation-2026-10-22.json",
+        "bytes": 3782,
+        "sha256": "db120c505ce8bd650c5f5217f5be7b9819442fe3b7de2f05173876b92533e6bc"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-jpl-sbdb-full-precision-2026-10-22.json",
+        "bytes": 4502,
+        "sha256": "4afe537f98d31cf69a6850f81596bb9bdcd49174279413a7569b66768f7c559f"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-orbi-acquisition-preparation-2026-10-22.json",
+        "bytes": 1831,
+        "sha256": "9e134a6f2cd578c1042e71e01941e0180da5d5b9b0a56f780912c16393d24f80"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-orbi-primary-2026-10-22.pdf",
+        "bytes": 5941284,
+        "sha256": "3e9abb7da4a749a33aaff9c73e14edccb259b163ee627fa48d1bc8d7c05cf292"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-orbi-primary-text-preparation-2026-10-22.txt",
+        "bytes": 45938,
+        "sha256": "5509f46b579c74f91e7d4c6a3e74c7c7516b9b0e004b063c48539bc712fca148"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-orbi-record-2026-10-22.html",
+        "bytes": 63207,
+        "sha256": "0b0374cf783410aa45525aae7681750472c736d4ab8707770c2b26277ac37520"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-orbi-terms-preparation-2026-10-22.json",
+        "bytes": 1045,
+        "sha256": "52e8d5005056f147b35ac58eceedb8d3741a99351da5b9c19ce220a827b01bb4"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-orbi-usage-2026-10-22.html",
+        "bytes": 16644,
+        "sha256": "d32c511f166bdbc57594722b862856bdaf20c678c44585413d582452b967c207"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-primary-acquisition-preparation-2026-10-22.json",
+        "bytes": 628,
+        "sha256": "5b42ae428dfbc37d885e93591eb2cc904fe97912dbdb8ff4e5bc25577cfc14c1"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-primary-alternate-acquisition-preparation-2026-10-22.json",
+        "bytes": 342,
+        "sha256": "f0e91bc3a4e7d8d699a064709d22fc69b9f033f19a61de36c33dc94abc203f5b"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-primary-text-review-preparation-2026-10-22.json",
+        "bytes": 6534,
+        "sha256": "2d0b445be94cfdace531bb78e9173bd9aed27688682ad2ada36abc6488215dab"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-01.png",
+        "bytes": 210156,
+        "sha256": "e375633e634db3d44726cd475887c5cb8b03af92f13f5519239fd23308e166d7"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-04.png",
+        "bytes": 269116,
+        "sha256": "92e304a3e99a382d7e1c74eaa6a7e18b9efdc4cb69d9c4b54d23be22030e374e"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-10.png",
+        "bytes": 229469,
+        "sha256": "7394896afee556d3aeed35601dfcea901f5b453e9ae1fe2c199a141b64acbc31"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-16.png",
+        "bytes": 216703,
+        "sha256": "e1c31413a71fc7bd51b677bfd64bd381943d1bf7c75e157a115d8aeaa46bd71d"
+      },
+      {
+        "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-31.png",
+        "bytes": 178468,
+        "sha256": "4dbb397dd6f0ea477b170c79ead89eac71b2afc9dacafe6a180089a124a7e9be"
+      }
+    ],
+    "validation": {
+      "baseline": "8f343a9",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": [
+        "src/data/bespoke.js",
+        "src/data/moons.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "docs/research/bespoke-queue.json"
+      ],
+      "dossiers": 108,
+      "moonEntries": 63,
+      "nativeCardsExactBytesAndMime": 87,
+      "currentReadableSha256": "10c73b5a63af4509c2d6ccac66959981646fc57c12deeda89f954fd6734a16f5",
+      "fullBuild": {
+        "pass": true,
+        "htmlBytes": 15985666,
+        "headroomBytes": 14334,
+        "gateBytes": 16000000
+      },
+      "freshBrowserClaim": false,
+      "completeCurrentFullHtmlRestorationClaim": false,
+      "testsPassed": 711,
+      "testsSkipped": 1,
+      "productionBuildPassed": true,
+      "queueTasks": 569,
+      "retainedHashesVerified": 26,
+      "interbuildSavingsClaim": false
+    }
+  },
+  "generatedPreparation": {
+    "date": "2026-10-22",
+    "bodyId": "hygiea",
+    "status": "Independent illustration preparation only; no109th dossier or embedding",
+    "records": {
+      "hygiea-10-illustration-specification-preparation-2026-10-22.json": {
+        "status": "Specification preparation only; no generated image, dossier or embedding",
+        "bodyId": "hygiea",
+        "designation": "10 Hygiea (A849 GA)",
+        "scienceRecord": {
+          "path": "docs/research/hygiea-primary-native-assessment-2026-10-22.json",
+          "sha256": "85307d8211b8f16767cd9b0f6c3cf5369e6f77ea3c8304aee5b7a0dbd28e9f0a"
+        },
+        "generationScope": "Two independent hypothetical local views, no resolved globe or shape adoption. No source images supplied as terrain.",
+        "sharedConstraints": [
+          "All local terrain, craters, stones, grains, chemistry, fractions, colour, lighting, exposure and attitude are invented.",
+          "Dark neutral grey is an artistic hypothesis; C taxonomy, IRAS albedo and bulk-density interpretations are not local mineral abundances.",
+          "Do not reuse or transform any observed Moon, Mars, Ceres, Vesta, Pallas or other body map. Do not interpret deconvolution brightness structures as local rocks.",
+          "No dated site, current ephemeris, registered landmark, atmospheric absence, plume, liquid ocean, biology or survivable landing claim.",
+          "No Sun or other astronomical disk in frame; no angular/raster-size calculation or calibration claim.",
+          "No spacecraft Juno association; target is asteroid10 Hygiea.",
+          "Keep both clear footer lines inside frame; generated originals and default output must be preserved before any master/preview creation."
+        ],
+        "views": [
+          {
+            "role": "surfaceImage",
+            "prompt": "Create an independent research-guided scientific hypothetical illustration of a very low camera view above an imagined local surface of asteroid (10) Hygiea. Landscape 16:9. Subdued neutral dark grey regolith with gently rolling low relief, scattered modest irregular stones and fine grains, a few shallow small depressions, restrained oblique lighting and a black sky. No visible astronomical disks, spacecraft, people, buildings, atmosphere or active phenomena. Invent every local feature independently; do not copy any real body map or observed planetary photograph. Neither native SPHERE brightness patterns nor fitted ADAM facets are local terrain templates. Chemistry, grain size, porosity, colour, horizon attitude, illumination and exposure are unmeasured artistic choices. Add a simple dark footer with two crisp readable lines: \"IMAGINED LOCAL VIEW \u2014 (10) HYGIEA\" and \"INVENTED TERRAIN / COLOUR / LIGHT \u2014 NO REGISTERED SITE\". Do not portray a survivable human landing."
+          },
+          {
+            "role": "skyImage",
+            "prompt": "Create a second independent scientific hypothetical observer illustration looking along a different imagined horizon of asteroid (10) Hygiea, landscape 16:9. Show only a low strip of dark neutral grey invented regolith and a few independent angular stones beneath an expansive black sky. The Sun stays entirely outside the frame; no planets, moons, stars as disks, spacecraft, people or artificial structures. Use restrained low side light and a visibly different composition from the local view. All relief, rocks, grain size, chemistry, colour, attitude, light and exposure are invented; black sky is an artistic assumption and is not evidence about atmosphere. Do not borrow any observed asteroid or planetary map or SPHERE image brightness pattern. No dated or physically registered viewpoint and no angular-size claim. Add a crisp readable two-line dark footer: \"IMAGINED SKY FROM (10) HYGIEA\" and \"UNREGISTERED VIEW / INVENTED TERRAIN, COLOUR AND LIGHT\". No active plume, exposed ocean, biology or survivable landing."
+          }
+        ],
+        "productionChange": false,
+        "generationExecuted": false,
+        "accessUpdate": {
+          "date": "2026-10-22",
+          "esoTerms": "Web503 again; no downloaded response or licence/hash claim. Do not repeatedly retry unchanged endpoint.",
+          "esoRelease": "Web503 again; no downloaded response or date/product inference."
+        }
+      },
+      "hygiea-10-local-view-preparation-2026-10-22.json": {
+        "status": "Research preparation only; no dossier, embedding, master or preview",
+        "bodyId": "hygiea",
+        "role": "surfaceImage",
+        "tool": "built-in image_gen",
+        "prompt": "Create an independent research-guided scientific hypothetical illustration of a very low camera view above an imagined local surface of asteroid (10) Hygiea. Landscape 16:9. Subdued neutral dark grey regolith with gently rolling low relief, scattered modest irregular stones and fine grains, a few shallow small depressions, restrained oblique lighting and a black sky. No visible astronomical disks, spacecraft, people, buildings, atmosphere or active phenomena. Invent every local feature independently; do not copy any real body map or observed planetary photograph. Neither native SPHERE brightness patterns nor fitted ADAM facets are local terrain templates. Chemistry, grain size, porosity, colour, horizon attitude, illumination and exposure are unmeasured artistic choices. Add a simple dark footer with two crisp readable lines: \"IMAGINED LOCAL VIEW \u2014 (10) HYGIEA\" and \"INVENTED TERRAIN / COLOUR / LIGHT \u2014 NO REGISTERED SITE\". Do not portray a survivable human landing.",
+        "constraints": [
+          "All local terrain, craters, stones, grains, chemistry, fractions, colour, lighting, exposure and attitude are invented.",
+          "Dark neutral grey is an artistic hypothesis; C taxonomy, IRAS albedo and bulk-density interpretations are not local mineral abundances.",
+          "Do not reuse or transform any observed Moon, Mars, Ceres, Vesta, Pallas or other body map. Do not interpret deconvolution brightness structures as local rocks.",
+          "No dated site, current ephemeris, registered landmark, atmospheric absence, plume, liquid ocean, biology or survivable landing claim.",
+          "No Sun or other astronomical disk in frame; no angular/raster-size calculation or calibration claim.",
+          "No spacecraft Juno association; target is asteroid10 Hygiea.",
+          "Keep both clear footer lines inside frame; generated originals and default output must be preserved before any master/preview creation."
+        ],
+        "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-5abfe5dd-5657-4eb9-951b-a110a6c01435.png",
+        "researchCopy": "data/research-sources/hygiea-10-generated-surfaceImage-original-2026-10-22.png",
+        "bytes": 2735230,
+        "sha256": "25accb291aeeb5ff37c97c83a3e0dfee3397ace1c2d383e60f272505717d9807",
+        "dimensions": [
+          1672,
+          941
+        ],
+        "visualInspection": "Full image inspected. Both footer lines readable. Invented neutral-grey rolling relief, stones, grains and shallow depression; black sky with no astronomical disk. No angular-size calculation or calibration claim. No observed map supplied.",
+        "scienceRecord": {
+          "path": "docs/research/hygiea-primary-native-assessment-2026-10-22.json",
+          "sha256": "85307d8211b8f16767cd9b0f6c3cf5369e6f77ea3c8304aee5b7a0dbd28e9f0a"
+        },
+        "productionChange": false,
+        "remaining": [
+          "Independent sky view",
+          "Original-preserving masters/previews",
+          "Standalone lossless headroom before additive dossier"
+        ]
+      },
+      "hygiea-10-sky-view-preparation-2026-10-22.json": {
+        "status": "Research preparation only; no dossier, embedding, master or preview",
+        "bodyId": "hygiea",
+        "role": "skyImage",
+        "tool": "built-in image_gen",
+        "prompt": "Create a second independent scientific hypothetical observer illustration looking along a different imagined horizon of asteroid (10) Hygiea, landscape 16:9. Show only a low strip of dark neutral grey invented regolith and a few independent angular stones beneath an expansive black sky. The Sun stays entirely outside the frame; no planets, moons, stars as disks, spacecraft, people or artificial structures. Use restrained low side light and a visibly different composition from the local view. All relief, rocks, grain size, chemistry, colour, attitude, light and exposure are invented; black sky is an artistic assumption and is not evidence about atmosphere. Do not borrow any observed asteroid or planetary map or SPHERE image brightness pattern. No dated or physically registered viewpoint and no angular-size claim. Add a crisp readable two-line dark footer: \"IMAGINED SKY FROM (10) HYGIEA\" and \"UNREGISTERED VIEW / INVENTED TERRAIN, COLOUR AND LIGHT\". No active plume, exposed ocean, biology or survivable landing.",
+        "constraints": [
+          "All local terrain, craters, stones, grains, chemistry, fractions, colour, lighting, exposure and attitude are invented.",
+          "Dark neutral grey is an artistic hypothesis; C taxonomy, IRAS albedo and bulk-density interpretations are not local mineral abundances.",
+          "Do not reuse or transform any observed Moon, Mars, Ceres, Vesta, Pallas or other body map. Do not interpret deconvolution brightness structures as local rocks.",
+          "No dated site, current ephemeris, registered landmark, atmospheric absence, plume, liquid ocean, biology or survivable landing claim.",
+          "No Sun or other astronomical disk in frame; no angular/raster-size calculation or calibration claim.",
+          "No spacecraft Juno association; target is asteroid10 Hygiea.",
+          "Keep both clear footer lines inside frame; generated originals and default output must be preserved before any master/preview creation."
+        ],
+        "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e72c22e6-a604-4caa-af4e-d7c6b07708c4.png",
+        "researchCopy": "data/research-sources/hygiea-10-generated-skyImage-original-2026-10-22.png",
+        "bytes": 1168408,
+        "sha256": "ece57f82eddff83353d73efa90bea35a2827a14535ec816aa6346d9e27d40a44",
+        "dimensions": [
+          1672,
+          941
+        ],
+        "visualInspection": "Full image inspected: both footer lines readable. Low strip of invented neutral-grey terrain and stones beneath expansive black sky. Sun and all astronomical disks absent from frame; no angular/raster-size or calibrated colour claim. Black sky does not establish atmospheric absence.",
+        "scienceRecord": {
+          "path": "docs/research/hygiea-primary-native-assessment-2026-10-22.json",
+          "sha256": "85307d8211b8f16767cd9b0f6c3cf5369e6f77ea3c8304aee5b7a0dbd28e9f0a"
+        },
+        "productionChange": false,
+        "remaining": [
+          "Original-preserving masters/previews",
+          "Standalone lossless headroom before additive dossier"
+        ]
+      },
+      "hygiea-10-master-preview-preparation-2026-10-22.json": {
+        "status": "Research preparation only; originals unchanged, no embedding or new dossier",
+        "assets": [
+          {
+            "role": "surfaceImage",
+            "kind": "master",
+            "path": "data/research-sources/hygiea-10-surfaceImage-master-2026-10-22.jpg",
+            "bytes": 313524,
+            "sha256": "19a446f0e669a12e318a6c3d2c28384cc8d52c210ad178e71dfa1c50233b237c",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "encoding": "JPEG quality85, Lanczos resize from preserved generated original, optimize=True"
+          },
+          {
+            "role": "surfaceImage",
+            "kind": "preview",
+            "path": "data/research-sources/hygiea-10-surfaceImage-preview-2026-10-22.jpg",
+            "bytes": 9722,
+            "sha256": "0a44f157f22d23e0f90a48819543f471be6a34e6550a58768ec52347d126dc65",
+            "dimensions": [
+              256,
+              144
+            ],
+            "encoding": "JPEG quality80, Lanczos resize from preserved generated original, optimize=True"
+          },
+          {
+            "role": "skyImage",
+            "kind": "master",
+            "path": "data/research-sources/hygiea-10-skyImage-master-2026-10-22.jpg",
+            "bytes": 128435,
+            "sha256": "17dcb3282e8bc3a529ee45d9b88ffa92b58454087512d264ee0aabaacb0a5987",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "encoding": "JPEG quality85, Lanczos resize from preserved generated original, optimize=True"
+          },
+          {
+            "role": "skyImage",
+            "kind": "preview",
+            "path": "data/research-sources/hygiea-10-skyImage-preview-2026-10-22.jpg",
+            "bytes": 4454,
+            "sha256": "1d22b7d46dfe218cf4c30f2eb88be6b1a0a3c575a45d3aeb69a639587084466f",
+            "dimensions": [
+              256,
+              144
+            ],
+            "encoding": "JPEG quality80, Lanczos resize from preserved generated original, optimize=True"
+          }
+        ],
+        "limits": [
+          "Generated illustration derivatives only; no native science transformed.",
+          "Both original/footer inspection records and full prompts retained separately.",
+          "Small preview footers require explicit IMAGINED card labels.",
+          "All terrain/chemistry/colour/lighting/attitude invented; no registered site or angular calibration."
+        ],
+        "productionChange": false,
+        "visualInspection": "Both full masters and both previews visually inspected. Master footer lines readable; preview annotation too small for reliable reading, requiring explicit IMAGINED card labels. No astronomical disk or angular calibration claim.",
+        "twoPreviewRawJpegBytes": 14176,
+        "budgetMeaning": "Raw generated-preview JPEG bytes only, not WebP80 embedding or standalone increment; native/text/wrapper overhead additional."
+      }
+    },
+    "preservedRecordHashes": {
+      "hygiea-10-illustration-specification-preparation-2026-10-22.json": "e580f2be30179f5e0f3db638fc5952e9d4e7967c3b62ea1b3d388ba95326f103",
+      "hygiea-10-local-view-preparation-2026-10-22.json": "ec9a1b18da4af3c498d5fe144bb2762939b9365693a3123a7886d092d17eff77",
+      "hygiea-10-sky-view-preparation-2026-10-22.json": "ad65b625391f2e0c52f589362f8dd17e292f47b7532d8433d3232daf81d3222e",
+      "hygiea-10-master-preview-preparation-2026-10-22.json": "1a5be7fddbff4ec15b2ce379ebc8274b9b2f153341c96d85bba9accf4d6f98e3"
+    },
+    "limitations": [
+      "No resolved globe, native map, model, shape, catalogue or codec adoption.",
+      "All local terrain, chemistry, colour, illumination, attitude and exposure invented. No observed-body analogue skin used.",
+      "Sun and astronomical disks off frame; no angular/raster-size calibration claim. Black sky is not evidence of atmospheric absence.",
+      "Original/default PNGs preserved; generated JPEG derivatives only. Small preview footers need explicit IMAGINED card labels.",
+      "Two previews total14176rawJPEGbytes, not standalone increment; native science, text and wrappers additional. Lossless headroom remains necessary."
+    ],
+    "validation": {
+      "tests": {
+        "pass": 711,
+        "skip": 1,
+        "fail": 0,
+        "environment": "OPENAI_API_KEY unset for missing-key voice test"
+      },
+      "productionBuild": "pass",
+      "standaloneBuild": "pass",
+      "preservation": {
+        "baseline": "13a0c19",
+        "publicFilesByteEqual": 749,
+        "productionInputsExact": [
+          "src/data/bespoke.js",
+          "src/data/moons.js",
+          "src/data/snapshot-codec.js",
+          "scripts/build-standalone.js",
+          "docs/research/bespoke-queue.json"
+        ],
+        "dossiers": 108,
+        "moonEntries": 63,
+        "nativeCardsExactBytesAndMime": 87,
+        "currentReadableSha256": "2654599a87b552534a3eef6c6a5b47b259fe7cf45c8604084400601df7edab40",
+        "fullBuild": {
+          "pass": true,
+          "htmlBytes": 15984338,
+          "headroomBytes": 15662,
+          "gateBytes": 16000000
+        },
+        "freshBrowserClaim": false,
+        "completeCurrentFullHtmlRestorationClaim": false
+      },
+      "queueTasks": 569,
+      "freshBrowserClaim": false,
+      "interbuildSavingsAttribution": false
+    },
+    "retainedAssetFilesVerified": 8
+  },
+  "retainedHashesVerified": [
+    {
+      "path": "data/research-sources/hygiea-10-catalogue-reference-preparation-2026-10-22.json",
+      "bytes": 1579,
+      "sha256": "ade24f4e203beda9ae32c0a396ef6abf03968c02d3db3096028ff793c430282a"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso-acquisition-preparation-2026-10-22.json",
+      "bytes": 1125,
+      "sha256": "5b4b5ac939f6532a781f8c9676cac97a43998d357c9fb002a799dae048fadfbd"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso-native-preparation-2026-10-22.json",
+      "bytes": 1575,
+      "sha256": "2625a900efedc7d6109cfa11ee300920ba3d653c9f746ba42041abc0c534daef"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso-pixel-comparison-preparation-2026-10-22.json",
+      "bytes": 1044,
+      "sha256": "9b19fd89c8ddaff8451a0259db4eac27ef7a946e1ca0957a9d7a2a9442b7b612"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso-renditions-preparation-2026-10-22.json",
+      "bytes": 2470,
+      "sha256": "35ee8493617b7614c60e665275ecc2d2d5b2d8349e43280041ce2c8560c74b5f"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso-tiff-metadata-preparation-2026-10-22.json",
+      "bytes": 44217,
+      "sha256": "8fd97332edc5d41bd2db251629309eaaf91ea0397c362010bdd819717397fc87"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso1918a-large-2026-10-22.jpg",
+      "bytes": 110370,
+      "sha256": "0ae9f96191a45bb19e4e5c1ab35041d63638bd907224a1e4e0bd69bfbbfaf012"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso1918a-original-2026-10-22.tif",
+      "bytes": 1300754,
+      "sha256": "11e74172cc5a24467b1004526e3a68784bfd8d1c2e387b322788f49946d2f6c1"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso1918a-original-inspection-2026-10-22.png",
+      "bytes": 1178831,
+      "sha256": "91673c00f51e7e653bbe478a2a6cb84055360b1408f2a27ce5fe36e42b03035d"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-eso1918a-screen-2026-10-22.jpg",
+      "bytes": 30635,
+      "sha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-jpl-acquisition-preparation-2026-10-22.json",
+      "bytes": 3782,
+      "sha256": "db120c505ce8bd650c5f5217f5be7b9819442fe3b7de2f05173876b92533e6bc"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-jpl-sbdb-full-precision-2026-10-22.json",
+      "bytes": 4502,
+      "sha256": "4afe537f98d31cf69a6850f81596bb9bdcd49174279413a7569b66768f7c559f"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-orbi-acquisition-preparation-2026-10-22.json",
+      "bytes": 1831,
+      "sha256": "9e134a6f2cd578c1042e71e01941e0180da5d5b9b0a56f780912c16393d24f80"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-orbi-primary-2026-10-22.pdf",
+      "bytes": 5941284,
+      "sha256": "3e9abb7da4a749a33aaff9c73e14edccb259b163ee627fa48d1bc8d7c05cf292"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-orbi-primary-text-preparation-2026-10-22.txt",
+      "bytes": 45938,
+      "sha256": "5509f46b579c74f91e7d4c6a3e74c7c7516b9b0e004b063c48539bc712fca148"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-orbi-record-2026-10-22.html",
+      "bytes": 63207,
+      "sha256": "0b0374cf783410aa45525aae7681750472c736d4ab8707770c2b26277ac37520"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-orbi-terms-preparation-2026-10-22.json",
+      "bytes": 1045,
+      "sha256": "52e8d5005056f147b35ac58eceedb8d3741a99351da5b9c19ce220a827b01bb4"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-orbi-usage-2026-10-22.html",
+      "bytes": 16644,
+      "sha256": "d32c511f166bdbc57594722b862856bdaf20c678c44585413d582452b967c207"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-primary-acquisition-preparation-2026-10-22.json",
+      "bytes": 628,
+      "sha256": "5b42ae428dfbc37d885e93591eb2cc904fe97912dbdb8ff4e5bc25577cfc14c1"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-primary-alternate-acquisition-preparation-2026-10-22.json",
+      "bytes": 342,
+      "sha256": "f0e91bc3a4e7d8d699a064709d22fc69b9f033f19a61de36c33dc94abc203f5b"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-primary-text-review-preparation-2026-10-22.json",
+      "bytes": 6534,
+      "sha256": "2d0b445be94cfdace531bb78e9173bd9aed27688682ad2ada36abc6488215dab"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-01.png",
+      "bytes": 210156,
+      "sha256": "e375633e634db3d44726cd475887c5cb8b03af92f13f5519239fd23308e166d7"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-04.png",
+      "bytes": 269116,
+      "sha256": "92e304a3e99a382d7e1c74eaa6a7e18b9efdc4cb69d9c4b54d23be22030e374e"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-10.png",
+      "bytes": 229469,
+      "sha256": "7394896afee556d3aeed35601dfcea901f5b453e9ae1fe2c199a141b64acbc31"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-16.png",
+      "bytes": 216703,
+      "sha256": "e1c31413a71fc7bd51b677bfd64bd381943d1bf7c75e157a115d8aeaa46bd71d"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-primary-visual-2026-10-22-31.png",
+      "bytes": 178468,
+      "sha256": "4dbb397dd6f0ea477b170c79ead89eac71b2afc9dacafe6a180089a124a7e9be"
+    },
+    {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-5abfe5dd-5657-4eb9-951b-a110a6c01435.png",
+      "sha256": "25accb291aeeb5ff37c97c83a3e0dfee3397ace1c2d383e60f272505717d9807"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-generated-surfaceImage-original-2026-10-22.png",
+      "sha256": "25accb291aeeb5ff37c97c83a3e0dfee3397ace1c2d383e60f272505717d9807"
+    },
+    {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e72c22e6-a604-4caa-af4e-d7c6b07708c4.png",
+      "sha256": "ece57f82eddff83353d73efa90bea35a2827a14535ec816aa6346d9e27d40a44"
+    },
+    {
+      "path": "data/research-sources/hygiea-10-generated-skyImage-original-2026-10-22.png",
+      "sha256": "ece57f82eddff83353d73efa90bea35a2827a14535ec816aa6346d9e27d40a44"
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "master",
+      "path": "data/research-sources/hygiea-10-surfaceImage-master-2026-10-22.jpg",
+      "bytes": 313524,
+      "sha256": "19a446f0e669a12e318a6c3d2c28384cc8d52c210ad178e71dfa1c50233b237c",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "encoding": "JPEG quality85, Lanczos resize from preserved generated original, optimize=True"
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "preview",
+      "path": "data/research-sources/hygiea-10-surfaceImage-preview-2026-10-22.jpg",
+      "bytes": 9722,
+      "sha256": "0a44f157f22d23e0f90a48819543f471be6a34e6550a58768ec52347d126dc65",
+      "dimensions": [
+        256,
+        144
+      ],
+      "encoding": "JPEG quality80, Lanczos resize from preserved generated original, optimize=True"
+    },
+    {
+      "role": "skyImage",
+      "kind": "master",
+      "path": "data/research-sources/hygiea-10-skyImage-master-2026-10-22.jpg",
+      "bytes": 128435,
+      "sha256": "17dcb3282e8bc3a529ee45d9b88ffa92b58454087512d264ee0aabaacb0a5987",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "encoding": "JPEG quality85, Lanczos resize from preserved generated original, optimize=True"
+    },
+    {
+      "role": "skyImage",
+      "kind": "preview",
+      "path": "data/research-sources/hygiea-10-skyImage-preview-2026-10-22.jpg",
+      "bytes": 4454,
+      "sha256": "1d22b7d46dfe218cf4c30f2eb88be6b1a0a3c575a45d3aeb69a639587084466f",
+      "dimensions": [
+        256,
+        144
+      ],
+      "encoding": "JPEG quality80, Lanczos resize from preserved generated original, optimize=True"
+    }
+  ],
+  "embeddedPublisherMetadata": [
+    {
+      "role": "originalTiff",
+      "path": "data/research-sources/hygiea-10-eso1918a-original-2026-10-22.tif",
+      "sourceSha256": "11e74172cc5a24467b1004526e3a68784bfd8d1c2e387b322788f49946d2f6c1",
+      "xmpSha256": "79b558613909c1976b0d866043b6faefea370c9fbc74f0600d3adc28c283a4c3",
+      "xmpBytes": 17336,
+      "fields": [
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta"
+          ],
+          "text": "",
+          "attributes": {
+            "{adobe:ns:meta/}xmptk": "Exempi + XMP Core 5.6.0"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about": "",
+            "{http://www.communicatingastronomy.org/avm/1.0/}MetadataVersion": "1.1",
+            "{http://www.communicatingastronomy.org/avm/1.0/}ResourceURL": "https://www.eso.org/public/archives/images/original/eso1918a.tif",
+            "{http://www.communicatingastronomy.org/avm/1.0/}ResourceID": "eso1918a",
+            "{http://www.communicatingastronomy.org/avm/1.0/}MetadataDate": "2024-02-22T14:24:39.181389",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Publisher": "European Southern Observatory",
+            "{http://www.communicatingastronomy.org/avm/1.0/}PublisherID": "eso",
+            "{http://www.communicatingastronomy.org/avm/1.0/}ReferenceURL": "https://www.eso.org/public/images/eso1918a/",
+            "{http://www.communicatingastronomy.org/avm/1.0/}ID": "eso1918a",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Type": "Planetary",
+            "{http://ns.adobe.com/xap/1.0/}CreatorTool": "Adobe Photoshop CC 2019 (Windows)",
+            "{http://ns.adobe.com/xap/1.0/}CreateDate": "2019-10-09T12:13:24+02:00",
+            "{http://ns.adobe.com/xap/1.0/}ModifyDate": "2019-10-09T14:43:35+02:00",
+            "{http://ns.adobe.com/xap/1.0/}MetadataDate": "2019-10-09T14:43:35+02:00",
+            "{http://purl.org/dc/elements/1.1/}format": "image/tiff",
+            "{http://ns.adobe.com/photoshop/1.0/}ColorMode": "3",
+            "{http://ns.adobe.com/photoshop/1.0/}ICCProfile": "sRGB IEC61966-2.1",
+            "{http://ns.adobe.com/photoshop/1.0/}Credit": "ESO/P. Vernazza et al./MISTRAL algorithm (ONERA/CNRS)",
+            "{http://ns.adobe.com/photoshop/1.0/}Source": "European Southern Observatory",
+            "{http://ns.adobe.com/photoshop/1.0/}DateCreated": "2019-10-28T17:00:00",
+            "{http://ns.adobe.com/xap/1.0/mm/}InstanceID": "xmp.iid:8ad39810-f6a5-f346-873e-621000c61690",
+            "{http://ns.adobe.com/xap/1.0/mm/}DocumentID": "adobe:docid:photoshop:13cef2d1-2294-8247-a584-75b30bee2e42",
+            "{http://ns.adobe.com/xap/1.0/mm/}OriginalDocumentID": "xmp.did:29a8d11e-eee4-9e41-bd18-e1d15ad7b589"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.StretchFunction",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Linear",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.BackgroundLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "0.00000000000000",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.PeakLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "397.98963756189664",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.ScaledBackgroundLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "0.00000000000000",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.ScaledPeakLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "10.00000000000000",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.BlackLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "33.27087918432577",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.WhiteLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "5114.46718379494090",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.CentralWavelength",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "645.9",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Instrument",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "SPHERE",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.Band",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Optical",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spatial.ReferenceDimension",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "2490.0",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spatial.ReferenceDimension",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "1602.0",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Subject.Category",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "A.2.1",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.ColorAssignment",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Grayscale",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.Bandpass",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "R",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spatial.Notes",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.Notes",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}DatasetID",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "None",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Facility",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Very Large Telescope",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://purl.org/dc/elements/1.1/}title",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "SPHERE image of Hygiea",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://purl.org/dc/elements/1.1/}description",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "A new SPHERE/VLT image of Hygiea, which could be the Solar System\u2019s smallest dwarf planet yet. As an object in the main asteroid belt, Hygiea satisfies right away three of the four requirements to be classified as a dwarf planet: it orbits around the Sun, it is not a moon and, unlike a planet, it has not cleared the neighbourhood around its orbit. The final requirement is that it have enough mass that its own gravity pulls it into a roughly spherical shape. This is what VLT observations have now revealed about Hygiea.",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://purl.org/dc/elements/1.1/}subject",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Hygiea",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/photoshop/1.0/}DocumentAncestors",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "adobe:docid:photoshop:c4fde8fd-4c48-6d42-84eb-cfc543cc92b7",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/photoshop/1.0/}DocumentAncestors",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "xmp.did:29a8d11e-eee4-9e41-bd18-e1d15ad7b589",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/xap/1.0/mm/}History",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}action": "saved",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}instanceID": "xmp.iid:29a8d11e-eee4-9e41-bd18-e1d15ad7b589",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}when": "2019-10-09T12:15:01+02:00",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}softwareAgent": "Adobe Photoshop CC 2019 (Windows)",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}changed": "/"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/xap/1.0/mm/}History",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}action": "saved",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}instanceID": "xmp.iid:8ad39810-f6a5-f346-873e-621000c61690",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}when": "2019-10-09T14:43:35+02:00",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}softwareAgent": "Adobe Photoshop CC 2019 (Windows)",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}changed": "/"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CreatorContactInfo"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrPcode": "D-85748",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrExtadr": "Karl-Schwarzschild-Strasse 2",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiUrlWork": "https://www.eso.org",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrCtry": "Germany",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrCity": "Garching bei M\u00fcnchen",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrRegion": "None"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/xap/1.0/rights/}UsageTerms",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Creative Commons Attribution 4.0 International License",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        }
+      ]
+    },
+    {
+      "role": "screenJpeg",
+      "path": "data/research-sources/hygiea-10-eso1918a-screen-2026-10-22.jpg",
+      "sourceSha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af",
+      "xmpSha256": "a7e8c5588aebad31b72a03ad6b10377bd98a0079b8a8b8f408b37d35ec98d10c",
+      "xmpBytes": 6792,
+      "fields": [
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta"
+          ],
+          "text": "",
+          "attributes": {
+            "{adobe:ns:meta/}xmptk": "Exempi + XMP Core 5.6.0"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about": "",
+            "{http://www.communicatingastronomy.org/avm/1.0/}MetadataVersion": "1.1",
+            "{http://www.communicatingastronomy.org/avm/1.0/}ResourceURL": "https://www.eso.org/public/archives/images/original/eso1918a.tif",
+            "{http://www.communicatingastronomy.org/avm/1.0/}ResourceID": "eso1918a",
+            "{http://www.communicatingastronomy.org/avm/1.0/}MetadataDate": "2024-02-22T14:24:39.181389",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Publisher": "European Southern Observatory",
+            "{http://www.communicatingastronomy.org/avm/1.0/}PublisherID": "eso",
+            "{http://www.communicatingastronomy.org/avm/1.0/}ReferenceURL": "https://www.eso.org/public/images/eso1918a/",
+            "{http://www.communicatingastronomy.org/avm/1.0/}ID": "eso1918a",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Type": "Planetary",
+            "{http://ns.adobe.com/xap/1.0/}CreatorTool": "The ESA/ESO/NASA FITS Liberator",
+            "{http://ns.adobe.com/xap/1.0/}CreateDate": "2019-10-09T12:13:24+02:00",
+            "{http://ns.adobe.com/xap/1.0/}ModifyDate": "2019-10-09T14:43:35+02:00",
+            "{http://ns.adobe.com/xap/1.0/}MetadataDate": "2019-10-09T14:43:35+02:00",
+            "{http://purl.org/dc/elements/1.1/}format": "image/tiff",
+            "{http://ns.adobe.com/photoshop/1.0/}ColorMode": "3",
+            "{http://ns.adobe.com/photoshop/1.0/}ICCProfile": "sRGB IEC61966-2.1",
+            "{http://ns.adobe.com/photoshop/1.0/}Credit": "ESO/P. Vernazza et al./MISTRAL algorithm (ONERA/CNRS)",
+            "{http://ns.adobe.com/photoshop/1.0/}Source": "European Southern Observatory",
+            "{http://ns.adobe.com/photoshop/1.0/}DateCreated": "2019-10-28T17:00:00",
+            "{http://ns.adobe.com/xap/1.0/mm/}InstanceID": "xmp.iid:8ad39810-f6a5-f346-873e-621000c61690",
+            "{http://ns.adobe.com/xap/1.0/mm/}DocumentID": "adobe:docid:photoshop:13cef2d1-2294-8247-a584-75b30bee2e42",
+            "{http://ns.adobe.com/xap/1.0/mm/}OriginalDocumentID": "xmp.did:29a8d11e-eee4-9e41-bd18-e1d15ad7b589"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.StretchFunction",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Linear",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.BackgroundLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "0.00000000000000",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.PeakLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "397.98963756189664",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.ScaledBackgroundLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "0.00000000000000",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.ScaledPeakLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "10.00000000000000",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.BlackLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "33.27087918432577",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}FL.WhiteLevel",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "5114.46718379494090",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.CentralWavelength",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "645.9",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Instrument",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "SPHERE",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.Band",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Optical",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spatial.ReferenceDimension",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "2490.0",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spatial.ReferenceDimension",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "1602.0",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Subject.Category",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "A.2.1",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.ColorAssignment",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Grayscale",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.Bandpass",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "R",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spatial.Notes",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Spectral.Notes",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}DatasetID",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "None",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://www.communicatingastronomy.org/avm/1.0/}Facility",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Very Large Telescope",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://purl.org/dc/elements/1.1/}title",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "SPHERE image of Hygiea",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://purl.org/dc/elements/1.1/}description",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "A new SPHERE/VLT image of Hygiea, which could be the Solar System\u2019s smallest dwarf planet yet. As an object in the main asteroid belt, Hygiea satisfies right away three of the four requirements to be classified as a dwarf planet: it orbits around the Sun, it is not a moon and, unlike a planet, it has not cleared the neighbourhood around its orbit. The final requirement is that it have enough mass that its own gravity pulls it into a roughly spherical shape. This is what VLT observations have now revealed about Hygiea.",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://purl.org/dc/elements/1.1/}subject",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Hygiea",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/photoshop/1.0/}DocumentAncestors",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "adobe:docid:photoshop:c4fde8fd-4c48-6d42-84eb-cfc543cc92b7",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/photoshop/1.0/}DocumentAncestors",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "xmp.did:29a8d11e-eee4-9e41-bd18-e1d15ad7b589",
+          "attributes": {}
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/xap/1.0/mm/}History",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}action": "saved",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}instanceID": "xmp.iid:29a8d11e-eee4-9e41-bd18-e1d15ad7b589",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}when": "2019-10-09T12:15:01+02:00",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}softwareAgent": "Adobe Photoshop CC 2019 (Windows)",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}changed": "/"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/xap/1.0/mm/}History",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}action": "saved",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}instanceID": "xmp.iid:8ad39810-f6a5-f346-873e-621000c61690",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}when": "2019-10-09T14:43:35+02:00",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}softwareAgent": "Adobe Photoshop CC 2019 (Windows)",
+            "{http://ns.adobe.com/xap/1.0/sType/ResourceEvent#}changed": "/"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CreatorContactInfo"
+          ],
+          "text": "",
+          "attributes": {
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrPcode": "D-85748",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrExtadr": "Karl-Schwarzschild-Strasse 2",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiUrlWork": "https://www.eso.org",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrCtry": "Germany",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrCity": "Garching bei M\u00fcnchen",
+            "{http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/}CiAdrRegion": "None"
+          }
+        },
+        {
+          "path": [
+            "{adobe:ns:meta/}xmpmeta",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+            "{http://ns.adobe.com/xap/1.0/rights/}UsageTerms",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Alt",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li"
+          ],
+          "text": "Creative Commons Attribution 4.0 International License",
+          "attributes": {
+            "{http://www.w3.org/XML/1998/namespace}lang": "x-default"
+          }
+        }
+      ]
+    }
+  ],
+  "licenceEvidence": "Both unchanged originalTIFF and screenJPEG carry xmpRights:UsageTerms x-default Creative Commons Attribution4.0International. This image-specific notice supersedes only prior inability to verify an image licence; no paper/raw-product reuse or calibrated colour/registration inferred.",
+  "dateCaution": "AVMmetadata2024-02-22 and Photoshop2019-10-09 software dates are not acquisition. PhotoshopDateCreated2019-10-28T17:00:00 is publisher release context, not observedUTC.",
+  "productionScope": "Additive individual illustrations/context only; no catalogue/map/model/shape/codec replacement."
+}

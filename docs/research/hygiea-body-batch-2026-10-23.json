@@ -1,0 +1,332 @@
+{
+  "date": "2026-10-23",
+  "issue": 3,
+  "body": "10 Hygiea",
+  "dossier": 110,
+  "status": "Initial individual dossier; no registered globe, digital shape or calibrated geography/photometry claim",
+  "manifest": "docs/research/hygiea-import-manifest-2026-10-23.json",
+  "sourceRecords": "docs/research/hygiea-source-records-2026-10-23.json",
+  "measured": [
+    "Identity: asteroid10 Hygiea. ESO processed SPHERE/VLT R-band context published2019-10-28; exact acquisitionUTC/raw product/exposure/coadd association remains open.",
+    "Catalogue radius203.6km, mass1.05e20kg and synodic13.828h retained. JPL effective diameter407.12\u00b16.8km from IRAS22 observations is not a resolved axis or local normal. GM7km3/s2 cites Scholl1987 without sigma; no precise mass error inferred."
+  ],
+  "modelled": [
+    "Vernazza2019 ADAM/MISTRAL fit has SEMIAXES225\u00b15,215\u00b15,212\u00b110km and volume-equivalent radius217\u00b17km; not full diameters, local normals or replacement catalogue values. Sidereal13.82559\u00b1.00005h differs from catalogue synodic rotation. Equatorial poleRA319\u00b13/Dec\u221246\u00b13 not applied as a current attitude.",
+    "Adopted mass8.32\u00b1.8e19kg combined with fitted volume yields1944\u00b1250kg/m3 bulk density; not measured local composition, porosity or chemical fractions. Near-sphericity/dwarf-planet proposal does not establish an IAU classification change.",
+    "Authors selected2017-06-23/2017-07-20images for reflectance mapping: about one third of the surface covered by the complete dataset, not whole-set~95percent coverage. ADAM projection, overlapping brightness adjustment and assumed7.2percent mean geometric albedo do not remove all shadow/topography ambiguity. No registered map adopted.",
+    "Impact simulations assume monolithic basalt and initial2000kg/m3 density with~6km model resolution; these are simulation inputs, not measured local material or image resolution. Collision/family/rounding interpretations are models, not directly observed history."
+  ],
+  "unknown": [
+    "Exact ESO disk epoch/raw product, exposure/filter/coadd/PSF and physical-frame registration remain open. Paper Figure2 top panels are shape-model projections with red spin axes, bottom panels deconvolved observed images; none transferred to a globe or current viewpoint.",
+    "Processed monochrome R-band brightness/soft limb/black background are not calibrated visibleRGB, uniquely local terrain or atmospheric absence. Original TIFF and same-size largeJPEG decoded values differ; screen rendition resizes/reencodes and is not full-pixel preservation of the original.",
+    "Local chemistry/fractions, grain/block scale, normal/attitude, phase, visible colour, coverage and calibrated photometry unknown. C taxonomy, IRAS albedo and colour indices do not establish a local mineral map. No newest-observation claim.",
+    "Retained publisher TIFF and screenJPEG each contain explicit XMP CC BY4 International usage text and full credit. Live terms access previously503, not newly fetched. Paper ORBi terms/final-version and supplementary observation-table/figure crosswalk remain open; no paper figure or blanket raw-data licence adopted."
+  ],
+  "assumed": [
+    "All generated relief/craters/depressions/blocks/grains, chemistry/fractions, neutral-grey colour, scale, orientation/horizon/phase/light/exposure imagined independently; no observed-body analog skin or SPHERE brightness template. No dated site, exposed interior, atmosphere/plume/liquid/ocean/biology/people/craft/survivable landing implication. Black sky/omitted stars not measured absence.",
+    "Sun and all astronomical disks outside both frames. Representative orbital semimajor axis3.150974033963701AU is only angular-helper context, not current ephemeris, local normal, jointfit, illumination or photometry. No raster disk measured; helper colour/irradiance discarded.",
+    "Local and sky illustrations are hypothetical unregistered views. IMAGINED card labels identify that status at small display sizes; no registered globe or digital shape is established."
+  ],
+  "native": {
+    "url": "/references/hygiea-eso1918a-screen.jpg",
+    "tier": "measured",
+    "label": "NATIVE \u00b7 HYGIEA PROCESSED R-BAND",
+    "credit": "ESO/P. Vernazza et al./MISTRAL algorithm (ONERA/CNRS)",
+    "source": "https://cdn.eso.org/images/screen/eso1918a.jpg",
+    "sourcePage": "https://www.eso.org/public/images/eso1918a/",
+    "observationDate": null,
+    "publicationDate": "2019-10-28",
+    "description": "Processed SPHERE/VLT monochrome R-band disk. Exact acquisition/product crosswalk remains open; soft limb and brightness structure do not establish local regolith, calibrated visible colour or registered geography.",
+    "processing": "Unchanged ESO-served1280x824screenJPEG. Publisher resized/reencoded rendition, not full-pixel preservation of retained2490x1602TIFF; no local native transformation.",
+    "terms": "Publisher-embedded XMP in this screenJPEG and retained TIFF explicitly states Creative Commons Attribution4.0International. Full credit retained; no endorsement. Paper/raw-product permissions remain separate.",
+    "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "sha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af",
+    "sourceSha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af",
+    "bytes": 30635,
+    "width": 1280,
+    "height": 824
+  },
+  "visualInspection": "Both new1536JPEG masters and unchanged1280x824nativeJPEG inspected2026-10-23. Original/masterIMAGINEDfooter lines readable; small previews require explicit card labels. Independent terrain/blacksky/light invented; native soft disk brightness not uniquely local geology.",
+  "geometry": {
+    "helper": "skyGeometry via additive importer",
+    "representativeDistanceAU": 3.150974033963701,
+    "angularDiameterDeg": 0.16912373169518696,
+    "centreDiscWidthFraction": 0.0014758840522756623,
+    "limits": "Sun and all astronomical disks off frame. No new raster diameter; angular helper context not dated ephemeris, normal, photometry or spectral transfer. Helper colour/irradiance not used as calibration."
+  },
+  "licenceFinding": "Both original TIFF and this screenJPEG individually retain embedded xmpRights:UsageTerms CC BY4 International and same full credit/resourceID. Earlier live503access limitation remains; no blanket paper/raw permissions or exact rendition pixel identity inferred.",
+  "reviewScope": "Retains47author credit,33-page originalPDF/fulltext and prior targeted5-page visual review. Does not claim new all-page, supplementary-table/figure, final-version, independent reduction or reconstruction audit.",
+  "next": [
+    "Prepared Juno asteroid and Iris individual dossiers; source-specific terms and native product limits remain explicit.",
+    "Remaining native-map/craft/shape/calibration and current distance-ranking audits."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 712,
+      "skip": 1,
+      "fail": 0,
+      "environment": "OPENAI_API_KEY unset for missing-key voice test"
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "baseline": "ed1a94b",
+      "priorDossiersDeepEqual": 109,
+      "registry": 110,
+      "priorPublicFilesByteEqual": 754,
+      "inputsByteEqual": [
+        "src/data/moons.js",
+        "src/data/shapes.js",
+        "src/data/models.js",
+        "src/data/skins.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "scripts/pack-standalone-bootstrap.js"
+      ],
+      "aliasLookup": true,
+      "noHygieaGlobe": true,
+      "newNativeSha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af",
+      "newOutputs": [
+        {
+          "path": "public/bespoke/hygiea-surface-image.jpg",
+          "bytes": 313614,
+          "sha256": "e6880a90f6b2d36f00442f23fee12ae0e8825c4e89946e87d70b44de7a02021b"
+        },
+        {
+          "path": "public/bespoke/hygiea-surface-image-preview.jpg",
+          "bytes": 9493,
+          "sha256": "746b970201fcb1e78d6ebf261703348a717eaf51de90795dc638a84d7d53cae7"
+        },
+        {
+          "path": "public/bespoke/hygiea-sky-image.jpg",
+          "bytes": 128328,
+          "sha256": "a38b0909aa8720f3f9feb4ba6ffe8e5e69f752ca0fbfc01ceadac568cef2936d"
+        },
+        {
+          "path": "public/bespoke/hygiea-sky-image-preview.jpg",
+          "bytes": 4356,
+          "sha256": "f88614389a26fb1218d3a64c3902df85a4ba53fd530f6cbe7fdd9eff2336785a"
+        }
+      ],
+      "snapshot": {
+        "sha256": "43e4d8987cf6d78b6740a6e5518a91d935bc912537f96de0c7f386c99e51b4b3",
+        "nativeCardsExact": 89,
+        "priorBodyImagesExact": true,
+        "newBodyImages": [
+          "/bespoke/hygiea-surface-image.jpg",
+          "/bespoke/hygiea-sky-image.jpg",
+          "/references/hygiea-eso1918a-screen.jpg"
+        ],
+        "otherChangedRootFields": [
+          "bandImages"
+        ]
+      },
+      "full": {
+        "bytes": 15864952,
+        "headroom": 135048
+      }
+    },
+    "browser": {
+      "date": "2026-10-23",
+      "normalCards": [
+        {
+          "alt": "Hygiea: imagined \u00b7 hygiea local view, hypothetical illustration",
+          "complete": true,
+          "height": 864,
+          "src": "/bespoke/hygiea-surface-image.jpg",
+          "width": 1536
+        },
+        {
+          "alt": "Hygiea: imagined \u00b7 sky from hygiea, hypothetical illustration",
+          "complete": true,
+          "height": 864,
+          "src": "/bespoke/hygiea-sky-image.jpg",
+          "width": 1536
+        },
+        {
+          "alt": "Processed SPHERE/VLT monochrome R-band disk. Exact acquisition/product crosswalk remains open; soft limb and brightness structure do not establish local regolith, calibrated visible colour or registered geography.",
+          "complete": true,
+          "height": 824,
+          "src": "/references/hygiea-eso1918a-screen.jpg",
+          "width": 1280
+        }
+      ],
+      "offlineCards": [
+        {
+          "alt": "Hygiea: imagined \u00b7 hygiea local view, hypothetical illustration",
+          "complete": true,
+          "height": 144,
+          "width": 256,
+          "mime": "data:image/webp",
+          "sha256": "4877e07bd9e0632537219b31c5476ce88f1d8980bc06c4f2edb9eb910d353afe"
+        },
+        {
+          "alt": "Hygiea: imagined \u00b7 sky from hygiea, hypothetical illustration",
+          "complete": true,
+          "height": 144,
+          "width": 256,
+          "mime": "data:image/webp",
+          "sha256": "fe5039039e4a3240659a5813fdd18a0b40797bd393bbb412c8967d7686413b74"
+        },
+        {
+          "alt": "Processed SPHERE/VLT monochrome R-band disk. Exact acquisition/product crosswalk remains open; soft limb and brightness structure do not establish local regolith, calibrated visible colour or registered geography.",
+          "complete": true,
+          "height": 824,
+          "width": 1280,
+          "mime": "data:image/jpeg",
+          "sha256": "39d7c066d25c245644d2c3c0c2b1e7f85f9e7fe5a575ba47be54ccd4d2c151af"
+        }
+      ],
+      "limits": "IAB Chromium via HTTP. No new other-engine/direct-file/all-route/worker/all-model-load claim."
+    },
+    "browserSnapshot": {
+      "status": "pass",
+      "charset": "UTF-16LE",
+      "readableSha256": "43e4d8987cf6d78b6740a6e5518a91d935bc912537f96de0c7f386c99e51b4b3",
+      "uniqueImages": 366,
+      "decoded": 366,
+      "canvases": 8
+    },
+    "snapshotDiff": "Only3newHygieabodyImages plus listed live bandImages refresh; all priorbodyImages exact. No soleasset/compressionsavings attribution.",
+    "liveBandChanges": [
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-94?size=preview",
+          "time"
+        ],
+        "beforeSha256": "7e40c7db460a4ebe93aaa496c7178cdb2fbbe52fff0ce1c34379897b7c7fb5ac",
+        "afterSha256": "9b5745ec2882a1e04da6bc4d673787daefe1e201cc80f6ccbdf0379d360e0cca"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-94?size=preview",
+          "src"
+        ],
+        "beforeSha256": "a83dc9adc3834f23e6ed12f43bef933af8a521d9655023ac4c6a6e45b4349434",
+        "afterSha256": "b5a8543d30f0a9b915d817e00c017088757081a7c81cf7d7dccaaadc2faa25f8"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-94?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "e119a420aaf3d3ed22b47b2bf9255c19e31d7f19c3e7abbdf9830779f383ad23",
+        "afterSha256": "7c5f67d073aadc882396b26f3a08344bb44f8bb57dc82af1be62f2495c03e0e6"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-193?size=preview",
+          "time"
+        ],
+        "beforeSha256": "e14e846d6a9e8044f2d2cc1e3754e03934c907224e0411846af43bca597cb78b",
+        "afterSha256": "6e518caaff0ee04b176d161af3fb25cc2488f57c64e808807db9dcce0677b299"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-193?size=preview",
+          "src"
+        ],
+        "beforeSha256": "f8e14294309131079bf2aad24d4aaf4966f2291493c5ec3dc0d67bdeb953b05e",
+        "afterSha256": "86ed9d742816894d6a10e4c6d81f42a37f6da2b43ba708b3a5ab39f58a25033e"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-193?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "be99146d6d5524566e4b569063e3b9f8749833ae68ab532553e87749cd3d9773",
+        "afterSha256": "33c105b8234750994d4de2b8eb9a1e28ea00627185cfaab037501c81346914f2"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-304?size=preview",
+          "time"
+        ],
+        "beforeSha256": "aee7aabd9194fabbb9ae4959b1b926096d4dae96e0fb8924f68c79db63ab3c89",
+        "afterSha256": "64455c49dc9f562ee0166ea91b1195fec48697a46297dce2a3998e8f9e66c178"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-304?size=preview",
+          "src"
+        ],
+        "beforeSha256": "7a8a997f5c4dc9b7b6b8411ac402e40a0a9d8eaa6f205910e03660373d8d8c3d",
+        "afterSha256": "00a6f9b4fbec40d80bc567ac16506174b312150a7c66cb1ea6db032133cc8473"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-304?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "086322f42ff07eb2680c28f28a9e6a6ccf9013ae119145d827984c3dc8cda17f",
+        "afterSha256": "5976c364e1defe8e1c86431c349094905ad7454aea814ed7d3e7098fe2a3b491"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-1600?size=preview",
+          "time"
+        ],
+        "beforeSha256": "2fa06c95d75694bdcc53600ee20b994a6a891ccd82cad9cbd0fdb65cd0fb464b",
+        "afterSha256": "08fdcf9512c6ea3c6cd80e5433d8897734311726dbd9f701125b2d723e0c9014"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-1600?size=preview",
+          "src"
+        ],
+        "beforeSha256": "af47983f7a08d2d9934ab9d125b1a0cd2461220560d70362cce406a6097d5546",
+        "afterSha256": "12349ba974ea4c5106ac6041ac00f67526ea25e48144801d9c9c4005d6a39f32"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-1600?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "1766a24c047c0ae6aeb3d5ac20ebba74d5adbbafc02ad09bd2beefefa6aec6d6",
+        "afterSha256": "59f3de5c4344b417f5f675beb62b580cd55d7e798e5cf86f242e6ea8637d5301"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-171?size=preview",
+          "time"
+        ],
+        "beforeSha256": "aa23bf550e95f3055a094fde3a269a63d36c7fdd982d676f42cabaed32e40a25",
+        "afterSha256": "0a2043d72435c783b39440ca4ca4e67c457c2ecbeca89b777f1efb1bde3f6a93"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-171?size=preview",
+          "src"
+        ],
+        "beforeSha256": "cfdd85353a88daab6290361f4c3c8cf70f79f6ffd0c3db2fc48dceda522eacb3",
+        "afterSha256": "b96e6ec19b8e71ed836e5b5d0d324d66f01905aca4e5b9d79ab6901dc10d2d66"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-171?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "3bb2957f91e51f43811dbfc3b0253d2f08d6c76f15694204084618e8fa0cff56",
+        "afterSha256": "22614d5473726d6d2f3d70f255387c41ceb15b23ca47c5376a45dce933a8b0bb"
+      }
+    ],
+    "queueTasks": 569,
+    "codecChange": false
+  }
+}
