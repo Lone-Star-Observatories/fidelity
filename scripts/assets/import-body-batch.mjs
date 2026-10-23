@@ -51,6 +51,8 @@ export function bodyVisualFor(body) {
     const visual = Object.values(BODY_VISUALS).find(v => v.aliases.some(alias => normalize(alias) === normalize(name)));
     if (visual) return visual;
   }
+  // The unnumbered name Juno also identifies a spacecraft.
+  if (body.id === 'juno-3' && body.kind === 'asteroid') return BODY_VISUALS['juno-3'] ?? null;
   return null;
 }
 export const BESPOKE_TEXTURES = Object.fromEntries(Object.values(BODY_VISUALS).filter(v => v.surfaceMap).map(v => [v.surfaceMap.key, v.surfaceMap]));\n`;

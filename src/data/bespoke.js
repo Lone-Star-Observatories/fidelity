@@ -19040,6 +19040,258 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "juno-3": {
+    "id": "juno-3",
+    "name": "Juno (3)",
+    "kind": "asteroid",
+    "aliases": [
+      "3 Juno",
+      "(3) Juno",
+      "3 Juno (A804 RA)",
+      "Asteroid Juno"
+    ],
+    "researchDate": "2026-10-23",
+    "previewWidth": 256,
+    "nativeSurface": "No registered globe or digital shape adopted. ALMA thermal brightness context is separate from independently imagined local/sky illustrations. Asteroid3 Juno is distinct from spacecraft Juno.",
+    "measured": [
+      "Asteroid3 Juno, catalogueIDjuno-3/SPK20000003, distinct Jupiter spacecraft Juno. ALMA observed2014-10-19 at233GHz/1.29mm; outreach release2015-04-07. File URL2016/06 is not an observation date. Exact still exposure/UTC/raw-product association remains open.",
+      "Existing radius123.298km, massunknown and synodic7.21h retained. NEOWISE effective radiometric diameter246.596±10.594km is not resolved axes or a local normal. S taxonomy/albedo/colour indices do not establish local mineral fractions or calibrated visible colour."
+    ],
+    "modelled": [
+      "ALMA259±4km uniform-brightness disk fit with modelled2–4percent size bias is separate from DAMIT248±5km equal-volume fit and NEOWISE diameter. Matched42masbeam, CLEAN and self-calibration affect morphology; publisher resolution/beam values are not new raster calculations. Systematic6percent flux error excluded from several table errors; not local kinetic temperature or visible transfer.",
+      "DAMIT model786: 902vertices/1800facets agree in ordered stored coordinates/indices across shape.txt/OBJ/HTML. Checked edges/vertexlinks/origin-relative signs do not prove physical accuracy, self-intersection absence, outward physical orientation or current frame registration. Artificial visualization lighting has no calibrated material meaning; no model/map adopted.",
+      "DAMIT7.20953h sidereal implies1198.413766deg/day at stored precision, not catalogue7.21h synodic equivalence. Equatorial109/43 pole versus ecliptic105/21 representations, distinct initial epochs/prime-meridian angles not propagated or applied.",
+      "Li/Titus/Moullet/Hsieh2026 reuses ten2014 disk-integrated fluxes (~60percent rotation), not new2026 imagery. Uniform albedo/thermal properties, one layer, adoptedshape/KRC/radiative transfer were not independently rerun. Thermal inertia13±10J m^-2 K^-1 s^-0.5, equivalent emissivity.8±.1, refractive index1.8±.3/loss tangent.4±.3 are weighted scatter across19acceptablemodels, not necessarily statistical confidence intervals.",
+      "Effective1.3mmemissivity.88±.05 assumes smooth bolometric.95 and differs from fitted equivalent emissivity. ~45percent porosity from laboratory dielectric relations differs from larger thermal-contact-model porosity. Tens-of-micrometre grains/repulsive reduced contact are interpretations, not detected local grains/electrostatic mechanism/chemistry. Topography/roughness/property degeneracy remains."
+    ],
+    "unknown": [
+      "Exact outreach still rawUTC/coadd/product/beam/phase/frame crosswalk and later SPHERE/final-paper/correctedFigure4 association remain open. Millimetre bright region/soft limb/black background do not establish rocks, material colours, uniquely local thermal parameters or atmosphere absence.",
+      "Literal ALMA HTML Table1 row2MJD difference54minutes versus elapsed36minutes retained; cause/typeset semantics open. Thermal manuscript prose emissivity.7–1 versus table.6rows, prosebelow25tiu versus accepted5–40/two40rows, omitted-emissivity1caption versus four1rows/blankroughness retained; no repair/zero inference.",
+      "Outreach image CC BY4 terms exclude scientific papers/code. ALMA2015 arXiv nonexclusive is notCCBY. Thermal2026v1CCBYNCND4 versus Crossref finalCCBY4 retained; final publisher anti-bot response is not paper/licence evidence. No paper figure adopted.",
+      "Local chemistry/fractions/BRDF/visiblecolour/grain/block scale, attitude/normal/phase, registered coverage and calibrated photometry unknown; no exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Both illustrations independently invent neutral charcoal-grey terrain, grains, blocks, fractures, chemistry/fractions, scale, horizon/attitude/phase/light/exposure. No observed-body analog, ALMA brightness region or DAMIT facet pattern reused as terrain. No datedsite, atmosphere/plume/liquid/ocean/biology/exposedinterior/people/craft/survivablelanding implication. Blacksky/omittedstars not measured absence.",
+      "Sun/all astronomical disks off frame. skyGeometry representative2.670989527103278AU gives.19951578150011084deg/2.9111282418197337targetpx1672/90HFOV; separate peri/aphelion cases remain scalar context, not current ephemeris, normal, jointfit or uncertainty envelope. Helper irradiance/colour not used as calibration; no raster disk measured.",
+      "IMAGINED card labels identify hypothetical unregistered views at every display size. No registered globe or digital shape is established."
+    ],
+    "surfaceLabel": "IMAGINED · ASTEROID JUNO LOCAL VIEW",
+    "skyLabel": "IMAGINED · SKY FROM ASTEROID JUNO",
+    "skyCaption": "Hypothetical unregistered asteroid horizon; Sun off frame. Terrain, materials, colour and light invented.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "123.298 KM · CATALOGUE"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ROTATION",
+        "7.21 H · SYNODIC CATALOGUE"
+      ],
+      [
+        "SURFACE",
+        "NO REGISTERED GLOBE"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 2.670989527103278,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Sun · representative geometry, off frame",
+      "angularDiameterDeg": 0.19951578150011084,
+      "centreDiscWidthFraction": 0.001741105407786922,
+      "irradianceEarth": 0.14017017955736685,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [
+      {
+        "url": "/references/juno-3-alma-native.jpg",
+        "tier": "measured",
+        "label": "NATIVE · ASTEROID JUNO MILLIMETRE",
+        "credit": "ALMA (NRAO/ESO/NAOJ)",
+        "source": "https://www.almaobservatory.org/wp-content/uploads/2016/06/150327_ALMA_juno_02-1.jpg",
+        "sourcePage": "https://www.almaobservatory.org/en/press-releases/asteroid-juno-seen-traveling-through-space-in-new-alma-images-and-animation/",
+        "observationDate": "2014-10-19",
+        "publicationDate": "2015-04-07",
+        "description": "Processed ALMA millimetre thermal disk of asteroid3 Juno. Exact still epoch/product association open; beam and reconstruction affect brightness morphology. Not local regolith, calibrated visible colour or registered geography.",
+        "processing": "Unchanged whole publisherJPEG; no local resizing, recolouring or reencoding.",
+        "terms": "Publisher general CC BY 4.0 with full visible credit/active links and exceptions; scientific papers/code/other texts excluded. No paper or raw-data blanket licence inferred.",
+        "termsUrl": "https://www.almaobservatory.org/en/copyright-notice/",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193",
+        "sourceSha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193",
+        "bytes": 28245
+      }
+    ],
+    "references": [
+      {
+        "title": "ALMA · asteroid Juno imagery and processing context",
+        "url": "https://www.almaobservatory.org/en/press-releases/asteroid-juno-seen-traveling-through-space-in-new-alma-images-and-animation/"
+      },
+      {
+        "title": "ALMA outreach image terms · paper/code exceptions",
+        "url": "https://www.almaobservatory.org/en/copyright-notice/"
+      },
+      {
+        "title": "ALMA Partnership2015 · Long Baseline Campaign: Asteroid3Juno",
+        "url": "https://arxiv.org/abs/1503.02650v2",
+        "authors": [
+          "Partnership, ALMA",
+          "Hunter, T. R.",
+          "Kneissl, R.",
+          "Moullet, A.",
+          "Brogan, C. L.",
+          "Fomalont, E. B.",
+          "Vlahakis, C.",
+          "Asaki, Y.",
+          "Barkats, D.",
+          "Dent, W. R. F.",
+          "Hills, R.",
+          "Hirota, A.",
+          "Hodge, J. A.",
+          "Impellizzeri, C. M. V.",
+          "Liuzzo, E.",
+          "Lucas, R.",
+          "Marcelino, N.",
+          "Matsushita, S.",
+          "Nakanishi, K.",
+          "Perez, L. M.",
+          "Phillips, N.",
+          "Richards, A. M. S.",
+          "Toledo, I.",
+          "Aladro, R.",
+          "Broguiere, D.",
+          "Cortes, J. R.",
+          "Cortes, P. C.",
+          "Espada, D.",
+          "Galarza, F.",
+          "Garcia-Appadoo, D.",
+          "Guzman-Ramirez, L.",
+          "Hales, A. S.",
+          "Humphreys, E. M.",
+          "Jung, T.",
+          "Kameno, S.",
+          "Laing, R. A.",
+          "Leon, S.",
+          "Marconi, G.",
+          "Mignano, A.",
+          "Nikolic, B.",
+          "Nyman, L. -A.",
+          "Radiszcz, M.",
+          "Remijan, A.",
+          "Rodon, J. A.",
+          "Sawada, T.",
+          "Takahashi, S.",
+          "Tilanus, R. P. J.",
+          "Vilaro, B. Vila",
+          "Watson, L. C.",
+          "Wiklind, T.",
+          "de Gregorio-Monsalvo, I.",
+          "Di Francesco, J.",
+          "Mangum, J.",
+          "Francke, H.",
+          "Gallardo, J.",
+          "Garcia, J.",
+          "Gonzalez, S.",
+          "Hill, T.",
+          "Kaminski, T.",
+          "Kurono, Y.",
+          "Lopez, C.",
+          "Morales, F.",
+          "Plarre, K.",
+          "Randall, S.",
+          "van kempen, T.",
+          "Videla, L.",
+          "Villard, E.",
+          "Andreani, P.",
+          "Hibbard, J. E.",
+          "Tatematsu, K."
+        ]
+      },
+      {
+        "title": "Thermal and Dielectric Properties of Juno’s Regolith at One Millimeter Wavelength",
+        "url": "https://arxiv.org/abs/2602.12071v1",
+        "authors": [
+          "Jian-Yang Li (李荐扬)",
+          "Timothy N. Titus",
+          "Arielle Moullet",
+          "Henry H. Hsieh"
+        ]
+      },
+      {
+        "title": "DAMIT model786 · frame/visualization limits",
+        "url": "https://damit.cuni.cz/projects/damit/asteroid_models/view/786",
+        "authors": [
+          "M. Viikinkoski",
+          "M. Kaasalainen",
+          "J. Ďurech",
+          "B. Carry",
+          "M. Marsset",
+          "T. Fusco",
+          "C. Dumas",
+          "W. J. Merline",
+          "B. Yang",
+          "J. Berthier",
+          "P. Kervella",
+          "P. Vernazza"
+        ]
+      },
+      {
+        "title": "JPL SBDB · asteroid3Juno physical reference alternatives",
+        "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=3&phys-par=true"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/juno-3-surface-image.jpg",
+      "previewUrl": "/bespoke/juno-3-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-22",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "juno-3-generated-surfaceImage-original-2026-10-22.png",
+      "sourceSha256": "0ba36a645fabfff1511fd733e3ad0f0b4d6561fd373de1297d3fe766fca60f98",
+      "sha256": "359fa09b7e85dd5ef17ce54064cddb9de6b6451783b8d34a3d1850d4efbe273f",
+      "previewSha256": "11b23558ce24c942c54bce49dbbfec54614e298ec4c78481729a3e7066ed2a26",
+      "bytes": 263313,
+      "previewBytes": 9944,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/juno-3-sky-image.jpg",
+      "previewUrl": "/bespoke/juno-3-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-22",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "juno-3-generated-skyImage-original-2026-10-22.png",
+      "sourceSha256": "dbe28d238b5fe692677a7681a5ec4036f50ff01b6f5ffd3c76ceecd6c97412f7",
+      "sha256": "df483146f20e0017459cbd8c2c3de3e0be5aa6db91f8214220619e58a352cd46",
+      "previewSha256": "013563a2d3fa4283f686095a013b814ed706d5e5d83dd7e2f01c3fc0f7b560cb",
+      "bytes": 180840,
+      "previewBytes": 5437,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
@@ -19052,6 +19304,8 @@ export function bodyVisualFor(body) {
     const visual = Object.values(BODY_VISUALS).find(v => v.aliases.some(alias => normalize(alias) === normalize(name)));
     if (visual) return visual;
   }
+  // The unnumbered name Juno also identifies a spacecraft.
+  if (body.id === 'juno-3' && body.kind === 'asteroid') return BODY_VISUALS['juno-3'] ?? null;
   return null;
 }
 export const BESPOKE_TEXTURES = Object.fromEntries(Object.values(BODY_VISUALS).filter(v => v.surfaceMap).map(v => [v.surfaceMap.key, v.surfaceMap]));

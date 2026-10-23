@@ -1,0 +1,325 @@
+{
+  "date": "2026-10-23",
+  "issue": 3,
+  "body": "Asteroid3 Juno",
+  "dossier": 111,
+  "status": "Initial individual dossier; no registered globe/digital shape or calibrated geography/photometry claim",
+  "manifest": "docs/research/juno-3-import-manifest-2026-10-23.json",
+  "sourceRecords": "docs/research/juno-3-source-records-2026-10-23.json",
+  "measured": [
+    "Asteroid3 Juno, catalogueIDjuno-3/SPK20000003, distinct Jupiter spacecraft Juno. ALMA observed2014-10-19 at233GHz/1.29mm; outreach release2015-04-07. File URL2016/06 is not an observation date. Exact still exposure/UTC/raw-product association remains open.",
+    "Existing radius123.298km, massunknown and synodic7.21h retained. NEOWISE effective radiometric diameter246.596\u00b110.594km is not resolved axes or a local normal. S taxonomy/albedo/colour indices do not establish local mineral fractions or calibrated visible colour."
+  ],
+  "modelled": [
+    "ALMA259\u00b14km uniform-brightness disk fit with modelled2\u20134percent size bias is separate from DAMIT248\u00b15km equal-volume fit and NEOWISE diameter. Matched42masbeam, CLEAN and self-calibration affect morphology; publisher resolution/beam values are not new raster calculations. Systematic6percent flux error excluded from several table errors; not local kinetic temperature or visible transfer.",
+    "DAMIT model786: 902vertices/1800facets agree in ordered stored coordinates/indices across shape.txt/OBJ/HTML. Checked edges/vertexlinks/origin-relative signs do not prove physical accuracy, self-intersection absence, outward physical orientation or current frame registration. Artificial visualization lighting has no calibrated material meaning; no model/map adopted.",
+    "DAMIT7.20953h sidereal implies1198.413766deg/day at stored precision, not catalogue7.21h synodic equivalence. Equatorial109/43 pole versus ecliptic105/21 representations, distinct initial epochs/prime-meridian angles not propagated or applied.",
+    "Li/Titus/Moullet/Hsieh2026 reuses ten2014 disk-integrated fluxes (~60percent rotation), not new2026 imagery. Uniform albedo/thermal properties, one layer, adoptedshape/KRC/radiative transfer were not independently rerun. Thermal inertia13\u00b110J m^-2 K^-1 s^-0.5, equivalent emissivity.8\u00b1.1, refractive index1.8\u00b1.3/loss tangent.4\u00b1.3 are weighted scatter across19acceptablemodels, not necessarily statistical confidence intervals.",
+    "Effective1.3mmemissivity.88\u00b1.05 assumes smooth bolometric.95 and differs from fitted equivalent emissivity. ~45percent porosity from laboratory dielectric relations differs from larger thermal-contact-model porosity. Tens-of-micrometre grains/repulsive reduced contact are interpretations, not detected local grains/electrostatic mechanism/chemistry. Topography/roughness/property degeneracy remains."
+  ],
+  "unknown": [
+    "Exact outreach still rawUTC/coadd/product/beam/phase/frame crosswalk and later SPHERE/final-paper/correctedFigure4 association remain open. Millimetre bright region/soft limb/black background do not establish rocks, material colours, uniquely local thermal parameters or atmosphere absence.",
+    "Literal ALMA HTML Table1 row2MJD difference54minutes versus elapsed36minutes retained; cause/typeset semantics open. Thermal manuscript prose emissivity.7\u20131 versus table.6rows, prosebelow25tiu versus accepted5\u201340/two40rows, omitted-emissivity1caption versus four1rows/blankroughness retained; no repair/zero inference.",
+    "Outreach image CC BY4 terms exclude scientific papers/code. ALMA2015 arXiv nonexclusive is notCCBY. Thermal2026v1CCBYNCND4 versus Crossref finalCCBY4 retained; final publisher anti-bot response is not paper/licence evidence. No paper figure adopted.",
+    "Local chemistry/fractions/BRDF/visiblecolour/grain/block scale, attitude/normal/phase, registered coverage and calibrated photometry unknown; no exhaustive newest-observation claim."
+  ],
+  "assumed": [
+    "Both illustrations independently invent neutral charcoal-grey terrain, grains, blocks, fractures, chemistry/fractions, scale, horizon/attitude/phase/light/exposure. No observed-body analog, ALMA brightness region or DAMIT facet pattern reused as terrain. No datedsite, atmosphere/plume/liquid/ocean/biology/exposedinterior/people/craft/survivablelanding implication. Blacksky/omittedstars not measured absence.",
+    "Sun/all astronomical disks off frame. skyGeometry representative2.670989527103278AU gives.19951578150011084deg/2.9111282418197337targetpx1672/90HFOV; separate peri/aphelion cases remain scalar context, not current ephemeris, normal, jointfit or uncertainty envelope. Helper irradiance/colour not used as calibration; no raster disk measured.",
+    "IMAGINED card labels identify hypothetical unregistered views at every display size. No registered globe or digital shape is established."
+  ],
+  "native": {
+    "url": "/references/juno-3-alma-native.jpg",
+    "tier": "measured",
+    "label": "NATIVE \u00b7 ASTEROID JUNO MILLIMETRE",
+    "credit": "ALMA (NRAO/ESO/NAOJ)",
+    "source": "https://www.almaobservatory.org/wp-content/uploads/2016/06/150327_ALMA_juno_02-1.jpg",
+    "sourcePage": "https://www.almaobservatory.org/en/press-releases/asteroid-juno-seen-traveling-through-space-in-new-alma-images-and-animation/",
+    "observationDate": "2014-10-19",
+    "publicationDate": "2015-04-07",
+    "description": "Processed ALMA millimetre thermal disk of asteroid3 Juno. Exact still epoch/product association open; beam and reconstruction affect brightness morphology. Not local regolith, calibrated visible colour or registered geography.",
+    "processing": "Unchanged whole publisherJPEG; no local resizing, recolouring or reencoding.",
+    "terms": "Publisher general CC BY 4.0 with full visible credit/active links and exceptions; scientific papers/code/other texts excluded. No paper or raw-data blanket licence inferred.",
+    "termsUrl": "https://www.almaobservatory.org/en/copyright-notice/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "sha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193",
+    "sourceSha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193",
+    "bytes": 28245
+  },
+  "identitySafeguard": "No bareJuno alias. Numbered aliases select asteroid dossier; after existing explicit-name/HD/Gl lookup, catalogue idjuno-3 with kindasteroid selects it. Shared-name spacecraft and ambiguous bareJuno returnnull. Guard retained in additive importer footer; regression test verifies solSystem actualasteroid and negativecraft cases.",
+  "visualInspection": "Both1536JPEG masters and whole490x491nativeJPEG inspected. Two footerlines legible in masters; small256previews require explicitIMAGINEDcard labels. All independent original/defaultPNGs/fullprompts/preparedmasters preserved.",
+  "reviewScope": "Prior targeted ALMA HTML methods/tables, DAMIT source topology/conventions and7selected thermalPDFpages retained. No new completePDF/final-paper/corrigendum/raw-calibration/shape-registration review claim.",
+  "next": [
+    "Prepared Iris individual dossier with source-specific reuse/photometry/frame limits.",
+    "Remaining native-map/craft/shape/calibration and current distance ranking work."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 713,
+      "skip": 1,
+      "fail": 0,
+      "environment": "OPENAI_API_KEY unset for missing-key voice test"
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "baseline": "21120c4",
+      "priorDossiersDeepEqual": 110,
+      "registry": 111,
+      "priorPublicFilesByteEqual": 759,
+      "inputsByteEqual": [
+        "src/data/moons.js",
+        "src/data/shapes.js",
+        "src/data/models.js",
+        "src/data/skins.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "scripts/pack-standalone-bootstrap.js"
+      ],
+      "aliasLookup": true,
+      "noJunoGlobe": true,
+      "newNativeSha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193",
+      "newOutputs": [
+        {
+          "path": "public/bespoke/juno-3-surface-image.jpg",
+          "bytes": 263313,
+          "sha256": "359fa09b7e85dd5ef17ce54064cddb9de6b6451783b8d34a3d1850d4efbe273f"
+        },
+        {
+          "path": "public/bespoke/juno-3-surface-image-preview.jpg",
+          "bytes": 9944,
+          "sha256": "11b23558ce24c942c54bce49dbbfec54614e298ec4c78481729a3e7066ed2a26"
+        },
+        {
+          "path": "public/bespoke/juno-3-sky-image.jpg",
+          "bytes": 180840,
+          "sha256": "df483146f20e0017459cbd8c2c3de3e0be5aa6db91f8214220619e58a352cd46"
+        },
+        {
+          "path": "public/bespoke/juno-3-sky-image-preview.jpg",
+          "bytes": 5437,
+          "sha256": "013563a2d3fa4283f686095a013b814ed706d5e5d83dd7e2f01c3fc0f7b560cb"
+        }
+      ],
+      "snapshot": {
+        "sha256": "9c7a6a830712a10ca813472d2df9be6c4e34a521241c3d0a8d95e22abea7b8e4",
+        "nativeCardsExact": 90,
+        "priorBodyImagesExact": true,
+        "newBodyImages": [
+          "/bespoke/juno-3-surface-image.jpg",
+          "/bespoke/juno-3-sky-image.jpg",
+          "/references/juno-3-alma-native.jpg"
+        ],
+        "otherChangedRootFields": [
+          "bandImages"
+        ]
+      },
+      "full": {
+        "bytes": 15906784,
+        "headroom": 93216
+      }
+    },
+    "browser": {
+      "date": "2026-10-23",
+      "normalCards": [
+        {
+          "alt": "Juno: imagined \u00b7 asteroid juno local view, hypothetical illustration",
+          "complete": true,
+          "height": 864,
+          "src": "/bespoke/juno-3-surface-image.jpg",
+          "width": 1536
+        },
+        {
+          "alt": "Juno: imagined \u00b7 sky from asteroid juno, hypothetical illustration",
+          "complete": true,
+          "height": 864,
+          "src": "/bespoke/juno-3-sky-image.jpg",
+          "width": 1536
+        },
+        {
+          "alt": "Processed ALMA millimetre thermal disk of asteroid3 Juno. Exact still epoch/product association open; beam and reconstruction affect brightness morphology. Not local regolith, calibrated visible colour or registered geography.",
+          "complete": true,
+          "height": 491,
+          "src": "/references/juno-3-alma-native.jpg",
+          "width": 490
+        }
+      ],
+      "offlineCards": [
+        {
+          "alt": "Juno: imagined \u00b7 asteroid juno local view, hypothetical illustration",
+          "complete": true,
+          "height": 144,
+          "width": 256,
+          "mime": "data:image/webp",
+          "sha256": "52b2225e63517dd1fde8aa8d67899e3a6e161a9dbe7d0a1886696e3bddd487a6"
+        },
+        {
+          "alt": "Juno: imagined \u00b7 sky from asteroid juno, hypothetical illustration",
+          "complete": true,
+          "height": 144,
+          "width": 256,
+          "mime": "data:image/webp",
+          "sha256": "023d61af9d50c52c3a39ff0a7b36d5cbb28a5c22bc91275455d120e2cb9937e4"
+        },
+        {
+          "alt": "Processed ALMA millimetre thermal disk of asteroid3 Juno. Exact still epoch/product association open; beam and reconstruction affect brightness morphology. Not local regolith, calibrated visible colour or registered geography.",
+          "complete": true,
+          "height": 491,
+          "width": 490,
+          "mime": "data:image/jpeg",
+          "sha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193"
+        }
+      ],
+      "limits": "Chromium IAB HTTP only; no fresh other-engine/direct-file/all-route/worker/all-model-load claim. Attempted unsupported object/sol/juno spacecraft URL went to null and is not spacecraft browser verification; actual solSystem spacecraft isolation verified by regression test."
+    },
+    "browserSnapshot": {
+      "status": "pass",
+      "charset": "UTF-16LE",
+      "readableSha256": "9c7a6a830712a10ca813472d2df9be6c4e34a521241c3d0a8d95e22abea7b8e4",
+      "uniqueImages": 369,
+      "decoded": 369,
+      "canvases": 8
+    },
+    "snapshotDiff": "Only3newJunoasteroidbodyImages plus separately recorded livebandrefreshes; all priorbodyImages exact. Application changes include identity guard; no soleasset/compressionsavings attribution.",
+    "otherSnapshotChanges": [
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-304?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "5976c364e1defe8e1c86431c349094905ad7454aea814ed7d3e7098fe2a3b491",
+        "afterSha256": "b05a1d9f9202bd525b5daf0459eb978efc2c5f11ec43ca6f6f8468f5411bb531"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-304?size=preview",
+          "src"
+        ],
+        "beforeSha256": "00a6f9b4fbec40d80bc567ac16506174b312150a7c66cb1ea6db032133cc8473",
+        "afterSha256": "37eb72d57fe6f4a41a26c15b18eafdf292a578c2bd80e84bb2353dd5db6f7cb0"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-304?size=preview",
+          "time"
+        ],
+        "beforeSha256": "64455c49dc9f562ee0166ea91b1195fec48697a46297dce2a3998e8f9e66c178",
+        "afterSha256": "5dd0621263c1de527dbf2b0edb6ec768441e1a4dabb0db01a180362dc36e5d6e"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-193?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "33c105b8234750994d4de2b8eb9a1e28ea00627185cfaab037501c81346914f2",
+        "afterSha256": "97e4271612f8b0965364e85499dc4a13bf51f428bb2986752824f917620eb36b"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-193?size=preview",
+          "src"
+        ],
+        "beforeSha256": "86ed9d742816894d6a10e4c6d81f42a37f6da2b43ba708b3a5ab39f58a25033e",
+        "afterSha256": "5b6c797bd76e6eb2652b1615b738fc312543947f3c5165c053c6a9cd3f4e724e"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-193?size=preview",
+          "time"
+        ],
+        "beforeSha256": "6e518caaff0ee04b176d161af3fb25cc2488f57c64e808807db9dcce0677b299",
+        "afterSha256": "4bac9e7346385061ff54639403972432e50755ec0af0057dd2e81206dfb22f73"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-171?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "22614d5473726d6d2f3d70f255387c41ceb15b23ca47c5376a45dce933a8b0bb",
+        "afterSha256": "ad45bf7136e76abb6034d901ef43b599a472dc245488e06930d87e06a50e93e4"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-171?size=preview",
+          "src"
+        ],
+        "beforeSha256": "b96e6ec19b8e71ed836e5b5d0d324d66f01905aca4e5b9d79ab6901dc10d2d66",
+        "afterSha256": "2fbb67e612c6661225d33167c2e1a68f5c103fad1ac03be20d6dee5e5a3dbe93"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-171?size=preview",
+          "time"
+        ],
+        "beforeSha256": "0a2043d72435c783b39440ca4ca4e67c457c2ecbeca89b777f1efb1bde3f6a93",
+        "afterSha256": "e72ceb426de38dd694bd3206f0b5b5d75374c97f18fcc22fcc2fcf92af808182"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-1600?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "59f3de5c4344b417f5f675beb62b580cd55d7e798e5cf86f242e6ea8637d5301",
+        "afterSha256": "3edade06cddca709da833e84f32b813b237a915cd915d0e6bfbaf2bd516a4507"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-1600?size=preview",
+          "src"
+        ],
+        "beforeSha256": "12349ba974ea4c5106ac6041ac00f67526ea25e48144801d9c9c4005d6a39f32",
+        "afterSha256": "c97866c107b2edab8aad5bec7d58999bfe1438c1bf65870c90a7e3bc8afd62ed"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-1600?size=preview",
+          "time"
+        ],
+        "beforeSha256": "08fdcf9512c6ea3c6cd80e5433d8897734311726dbd9f701125b2d723e0c9014",
+        "afterSha256": "fe678b79a28e9ec85046cc854e28e1c3c6fc9a41e1c0d7bb51d877479715f7cb"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-94?size=preview",
+          "disk"
+        ],
+        "beforeSha256": "7c5f67d073aadc882396b26f3a08344bb44f8bb57dc82af1be62f2495c03e0e6",
+        "afterSha256": "c95088447961e9e5aab89c43581e2bfdd5173bdf246afed1a0cb5ea00f92967f"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-94?size=preview",
+          "src"
+        ],
+        "beforeSha256": "b5a8543d30f0a9b915d817e00c017088757081a7c81cf7d7dccaaadc2faa25f8",
+        "afterSha256": "17eb46b3b5f858748e01272795189c3a6c573ac6318b52a6289a4ac7f2cdb701"
+      },
+      {
+        "path": [
+          "bandImages",
+          "/api/feed/sdo-94?size=preview",
+          "time"
+        ],
+        "beforeSha256": "9b5745ec2882a1e04da6bc4d673787daefe1e201cc80f6ccbdf0379d360e0cca",
+        "afterSha256": "d926c4d2be55494a082905bce737a389fb3a395bff47baad498cf5362b59cb0e"
+      }
+    ],
+    "queueTasks": 569,
+    "retainedSourceHashChecks": 81,
+    "scienceCodecChange": false
+  }
+}
