@@ -19292,6 +19292,279 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "iris": {
+    "id": "iris",
+    "name": "Iris",
+    "kind": "asteroid",
+    "aliases": [
+      "Iris",
+      "7 Iris",
+      "(7) Iris",
+      "7 Iris (A847 PA)"
+    ],
+    "researchDate": "2026-10-23",
+    "previewWidth": 256,
+    "nativeSurface": "No registered globe or digital shape adopted. Whole ESO42-body processed montage provides labelled Iris context, separate from independently imagined terrain.",
+    "measured": [
+      "Asteroid(7) Iris/SPK20000007 distinct from every other body in the ESO montage. Catalogue radius99.915km, massunknown and synodic7.139h retained. JPL IRAS effective diameter199.83±10km is a radiometric estimator, not resolved axes or a local normal.",
+      "Native ESO montage released2021-10-12; survey2017–2019 is broad context only, exact Iris cell acquisition UTC/rawproduct/phase/frame open. Iris is third row sixth column. All other42-body montage cells remain separate bodies, not Iris skins."
+    ],
+    "modelled": [
+      "Five SPHERE series on October10/11,2017 near southern pole-on; narrow N_R645.9nm width56.7nm, parametric Moffat PSF/MISTRAL. Not calibrated visible RGB.",
+      "ADAM uses133lightcurves,25SPHERE images/five epochs,19Keck and3NaCo. Listed older data can include severe deconvolution artifacts; raw selection/reweighting not independently reproduced.",
+      "Table1 D214±5km; major-axis dimensions268±5,234±4,180±6km; do not treat as semi-axes. Sidereal7.138843(1)h; eclipticJ2000 longitude19±3/latitude26±3deg. No catalogue update.",
+      "Prose says parameter uncertainties are ranges among fitted models; Table1 caption calls uncertainties1sigma. Preserve wording distinction pending further uncertainty audit. Representative DAMIT model parameters may differ from tabulated model averages.",
+      "Mass13.75±1.30e18kg from selected literature median; derived density2.7±.3g/cm3 is not measured local chemistry/porosity. LL-chondrite comparison not a terrain skin.",
+      "Figure2 top is model projection under nonrealistic illumination, bottom deconvolved observation. Enhanced ridge explicitly a minor modelling artifact from limited geometries; not observed local terrain.",
+      "Model crater sizes generally overestimated except Xanthos and depths underestimated relative to image estimates. No independent reproduction or raster calculation.",
+      "Equatorial excavation10–15percentvolume and ancient-impact/original-oblate interpretations are models, not direct history.",
+      "Eight putative craters nicknamed with Greek colour names; A–G additional potential candidates. Names are paper designations, not verified approved IAU names.",
+      "Six of eight putative craters are clear in at least three epochs; question-mark locations in Figure 4 indicate expected positions, not detections.",
+      "Authors adopted the location of Xanthos as zero longitude in their asteroid-centric coordinate system. No transfer to any current asset or independently registered frame.",
+      "Page 5 prose estimates Xanthos depth about 15 km with 3 km uncertainty. Table 2 instead lists image depth 13±3 km and model depth 12±2 km; retain this internal difference without silently choosing or repairing it.",
+      "Table 2 Xanthos image diameter 38±5 km versus model 44±5 km, image depth/diameter .34±.09. These are quoted publisher estimates, not new raster calculations.",
+      "Table caption states image uncertainty from across-image variance with a 3 km floor, and model uncertainty reflects shape-model resolution. Not independently reproduced accuracy.",
+      "Potential central peaks seen in the lower-quality .03-phase images are attributed by the authors to instrumental or deconvolution artifacts because they do not recur in the other images. Do not depict these as measured terrain.",
+      "Ancient impact/excavation and family depletion are conditional models. Authors also discuss a potentially recent near-miss hit-and-run and cannot entirely exclude an originally nonspheroidal body. No direct collision-history claim.",
+      "Crater-count surface ages and comparisons with Vesta/Lutetia depend on visibility, bias, resurfacing and scaling assumptions. No analogue map reuse or measured local regolith/composition inference.",
+      "Authors describe November 2006 Arecibo radar and October 2017 SPHERE viewing geometries as both sampling the southern hemisphere; agreement does not establish northern-hemisphere geography.",
+      "Radar rotation uncertainty prevented direct phase propagation to 2017. Authors visually fitted an offset, estimated reliable about 5 degrees. This is not an independently verified absolute phase or a dated scene registration.",
+      "Authors report radar contour discrepancies and exaggerated topography, including sharp mountains not detected in SPHERE. Shared putative craters establish partial correspondence, not pixel identity or validation of all model relief.",
+      "Region C has one AO-epoch candidate: radar suggests one basin while image/ADAM tend toward two overlapping craters. Preserve ambiguity.",
+      "Crater-count ages depend on visibility, bias, resurfacing and reference-terrain scaling. The Lutetia comparison explicitly has small-number and extrapolation uncertainty; do not present 3–4 Gyr as a direct measured surface age.",
+      "Impact excavation, recent hit-and-run and primordial nonspheroidal alternatives remain conditional; no terrain or composition adoption.",
+      "ADAM original reconstruction did not use 2019 images; MPCD started from ADAM using a subset of 2017/2019 images. All four models were subjected to full-data uncertainty assessment. These are distinct stages, not four independent observation datasets.",
+      "MPCD* method and subset differ; authors separately assess two apparitions/resolutions, add uncertainties quadratically and double rotation-axis uncertainty because no equatorial-view images were used. Not a reproduced calibration here.",
+      "Uncertainty-coloured shape figures represent deviations from nominal clone vertices, not visible surface colours or mapped chemistry.",
+      "Retain 2019 diameter 214±5 km and density 2.7±.3 separately with later alternatives; do not silently change catalogue radius 99.915 km or claim its provenance follows this later model.",
+      "Figure 4 variation is per-image fitted equivalent diameter, not physical changes in Iris size. Figure 5 spread includes different literature masses, not local density maps.",
+      "Full author, final publication/licence, remaining methods, raw product, shape/frame and current registration audits remain open. No figure embedded, no CC assertion.",
+      "2020 equivalent-sphere diameters: SAGE199(+10,-8)km/13.7percentrelativevolumeuncertainty; ADAM199(+12,-9)/16.6percent; ADAM_2 200(+10,-18)/19.7percent; MPCD198(+19,-17)/27.9percent; separate AO-only MPCD*204±10/14.7percent. Selected median literature mass(13.75±1.3)e18kg gives derived SAGE3.27±.54/ADAM3.25±.61/ADAM_2 3.47±.80/MPCD3.33±.97gcm3, not independent local composition/porosity. Shared observations/starting shapes and uncertainty conventions remain explicit.",
+      "133 lightcurves spanning 1950–2012, 57 AO images including 35 SPHERE: publisher inventory, not independently reprocessed raw products.",
+      "2019 northern aspect approximately 20 degrees adds northern silhouette coverage but authors state approximately 5 km/pixel did not distinguish surface topographic features. Do not infer a resolved northern terrain map.",
+      "Low-resolution 2009/2010 near-equatorial views are critical to rotation-axis scale; many high-quality polar views do not independently constrain that scale. Quoted raster scales are publisher statements, not new computations.",
+      "Clone assessment thresholds AO images to binary silhouettes using ImageJ ISODATA. It intentionally ignores surface flux changes sensitive to deconvolution, unresolved relief and scattering laws; this is not calibrated albedo or visible-colour recovery.",
+      "SAGE combines normalized LC/AO fit criteria; accepted clones alter radial vertex distances, pole, period and reference phase subject to data-specific confidence criteria. Ranges are method/data conditional, not independent physical accuracy guarantees.",
+      "Size fits scale and translate clone projections against silhouettes, then weight by resolution and aspect-angle groups. No such fit or angular/raster calculation was independently performed here.",
+      "MPCD starts with ADAM; its independent uncertainty estimate excludes limb/terminator residual pixels, converts DN residuals to slope/height error, and uses 10000 fractal random deformations. Assumed fractal dimension 2.1–2.3 follows Eros altimetry analysis, not an Iris local material/terrain measurement or permission to reuse an Eros skin.",
+      "ADAM/MPCD emphasized surface detail at expense of LC fit; ADAM_2/SAGE preserved joint LC/AO weighting. Shared observations and inherited starting shape preclude treating all models as independent data validation."
+    ],
+    "unknown": [
+      "2020 section4.4 literature-mass-derived density range1.52–11.51g/cm3 differs from conclusion1.56–11.74; retain manuscript internal range discrepancy without selecting a definitive physical density.",
+      "2020 selected median mass uncertainty derives from dispersion of mass values, not combination of individual published uncertainties. Alternative model density values are not independent measurements of local composition.",
+      "2019/2020 full final-version/remainingappendix/rawproduct/PSF/physicalregistration audit remains open. Targeted prior review only, not complete paper review or independent reconstruction.",
+      "Paper-specific reuse not verified; ©ESO2019 and repository access do not establish CC. Montage XMP explicitly CC BY4 only for this work; not blanket papers or CDS/raw FITS. No paper figure embedded.",
+      "CDS47deconvolvedproducts retained unchanged:25SPHERE/19Keck/3NaCo. Date-only/absent timestamps remain unexpanded. Inherited filter/exposure/archive cards do not validate raw/coadd/PSF/integration/specialpixel/frame lineage. Poor-quality consistency inputs not independently validated.",
+      "Local chemistry/fractions/porosity/BRDF/visiblecolour/grain/blockscale/normal/phase/coverage/photometry unknown. No exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Both illustrations independently invent grey-brown terrain, grains, blocks, relief, chemistry/fractions/porosity, scale, colour, attitude, phase, light and exposure. No observed-body analog, SPHERE brightness, ADAM facets or putative crater pattern reused. No datedsite, atmosphere/plume/liquid/ocean/biology/exposedinterior/people/craft/survivablelanding implication. Blacksky/omittedstars not measured absence.",
+      "Sun and all astronomical disks off frame; representative semimajor-axis distance is scalar skyGeometry context, not current ephemeris, normal, jointfit, uncertainty envelope or photometric calibration. No raster disk measured.",
+      "IMAGINED card labels identify hypothetical unregistered views at all display sizes; small preview footers require these labels."
+    ],
+    "surfaceLabel": "IMAGINED · IRIS LOCAL VIEW",
+    "skyLabel": "IMAGINED · SKY FROM IRIS",
+    "skyCaption": "Hypothetical unregistered rocky rim; all astronomical disks off frame. Terrain, materials, colour and light invented.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "99.915 KM · CATALOGUE"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ROTATION",
+        "7.139 H · SYNODIC CATALOGUE"
+      ],
+      [
+        "SURFACE",
+        "NO REGISTERED GLOBE"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 2.385746302646938,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Sun · representative scalar geometry, off frame",
+      "angularDiameterDeg": 0.22337020098026314,
+      "centreDiscWidthFraction": 0.0019492751978378645,
+      "irradianceEarth": 0.17569179547455968,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [
+      {
+        "url": "/references/iris-eso2114a-native.jpg",
+        "tier": "measured",
+        "label": "NATIVE · LABELLED ASTEROID MONTAGE",
+        "credit": "ESO/M. Kornmesser/Vernazza et al./MISTRAL algorithm (ONERA/CNRS)",
+        "source": "https://cdn.eso.org/images/thumb700x/eso2114a.jpg",
+        "sourcePage": "https://www.eso.org/public/images/eso2114a/",
+        "observationDate": null,
+        "publicationDate": "2021-10-12",
+        "description": "Whole42-body processed montage. Iris third row sixth column; other labelled bodies are separate. Small disks/labels limit readability. Not calibrated visible colour, local chemistry or a registered Iris globe. Exact cell acquisition/product association open.",
+        "processing": "Unchanged publisher700x450displayJPEG. Publisher resizing/reencoding is not full-pixel preservation; larger1280JPEG retained unchanged. No local crop/resampling/recolouring.",
+        "terms": "Explicit sourceJPEGXMP CC BY4 International plus active ESO terms: full unchanged visible credit/active links; logo/thirdparty exceptions. Not blanket CDS/FITS/paper rights.",
+        "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sha256": "9661df313af1c9d543d9067cb8e3577ca65d7c9d0d25b47c58d770ba00b8c6b0",
+        "sourceSha256": "9661df313af1c9d543d9067cb8e3577ca65d7c9d0d25b47c58d770ba00b8c6b0",
+        "bytes": 41680
+      }
+    ],
+    "references": [
+      {
+        "title": "ESO · 42 asteroid montage, Iris third row sixth column",
+        "url": "https://www.eso.org/public/images/eso2114a/"
+      },
+      {
+        "title": "ESO · source-specific media terms",
+        "url": "https://www.eso.org/public/outreach/copyright/"
+      },
+      {
+        "title": "10.1051/0004-6361/201834541 · targeted manuscript review, final terms open",
+        "url": "https://orbi.uliege.be/handle/2268/234931",
+        "authors": [
+          "J. Hanuš",
+          "M. Marsset",
+          "P. Vernazza",
+          "M. Viikinkoski",
+          "A. Drouard",
+          "M. Brož",
+          "B. Carry",
+          "R. Fetick",
+          "F. Marchis",
+          "L. Jorda",
+          "T. Fusco",
+          "M. Birlan",
+          "T. Santana-Ros",
+          "E. Podlewska-Gaca",
+          "E. Jehin",
+          "M. Ferrais",
+          "J. Grice",
+          "P. Bartczak",
+          "J. Berthier",
+          "J. Castillo-Rogez",
+          "F. Cipriani",
+          "F. Colas",
+          "G. Dudziński",
+          "C. Dumas",
+          "J. Ďurech",
+          "M. Kaasalainen",
+          "A. Kryszczynska",
+          "P. Lamy",
+          "H. Le Coroller",
+          "A. Marciniak",
+          "T. Michalowski",
+          "P. Michel",
+          "M. Pajuelo",
+          "P. Tanga",
+          "F. Vachier",
+          "A. Vigan",
+          "O. Witasse",
+          "B. Yang"
+        ]
+      },
+      {
+        "title": "10.1093/mnras/staa3153 · targeted manuscript review, final terms open",
+        "url": "https://orbi.uliege.be/handle/2268/251996",
+        "authors": [
+          "G. Dudziński",
+          "E. Podlewska-Gaca",
+          "P. Bartczak",
+          "S. Benseguane",
+          "M. Ferrais",
+          "L. Jorda",
+          "J. Hanuš",
+          "P. Vernazza",
+          "N. Rambaux",
+          "B. Carry",
+          "F. Marchis",
+          "M. Marsset",
+          "M. Viikinkoski",
+          "M. Brož",
+          "R. Fetick",
+          "A. Drouard",
+          "T. Fusco",
+          "M. Birlan",
+          "E. Jehin",
+          "J. Berthier",
+          "J. Castillo-Rogez",
+          "F. Cipriani",
+          "F. Colas",
+          "C. Dumas",
+          "A. Kryszczynska",
+          "P. Lamy",
+          "H. Le Coroller",
+          "A. Marciniak",
+          "T. Michalowski",
+          "P. Michel",
+          "T. Santana-Ros",
+          "P. Tanga",
+          "F. Vachier",
+          "A. Vigan",
+          "O. Witasse",
+          "B. Yang"
+        ]
+      },
+      {
+        "title": "CDS · deconvolved Iris dataset; raw lineage and product-specific terms open",
+        "url": "https://doi.org/10.26093/cds/vizier.36240121"
+      },
+      {
+        "title": "JPL SBDB · Iris reference alternatives",
+        "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=7&phys-par=true&full-prec=true"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/iris-surface-image.jpg",
+      "previewUrl": "/bespoke/iris-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-22",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "iris-7-generated-surfaceImage-original-2026-10-22.png",
+      "sourceSha256": "2aa9d31ba94fa793a2ee517e596b357cfd787b1219ea5a53bd3cde5dba9aeb80",
+      "sha256": "edb5443251707b7e1d38557781cbf05943d266581b9d277af4c06f3dd11ab197",
+      "previewSha256": "ba327f6f899ddba0b21bc09229c3a73612d3400a21dcc6edb76d93858b026767",
+      "bytes": 389960,
+      "previewBytes": 11419,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/iris-sky-image.jpg",
+      "previewUrl": "/bespoke/iris-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-22",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "iris-7-generated-skyImage-original-2026-10-22.png",
+      "sourceSha256": "23033fbc4e47be240140477fdd19677990e02f775d6a113d12855a8cb3aad20d",
+      "sha256": "fa91f1d51288520d99ee112361ffd0774e8f75e2b7471fe3fe3cf954c7f20a66",
+      "previewSha256": "377a70e965d69cfd209dc4f27a215ddde85f1e3b5c60bb003b3c8f40222edab6",
+      "bytes": 155085,
+      "previewBytes": 5052,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

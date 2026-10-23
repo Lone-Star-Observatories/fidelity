@@ -1177,10 +1177,11 @@
       "parent": null,
       "kind": "asteroid",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "No registered globe or digital shape adopted. Whole ESO42-body processed montage provides labelled Iris context, separate from independently imagined terrain.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "iris"
     },
     {
       "id": "sol-lutetia",
