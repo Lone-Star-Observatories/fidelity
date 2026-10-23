@@ -1,0 +1,472 @@
+{
+  "date": "2026-10-22",
+  "issue": 3,
+  "body": {
+    "id": "iris",
+    "designation": "(7) Iris",
+    "status": "Research-only; no dossier109 or production adoption"
+  },
+  "scope": "Targeted primary manuscript review and model-alternative preservation; not complete paper/appendix review, independent reduction, physical accuracy or registration validation.",
+  "primaries": [
+    {
+      "doi": "10.1051/0004-6361/201834541",
+      "repository": "https://orbi.uliege.be/handle/2268/234931",
+      "pdfUrl": "https://orbi.uliege.be/bitstream/2268/234931/1/Hanus_2019.pdf",
+      "pages": 18,
+      "authorsAsPrinted": [
+        "J. Hanuš",
+        "M. Marsset",
+        "P. Vernazza",
+        "M. Viikinkoski",
+        "A. Drouard",
+        "M. Brož",
+        "B. Carry",
+        "R. Fetick",
+        "F. Marchis",
+        "L. Jorda",
+        "T. Fusco",
+        "M. Birlan",
+        "T. Santana-Ros",
+        "E. Podlewska-Gaca",
+        "E. Jehin",
+        "M. Ferrais",
+        "J. Grice",
+        "P. Bartczak",
+        "J. Berthier",
+        "J. Castillo-Rogez",
+        "F. Cipriani",
+        "F. Colas",
+        "G. Dudziński",
+        "C. Dumas",
+        "J. Ďurech",
+        "M. Kaasalainen",
+        "A. Kryszczynska",
+        "P. Lamy",
+        "H. Le Coroller",
+        "A. Marciniak",
+        "T. Michalowski",
+        "P. Michel",
+        "M. Pajuelo",
+        "P. Tanga",
+        "F. Vachier",
+        "A. Vigan",
+        "O. Witasse",
+        "B. Yang"
+      ],
+      "authorCount": 38,
+      "visualPages": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "version": "Manuscript34541_final dated2019Feb26, arXiv1902.09242v1 Feb25; placeholder received/accepted x-x-2016 not real publication dates. ©ESO2019 is not a CC grant."
+    },
+    {
+      "doi": "10.1093/mnras/staa3153",
+      "repository": "https://orbi.uliege.be/handle/2268/251996",
+      "pdfUrl": "https://orbi.uliege.be/bitstream/2268/251996/1/Dudzinski_2020.pdf",
+      "pages": 17,
+      "authorsAsPrinted": [
+        "G. Dudziński",
+        "E. Podlewska-Gaca",
+        "P. Bartczak",
+        "S. Benseguane",
+        "M. Ferrais",
+        "L. Jorda",
+        "J. Hanuš",
+        "P. Vernazza",
+        "N. Rambaux",
+        "B. Carry",
+        "F. Marchis",
+        "M. Marsset",
+        "M. Viikinkoski",
+        "M. Brož",
+        "R. Fetick",
+        "A. Drouard",
+        "T. Fusco",
+        "M. Birlan",
+        "E. Jehin",
+        "J. Berthier",
+        "J. Castillo-Rogez",
+        "F. Cipriani",
+        "F. Colas",
+        "C. Dumas",
+        "A. Kryszczynska",
+        "P. Lamy",
+        "H. Le Coroller",
+        "A. Marciniak",
+        "T. Michalowski",
+        "P. Michel",
+        "T. Santana-Ros",
+        "P. Tanga",
+        "F. Vachier",
+        "A. Vigan",
+        "O. Witasse",
+        "B. Yang"
+      ],
+      "authorCount": 36,
+      "visualPages": [
+        1,
+        4,
+        7
+      ],
+      "version": "ORIGINAL UNEDITED MANUSCRIPT dated2020Oct13; ©2020 authors published OUP for RAS; download stampOct26 is not publication or observation date. Final-version and licence audit open."
+    }
+  ],
+  "terms": {
+    "status": "Paper-specific redistribution licence not verified; research sources retained, no paper figure embedded.",
+    "referenceUrl": "https://orbi.uliege.be/page/user-license",
+    "caution": "Repository general usage terms previously retained in Hygiea audit do not establish a work-specific CC licence for these Iris files. No permission request sent."
+  },
+  "reviewRecords": [
+    {
+      "status": "Targeted primary review preparation only; no production adoption, figure embedding or calibrated map",
+      "bodyId": "iris",
+      "paperSha256": "7070bf525636bf99b48d1daecba3954b1e70190aa1b4ffb873958c9a5934212f",
+      "textPagesReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pagesVisuallyInspected": [
+        3,
+        4
+      ],
+      "findings": [
+        "Five SPHERE series on October10/11,2017 near southern pole-on; narrow N_R645.9nm width56.7nm, parametric Moffat PSF/MISTRAL. Not calibrated visible RGB.",
+        "ADAM uses133lightcurves,25SPHERE images/five epochs,19Keck and3NaCo. Listed older data can include severe deconvolution artifacts; raw selection/reweighting not independently reproduced.",
+        "Table1 D214±5km; major-axis dimensions268±5,234±4,180±6km; do not treat as semi-axes. Sidereal7.138843(1)h; eclipticJ2000 longitude19±3/latitude26±3deg. No catalogue update.",
+        "Prose says parameter uncertainties are ranges among fitted models; Table1 caption calls uncertainties1sigma. Preserve wording distinction pending further uncertainty audit. Representative DAMIT model parameters may differ from tabulated model averages.",
+        "Mass13.75±1.30e18kg from selected literature median; derived density2.7±.3g/cm3 is not measured local chemistry/porosity. LL-chondrite comparison not a terrain skin.",
+        "Figure2 top is model projection under nonrealistic illumination, bottom deconvolved observation. Enhanced ridge explicitly a minor modelling artifact from limited geometries; not observed local terrain.",
+        "Model crater sizes generally overestimated except Xanthos and depths underestimated relative to image estimates. No independent reproduction or raster calculation.",
+        "Equatorial excavation10–15percentvolume and ancient-impact/original-oblate interpretations are models, not direct history."
+      ],
+      "figure2PrintedTimestamps": [
+        "2017-10-10T03:56:12",
+        "2017-10-10T04:07:50",
+        "2017-10-11T04:40:41",
+        "2017-10-11T05:34:41",
+        "2017-10-11T06:28:33"
+      ],
+      "timestampLimit": "Printed panel labels only; time standard/raw-product association not independently checked.",
+      "visualFiles": [
+        {
+          "path": "data/research-sources/iris-7-primary-visual-2026-10-22-03.png",
+          "bytes": 663613,
+          "sha256": "25f22045f1c9e412f2f5b6e98f45c577cb71450e7a251a38e73b2156d600dc8d",
+          "meaning": "Local PDF inspection render only; not embedded native imagery"
+        },
+        {
+          "path": "data/research-sources/iris-7-primary-visual-2026-10-22-04.png",
+          "bytes": 478134,
+          "sha256": "b01ecaa5840578be865443557c4aa4c66978cf61e335889e9db660fe943ad478",
+          "meaning": "Local PDF inspection render only; not embedded native imagery"
+        }
+      ],
+      "open": [
+        "Full author/credit/terms and publisher version audit",
+        "Remaining pages/appendices and2020model uncertainty paper",
+        "Native independent publisher rendition/product/frame/epoch/photometry",
+        "Catalogue reference alternatives"
+      ],
+      "productionChange": false
+    },
+    {
+      "status": "research preparation only; not a delivered dossier or production change",
+      "body": "(7) Iris",
+      "reviewDate": "2026-10-22",
+      "source": {
+        "path": "data/research-sources/iris-7-hanus2019-primary-2026-10-22.pdf",
+        "bytes": 5970473,
+        "sha256": "7070bf525636bf99b48d1daecba3954b1e70190aa1b4ffb873958c9a5934212f"
+      },
+      "reviewScope": "Targeted manuscript pages 5–6 text and complete visual inspection of both rendered pages; not full-paper or appendix review.",
+      "visuals": [
+        {
+          "path": "data/research-sources/iris-7-primary-visual-2026-10-22-05.png",
+          "bytes": 670280,
+          "sha256": "193ec1a600de3580a5a97fb61175b45508b419966eaa0bc55f6232cd4c8cc03e"
+        },
+        {
+          "path": "data/research-sources/iris-7-primary-visual-2026-10-22-06.png",
+          "bytes": 485111,
+          "sha256": "dc5e01a98f7e06e8be1ee568d601fab1ffae2f78344e060a71bf1a9d62f42450"
+        }
+      ],
+      "findings": [
+        "Eight putative craters nicknamed with Greek colour names; A–G additional potential candidates. Names are paper designations, not verified approved IAU names.",
+        "Six of eight putative craters are clear in at least three epochs; question-mark locations in Figure 4 indicate expected positions, not detections.",
+        "Authors adopted the location of Xanthos as zero longitude in their asteroid-centric coordinate system. No transfer to any current asset or independently registered frame.",
+        "Page 5 prose estimates Xanthos depth about 15 km with 3 km uncertainty. Table 2 instead lists image depth 13±3 km and model depth 12±2 km; retain this internal difference without silently choosing or repairing it.",
+        "Table 2 Xanthos image diameter 38±5 km versus model 44±5 km, image depth/diameter .34±.09. These are quoted publisher estimates, not new raster calculations.",
+        "Table caption states image uncertainty from across-image variance with a 3 km floor, and model uncertainty reflects shape-model resolution. Not independently reproduced accuracy.",
+        "Potential central peaks seen in the lower-quality .03-phase images are attributed by the authors to instrumental or deconvolution artifacts because they do not recur in the other images. Do not depict these as measured terrain.",
+        "Ancient impact/excavation and family depletion are conditional models. Authors also discuss a potentially recent near-miss hit-and-run and cannot entirely exclude an originally nonspheroidal body. No direct collision-history claim.",
+        "Crater-count surface ages and comparisons with Vesta/Lutetia depend on visibility, bias, resurfacing and scaling assumptions. No analogue map reuse or measured local regolith/composition inference."
+      ],
+      "open": [
+        "Full author/terms/final publication audit",
+        "2020 volume-uncertainty alternatives and later primary papers",
+        "Raw product, PSF, astrometry, spectral transfer and physical registration crosswalk",
+        "Remaining manuscript and appendices"
+      ],
+      "preservation": "No public/catalogue/registry/map/model/shape/codec changes or embedding; all source files retained unchanged. No tests/build/browser claim for this preparation."
+    },
+    {
+      "status": "research preparation only; no production adoption",
+      "body": "(7) Iris",
+      "date": "2026-10-22",
+      "scope": "Manuscript page 7 text and full-page visual inspection; earlier pages reviewed separately. Not a full-paper/appendix review.",
+      "sourcePdfSha256": "7070bf525636bf99b48d1daecba3954b1e70190aa1b4ffb873958c9a5934212f",
+      "visual": {
+        "path": "data/research-sources/iris-7-primary-visual-2026-10-22-07.png",
+        "bytes": 699111,
+        "sha256": "ccfe537a29a4ec19a1ec9163507e9dbe2498fb53b0812f938242c31e2b84d88a"
+      },
+      "findings": [
+        "Authors describe November 2006 Arecibo radar and October 2017 SPHERE viewing geometries as both sampling the southern hemisphere; agreement does not establish northern-hemisphere geography.",
+        "Radar rotation uncertainty prevented direct phase propagation to 2017. Authors visually fitted an offset, estimated reliable about 5 degrees. This is not an independently verified absolute phase or a dated scene registration.",
+        "Authors report radar contour discrepancies and exaggerated topography, including sharp mountains not detected in SPHERE. Shared putative craters establish partial correspondence, not pixel identity or validation of all model relief.",
+        "Region C has one AO-epoch candidate: radar suggests one basin while image/ADAM tend toward two overlapping craters. Preserve ambiguity.",
+        "Crater-count ages depend on visibility, bias, resurfacing and reference-terrain scaling. The Lutetia comparison explicitly has small-number and extrapolation uncertainty; do not present 3–4 Gyr as a direct measured surface age.",
+        "Impact excavation, recent hit-and-run and primordial nonspheroidal alternatives remain conditional; no terrain or composition adoption."
+      ],
+      "laterPaperAccess": {
+        "url": "https://academic.oup.com/mnras/article/499/3/4545/5923576",
+        "result": "Web tool redirected to inaccessible Silverchair article-minimal endpoint; no full-text acquisition, response-byte hash, licence, or later-paper conclusions claimed."
+      },
+      "preservation": "No registry, catalogue, public asset, model, shape, map, codec or embedding changes. No new tests/build/browser claim."
+    },
+    {
+      "status": "research preparation only; no adoption",
+      "body": "(7) Iris",
+      "date": "2026-10-22",
+      "sourcePdfSha256": "a355043a1db4999979c95dc44230eea7316ef89eef480f38c5a9341c77a7af5f",
+      "sourceVersion": "Repository PDF prints ORIGINAL UNEDITED MANUSCRIPT; not silently equated with version of record.",
+      "scope": "Targeted sections 4.2–4.4/conclusion text and full visual inspection of manuscript page 7 Table 2/Figures 4–5. Not complete paper or appendix review.",
+      "visual": {
+        "path": "data/research-sources/iris-7-dudzinski2020-visual-2026-10-22-07.png",
+        "bytes": 248043,
+        "sha256": "6d6df635e5ce70438826365b7acfad672c46df2f97e286003c61c2c61776d202"
+      },
+      "equivalentSphereDiameterKm": [
+        {
+          "model": "SAGE",
+          "value": 199,
+          "plus": 10,
+          "minus": 8,
+          "relativeVolumeUncertaintyPercent": 13.7
+        },
+        {
+          "model": "ADAM",
+          "value": 199,
+          "plus": 12,
+          "minus": 9,
+          "relativeVolumeUncertaintyPercent": 16.6
+        },
+        {
+          "model": "ADAM_2",
+          "value": 200,
+          "plus": 10,
+          "minus": 18,
+          "relativeVolumeUncertaintyPercent": 19.7
+        },
+        {
+          "model": "MPCD",
+          "value": 198,
+          "plus": 19,
+          "minus": 17,
+          "relativeVolumeUncertaintyPercent": 27.9
+        },
+        {
+          "model": "MPCD* independent AO-only assessment",
+          "value": 204,
+          "plus": 10,
+          "minus": 10,
+          "relativeVolumeUncertaintyPercent": 14.7
+        }
+      ],
+      "densityGPerCm3": {
+        "adoptedSelectedLiteratureMedianMassKg": "(13.75±1.3)×10^18",
+        "SAGE": "3.27±0.54",
+        "ADAM": "3.25±0.61",
+        "ADAM_2": "3.47±0.80",
+        "MPCD": "3.33±0.97",
+        "classification": "Derived from fitted volume and selected literature mass, not independent local material/composition/porosity measurements."
+      },
+      "limits": [
+        "ADAM original reconstruction did not use 2019 images; MPCD started from ADAM using a subset of 2017/2019 images. All four models were subjected to full-data uncertainty assessment. These are distinct stages, not four independent observation datasets.",
+        "MPCD* method and subset differ; authors separately assess two apparitions/resolutions, add uncertainties quadratically and double rotation-axis uncertainty because no equatorial-view images were used. Not a reproduced calibration here.",
+        "Uncertainty-coloured shape figures represent deviations from nominal clone vertices, not visible surface colours or mapped chemistry.",
+        "Retain 2019 diameter 214±5 km and density 2.7±.3 separately with later alternatives; do not silently change catalogue radius 99.915 km or claim its provenance follows this later model.",
+        "Figure 4 variation is per-image fitted equivalent diameter, not physical changes in Iris size. Figure 5 spread includes different literature masses, not local density maps.",
+        "Full author, final publication/licence, remaining methods, raw product, shape/frame and current registration audits remain open. No figure embedded, no CC assertion."
+      ],
+      "preservation": "All original research and production assets retained. No new dossier, embedding, catalogue/map/model/shape/codec changes; no tests/build/browser claim."
+    },
+    {
+      "status": "research preparation only",
+      "body": "(7) Iris",
+      "date": "2026-10-22",
+      "scope": "Targeted manuscript methods 2.1–2.5, observations 3 and results 4.1 text; full page 4 visual inspection including Table 1. No algorithm reproduction or complete-paper review.",
+      "sourcePdfSha256": "a355043a1db4999979c95dc44230eea7316ef89eef480f38c5a9341c77a7af5f",
+      "visual": {
+        "path": "data/research-sources/iris-7-dudzinski2020-visual-2026-10-22-04.png",
+        "bytes": 557887,
+        "sha256": "829863c741d83d7daaec2b30f66856b95c0595edb77eaba609dd9c840da10837"
+      },
+      "findings": [
+        "133 lightcurves spanning 1950–2012, 57 AO images including 35 SPHERE: publisher inventory, not independently reprocessed raw products.",
+        "2019 northern aspect approximately 20 degrees adds northern silhouette coverage but authors state approximately 5 km/pixel did not distinguish surface topographic features. Do not infer a resolved northern terrain map.",
+        "Low-resolution 2009/2010 near-equatorial views are critical to rotation-axis scale; many high-quality polar views do not independently constrain that scale. Quoted raster scales are publisher statements, not new computations.",
+        "Clone assessment thresholds AO images to binary silhouettes using ImageJ ISODATA. It intentionally ignores surface flux changes sensitive to deconvolution, unresolved relief and scattering laws; this is not calibrated albedo or visible-colour recovery.",
+        "SAGE combines normalized LC/AO fit criteria; accepted clones alter radial vertex distances, pole, period and reference phase subject to data-specific confidence criteria. Ranges are method/data conditional, not independent physical accuracy guarantees.",
+        "Size fits scale and translate clone projections against silhouettes, then weight by resolution and aspect-angle groups. No such fit or angular/raster calculation was independently performed here.",
+        "MPCD starts with ADAM; its independent uncertainty estimate excludes limb/terminator residual pixels, converts DN residuals to slope/height error, and uses 10000 fractal random deformations. Assumed fractal dimension 2.1–2.3 follows Eros altimetry analysis, not an Iris local material/terrain measurement or permission to reuse an Eros skin.",
+        "ADAM/MPCD emphasized surface detail at expense of LC fit; ADAM_2/SAGE preserved joint LC/AO weighting. Shared observations and inherited starting shape preclude treating all models as independent data validation."
+      ],
+      "open": [
+        "Remaining paper/appendix and raw-input review",
+        "Final version, full credits and terms audit",
+        "Digital shape, orientation epoch and observation-product crosswalk"
+      ],
+      "preservation": "No new dossier, image generation/embedding, catalogue, map, model, shape or codec change; all originals retained. No new tests/build/browser claim."
+    }
+  ],
+  "additionalCautions": [
+    "2020 section4.4 literature-mass-derived density range1.52–11.51g/cm3 differs from conclusion1.56–11.74; retain manuscript internal range discrepancy without selecting a definitive physical density.",
+    "2020 selected median mass uncertainty derives from dispersion of mass values, not combination of individual published uncertainties. Alternative model density values are not independent measurements of local composition.",
+    "108 existing dossiers remain delivered; no Iris native image, generated view, digital shape or map adopted. Current catalogue Iris radius99.915km remains unchanged, not retroactively assigned later model provenance.",
+    "All quoted angular/raster scales are publisher statements; no new angular/raster computation performed.",
+    "Later primary, full final-version/terms, raw products, PSF, northern terrain, spin epoch and map registration remain open."
+  ],
+  "retainedSources": [
+    {
+      "path": "data/research-sources/iris-7-primary-review-preparation-2026-10-22.json",
+      "bytes": 3029,
+      "sha256": "5de57f43940838f4643f4fc2a27e1f565dd8deb35fde2257b0517d5745d3ff20"
+    },
+    {
+      "path": "data/research-sources/iris-7-crater-alternatives-review-preparation-2026-10-22.json",
+      "bytes": 3154,
+      "sha256": "813fcd594661ba9362cfa161d1a4392a6e98fec8f5d41b2510e8666d35dd703d"
+    },
+    {
+      "path": "data/research-sources/iris-7-radar-comparison-review-preparation-2026-10-22.json",
+      "bytes": 2178,
+      "sha256": "97b165f3822c09655c5e6d1fd0260d37fb0bb50a0f13bc9813be1aa7b17eb5c0"
+    },
+    {
+      "path": "data/research-sources/iris-7-later-size-uncertainty-review-preparation-2026-10-22.json",
+      "bytes": 3219,
+      "sha256": "06f7ef12cc24f93bc6e826a5dec7d405cc49e2d5e4dd78283dc9f7ca3bdee2c8"
+    },
+    {
+      "path": "data/research-sources/iris-7-later-methods-review-preparation-2026-10-22.json",
+      "bytes": 2863,
+      "sha256": "e59b8da917a9dbb393ca476167832e8878e6381b465b99504b3dfb264d22d5a7"
+    },
+    {
+      "path": "data/research-sources/iris-7-hanus2019-primary-2026-10-22.pdf",
+      "bytes": 5970473,
+      "sha256": "7070bf525636bf99b48d1daecba3954b1e70190aa1b4ffb873958c9a5934212f"
+    },
+    {
+      "path": "data/research-sources/iris-7-dudzinski2020-primary-2026-10-22.pdf",
+      "bytes": 6213555,
+      "sha256": "a355043a1db4999979c95dc44230eea7316ef89eef480f38c5a9341c77a7af5f"
+    },
+    {
+      "path": "data/research-sources/iris-7-hanus2019-text-preparation-2026-10-22.txt",
+      "bytes": 77262,
+      "sha256": "b0418138f78290f18c89a3ea71337aef7a6953843f1e9b0ff71f9b59c2168c96"
+    },
+    {
+      "path": "data/research-sources/iris-7-dudzinski2020-text-preparation-2026-10-22.txt",
+      "bytes": 55540,
+      "sha256": "3d8876488de9fb4976dffdc63a8955820a0f8cc7ab22cea5a026877678e634dd"
+    },
+    {
+      "path": "data/research-sources/iris-7-primary-visual-2026-10-22-01.png",
+      "bytes": 532894,
+      "sha256": "f85a5a9ff8c9d9fe0ca61676cff420dbe4ddaec8108c893f7d8f4f4d5e369dd5"
+    },
+    {
+      "path": "data/research-sources/iris-7-primary-visual-2026-10-22-03.png",
+      "bytes": 663613,
+      "sha256": "25f22045f1c9e412f2f5b6e98f45c577cb71450e7a251a38e73b2156d600dc8d"
+    },
+    {
+      "path": "data/research-sources/iris-7-primary-visual-2026-10-22-04.png",
+      "bytes": 478134,
+      "sha256": "b01ecaa5840578be865443557c4aa4c66978cf61e335889e9db660fe943ad478"
+    },
+    {
+      "path": "data/research-sources/iris-7-primary-visual-2026-10-22-05.png",
+      "bytes": 670280,
+      "sha256": "193ec1a600de3580a5a97fb61175b45508b419966eaa0bc55f6232cd4c8cc03e"
+    },
+    {
+      "path": "data/research-sources/iris-7-primary-visual-2026-10-22-06.png",
+      "bytes": 485111,
+      "sha256": "dc5e01a98f7e06e8be1ee568d601fab1ffae2f78344e060a71bf1a9d62f42450"
+    },
+    {
+      "path": "data/research-sources/iris-7-primary-visual-2026-10-22-07.png",
+      "bytes": 699111,
+      "sha256": "ccfe537a29a4ec19a1ec9163507e9dbe2498fb53b0812f938242c31e2b84d88a"
+    },
+    {
+      "path": "data/research-sources/iris-7-dudzinski2020-visual-2026-10-22-01.png",
+      "bytes": 516289,
+      "sha256": "6c88c315b8fc54ce9b87d00d54f4acfd755fd0c03ced9f0abc5bca9678281968"
+    },
+    {
+      "path": "data/research-sources/iris-7-dudzinski2020-visual-2026-10-22-04.png",
+      "bytes": 557887,
+      "sha256": "829863c741d83d7daaec2b30f66856b95c0595edb77eaba609dd9c840da10837"
+    },
+    {
+      "path": "data/research-sources/iris-7-dudzinski2020-visual-2026-10-22-07.png",
+      "bytes": 248043,
+      "sha256": "6d6df635e5ce70438826365b7acfad672c46df2f97e286003c61c2c61776d202"
+    }
+  ],
+  "validation": {
+    "baseline": "2e73310",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "scripts/build-standalone.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "9700adc9735e7459ee8e05a21ea6895fbb6efbdd64a303709882a8bf711d75df",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15982678,
+      "headroomBytes": 17322,
+      "gateBytes": 16000000
+    },
+    "freshBrowserClaim": false,
+    "completeCurrentFullHtmlRestorationClaim": false,
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuildPass": true,
+    "queueTasks": 569,
+    "retainedSourceHashesVerified": 18,
+    "interbuildSavingsAttribution": false
+  }
+}
