@@ -1,0 +1,286 @@
+{
+  "date": "2026-10-23",
+  "body": "2 Pallas",
+  "dossier": 109,
+  "status": "Initial individual dossier delivered; no registered globe/digital shape or calibrated photometry/geography claim",
+  "manifest": "docs/research/pallas-import-manifest-2026-10-23.json",
+  "sourceRecords": "docs/research/pallas-source-records-2026-10-23.json",
+  "measured": [
+    "Identity: asteroid2 Pallas, distinct spacecraft or other asteroids. ESO/SPHERE publisher collage released2020-02-24; exact acquisitionUTC/coadd/product association remains open. Near-infrared deconvolution is not calibrated visibleRGB or local chemistry.",
+    "Existing catalogue radius256.5km and mass2.04e20kg retained as catalogue values, not new axes/local normal or an independent mass determination."
+  ],
+  "modelled": [
+    "Marsset2020 reconstructed volume-equivalent diameter513\u00b16km; principal SEMIAXES284\u00d7266\u00d7224\u00b16km, not full diameters. Southern flattening/basin inferred partly from complementary shape/lightcurve inversion, not directly resolved in nearly pole-on SPHERE data. ESO512km rounded caption is separate.",
+    "Supplement Table4 mass2.04\u00b1.03e20kg uses stated3sigma errors; derived bulk density2.89\u00b1.08g/cm3 is not local material fractions. Hydrated/aqueously evolved interpretations and bright-patch salt analogy are nonunique remote evidence/models, not identified local salt deposits or present liquid.",
+    "Main text36craters largerthan30km conflicts with printed36rows including27km and37km:35 exceed30km,34 at least40km. No repair/new raster measurement. Better-fit impact excavations.016\u2013.027parent masses differ from all-simulation ranges/ejected mass/fallback; >=250km transient crater is simulated. Thermal T0<3Ma figure versus<2.5Ma prose and literal232Al heading retained.",
+    "Carry2010 historical radius256\u00b13km versus HST272\u00b19km and later513\u00b16km diameter remain source alternatives. Historical map assumptions equal mean hemispheric albedo, K80percent/JH40percent coverage/~60km resolution are publisher estimates, not independent accuracy or a registered current globe. Pole equatorialJ2000(33,-3)\u00b15 versus ecliptic(30,-16)\u00b15 are coordinate representations.",
+    "JPL API calls7.8132214\u00b1.000002h synodic; cited Carry Table4 labels identical value sidereal. Cause unverified. Historical epochJD2433827.77154 distinct W0=38\u00b12deg atJ2000; no current attitude or prime-meridian transform adopted. Collision/family/thermal/origin models are not directly observed history, imminent events, exposed interior or measured local chemistry."
+  ],
+  "unknown": [
+    "Exact ESO pixel/exposure/coadd/filter/PSF, date, orientation and physical-frame crosswalk remain open. Paper Figure1 southern bright-patch LEFT differs from ESO RIGHT; do not assign figure dates2017-10-28/2019-03-15 to the unverified publisher product.",
+    "Retained full1540x768TIFF has no vertical divider; separate1280x638screenJPEG has a divider and different display layout. Neither is a calibrated map; no pixel identity/full-pixel preservation asserted between renditions. Black background, blur, ringing and panel separator are not rocks, material darkness or atmosphere absence.",
+    "Local chemistry/fractions/grain/block scale/BRDF, visible colour, normal/attitude/phase, coverage and calibrated photometry unknown. No exhaustive newest-image claim or digital shape adoption.",
+    "Current retained ESO visible terms body CC BY4 versus social metadata CC BY3Unported preserved. No blanket paper/raw licence: ORBi availability notCCBY; Carry Elsevier all rights reserved, no paper figures embedded."
+  ],
+  "assumed": [
+    "All generated terrain/craters/ridges/blocks/grains, chemistry/fractions, charcoal-grey colour, scale, orientation/horizon/phase/light/exposure imagined independently; no image input or other-body map reuse. No dated observed site, exposed interior, atmosphere/plume/liquid/ocean/biology/people/craft/landing implication. Blacksky/omittedstars not measured absence.",
+    "Sun off frame. skyGeometry solar radius695700km at representative2.769559010737709AU gives.1924149447578221degrees/2.807519966834849targetpixels at1672/90HFOV. Separate perihelion/aphelion scalar alternatives retained in source record, not current ephemeris/jointfit/normal/uncertainty envelope. Helper colour/irradiance discarded; no raster disk measured or photometric calibration.",
+    "The local and sky illustrations show hypothetical terrain and lighting. Their IMAGINED card labels identify that status at every display size. No registered globe or shape is established."
+  ],
+  "native": {
+    "url": "/references/pallas-eso-potw2008a-screen.jpg",
+    "tier": "measured",
+    "label": "NATIVE \u00b7 PALLAS PROCESSED NEAR-INFRARED",
+    "credit": "ESO/M. Marsset et al./MISTRAL algorithm (ONERA/CNRS)",
+    "source": "https://cdn.eso.org/images/screen/potw2008a.jpg",
+    "sourcePage": "https://www.eso.org/public/images/potw2008a/",
+    "observationDate": null,
+    "publicationDate": "2020-02-24",
+    "description": "Two processed near-infrared Pallas disks; bright patch at right. Vertical separator in this screen rendition is annotation. Exact exposure/dates/frame crosswalk open; blur/ringing not uniquely terrain. No calibrated visible colour or mapped local chemistry.",
+    "processing": "Unchanged ESO-served1280x638screenJPEG. Publisher resized/re-encoded/layout rendition, not full-pixel preservation of retained1540x768TIFF; no local native transformation.",
+    "terms": "ESO visible terms body: CC BY4 International with full unaltered credit and active source/terms links, exceptions/no endorsement. Social metadata separately saysCCBY3Unported. Not blanket paper/raw-data licence.",
+    "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "sha256": "64fbe3174fc1c3698ef02aa3aa20dbc149b3e5f8e298839a8134e60f1875681e",
+    "sourceSha256": "64fbe3174fc1c3698ef02aa3aa20dbc149b3e5f8e298839a8134e60f1875681e",
+    "bytes": 42869,
+    "width": 1280,
+    "height": 638
+  },
+  "outputs": [
+    {
+      "path": "public/bespoke/pallas-surface-image.jpg",
+      "bytes": 404619,
+      "sha256": "f91290502f1adb0117f6235b2930600856c5d32c34205871ceace691d69d39b0"
+    },
+    {
+      "path": "public/bespoke/pallas-surface-image-preview.jpg",
+      "bytes": 12109,
+      "sha256": "ad11b9bd0854979422955b919f9a02d49524a597b84bf32650013f89dad1317c"
+    },
+    {
+      "path": "public/bespoke/pallas-sky-image.jpg",
+      "bytes": 221564,
+      "sha256": "e9425bd13a6983a4f1796513ce3a612a21f05079c412b03f605ad3378ce3dc69"
+    },
+    {
+      "path": "public/bespoke/pallas-sky-image-preview.jpg",
+      "bytes": 7124,
+      "sha256": "d090da3587d6bc6e84069332943dbefa934fcc3f43d2af4ee46aec62c7a80b4a"
+    }
+  ],
+  "validation": {
+    "testsPassed": 712,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservation": {
+      "baseline": "080ee78",
+      "priorDossiersDeepEqual": 108,
+      "registry": 109,
+      "priorPublicFilesByteEqual": 749,
+      "inputsByteEqual": [
+        "src/data/moons.js",
+        "src/data/shapes.js",
+        "src/data/models.js",
+        "src/data/skins.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "scripts/pack-standalone-bootstrap.js"
+      ],
+      "aliasLookup": true,
+      "noPallasGlobe": true,
+      "newNativeSha256": "64fbe3174fc1c3698ef02aa3aa20dbc149b3e5f8e298839a8134e60f1875681e",
+      "newOutputs": [
+        {
+          "path": "public/bespoke/pallas-surface-image.jpg",
+          "bytes": 404619,
+          "sha256": "f91290502f1adb0117f6235b2930600856c5d32c34205871ceace691d69d39b0"
+        },
+        {
+          "path": "public/bespoke/pallas-surface-image-preview.jpg",
+          "bytes": 12109,
+          "sha256": "ad11b9bd0854979422955b919f9a02d49524a597b84bf32650013f89dad1317c"
+        },
+        {
+          "path": "public/bespoke/pallas-sky-image.jpg",
+          "bytes": 221564,
+          "sha256": "e9425bd13a6983a4f1796513ce3a612a21f05079c412b03f605ad3378ce3dc69"
+        },
+        {
+          "path": "public/bespoke/pallas-sky-image-preview.jpg",
+          "bytes": 7124,
+          "sha256": "d090da3587d6bc6e84069332943dbefa934fcc3f43d2af4ee46aec62c7a80b4a"
+        }
+      ],
+      "snapshot": {
+        "sha256": "3872c86acf04f0cdb5bd0543d838aee6bd90c7dd9e0d01332170258baf967952",
+        "nativeCardsExact": 88,
+        "priorBodyImagesExact": true,
+        "newBodyImages": [
+          "/bespoke/pallas-surface-image.jpg",
+          "/bespoke/pallas-sky-image.jpg",
+          "/references/pallas-eso-potw2008a-screen.jpg"
+        ],
+        "otherChangedRootFields": [
+          "bandImages"
+        ]
+      },
+      "full": {
+        "bytes": 15839056,
+        "headroom": 160944
+      }
+    },
+    "browser": {
+      "browser": "Codex in-app browser",
+      "status": "pass",
+      "charset": "UTF-16LE",
+      "readableSha256": "3872c86acf04f0cdb5bd0543d838aee6bd90c7dd9e0d01332170258baf967952",
+      "uniqueImages": 363,
+      "decoded": 363,
+      "canvases": 8,
+      "normalCards": [
+        {
+          "complete": true,
+          "height": 864,
+          "url": "/bespoke/pallas-surface-image.jpg",
+          "width": 1536
+        },
+        {
+          "complete": true,
+          "height": 864,
+          "url": "/bespoke/pallas-sky-image.jpg",
+          "width": 1536
+        },
+        {
+          "complete": true,
+          "height": 638,
+          "url": "/references/pallas-eso-potw2008a-screen.jpg",
+          "width": 1280
+        }
+      ],
+      "offlineCards": [
+        {
+          "complete": true,
+          "embedded": true,
+          "height": 144,
+          "width": 256
+        },
+        {
+          "complete": true,
+          "embedded": true,
+          "height": 144,
+          "width": 256
+        },
+        {
+          "complete": true,
+          "embedded": true,
+          "height": 638,
+          "width": 1280
+        }
+      ],
+      "nativeImageHashPresent": true,
+      "limits": [
+        "Other engines, direct-file delivery, all routes, event workers and all-model loads not freshly tested."
+      ]
+    },
+    "liveSolarRefresh": [
+      {
+        "path": "bandImages./api/feed/sdo-193?size=preview.time",
+        "oldSha256": "c0dfd50941f67591788051c7b58784356d3d657f7489f9bd286da432deb1c83a",
+        "newSha256": "e14e846d6a9e8044f2d2cc1e3754e03934c907224e0411846af43bca597cb78b",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-193?size=preview.disk",
+        "oldSha256": "42924ad5475fd102eaf0f6b806094be17cf82b5d062b721a80ef0e97263a623e",
+        "newSha256": "be99146d6d5524566e4b569063e3b9f8749833ae68ab532553e87749cd3d9773",
+        "valueType": "float"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-193?size=preview.src",
+        "oldSha256": "1d9895a990ddfc6316725444cac908e729b243069d79f5451715c986cc33471b",
+        "newSha256": "f8e14294309131079bf2aad24d4aaf4966f2291493c5ec3dc0d67bdeb953b05e",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-1600?size=preview.time",
+        "oldSha256": "ed93a7de4b61957350a2f48ae77bb84bf651f128f8c53d9a8067e54cb1067c13",
+        "newSha256": "2fa06c95d75694bdcc53600ee20b994a6a891ccd82cad9cbd0fdb65cd0fb464b",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-1600?size=preview.disk",
+        "oldSha256": "64868f31d6ec68d8dd433f609df50b1a52b4867e18a1f4abf7585cb5be62afb6",
+        "newSha256": "1766a24c047c0ae6aeb3d5ac20ebba74d5adbbafc02ad09bd2beefefa6aec6d6",
+        "valueType": "float"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-1600?size=preview.src",
+        "oldSha256": "4bcc264e4918b722ca6d0848fa61a2fe95b36aef4d48f8e92030a66da98cf475",
+        "newSha256": "af47983f7a08d2d9934ab9d125b1a0cd2461220560d70362cce406a6097d5546",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-304?size=preview.time",
+        "oldSha256": "37a04515aeb4a7f5b44102b5523b890953c835b2c347db388ab1e307ba86a9f0",
+        "newSha256": "aee7aabd9194fabbb9ae4959b1b926096d4dae96e0fb8924f68c79db63ab3c89",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-304?size=preview.disk",
+        "oldSha256": "6fceb5db0e737dedcca585ee88b8d73fd870e7d1a934666935bec6c75f08ceb6",
+        "newSha256": "086322f42ff07eb2680c28f28a9e6a6ccf9013ae119145d827984c3dc8cda17f",
+        "valueType": "float"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-304?size=preview.src",
+        "oldSha256": "37e5bf8029171b60087d06b703e1bcfab7102501bef59bb11282d4f4c948c7f2",
+        "newSha256": "7a8a997f5c4dc9b7b6b8411ac402e40a0a9d8eaa6f205910e03660373d8d8c3d",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-171?size=preview.time",
+        "oldSha256": "a328564ede7d9dadde65fd8812e5a5c3b576d34183d4638bdf4e949bf8fb71e4",
+        "newSha256": "aa23bf550e95f3055a094fde3a269a63d36c7fdd982d676f42cabaed32e40a25",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-171?size=preview.disk",
+        "oldSha256": "30a50f962b9b3e399f7bc99fb7cddab4d6883cf3ddff8a79dc01cb4543c3f542",
+        "newSha256": "3bb2957f91e51f43811dbfc3b0253d2f08d6c76f15694204084618e8fa0cff56",
+        "valueType": "float"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-171?size=preview.src",
+        "oldSha256": "86d51bc683ecf54cb159ea712cbf1ee63c80829108e1c4bfc6514481f8faf529",
+        "newSha256": "cfdd85353a88daab6290361f4c3c8cf70f79f6ffd0c3db2fc48dceda522eacb3",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-94?size=preview.time",
+        "oldSha256": "30379a251cef3b6dc657442df7fe2935c5cd31b81f6539a3922be5aedac290e1",
+        "newSha256": "7e40c7db460a4ebe93aaa496c7178cdb2fbbe52fff0ce1c34379897b7c7fb5ac",
+        "valueType": "str"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-94?size=preview.disk",
+        "oldSha256": "e41a5e143fb90eec96db0ac66e63242672929d1d8247568b1eec583129551c06",
+        "newSha256": "e119a420aaf3d3ed22b47b2bf9255c19e31d7f19c3e7abbdf9830779f383ad23",
+        "valueType": "float"
+      },
+      {
+        "path": "bandImages./api/feed/sdo-94?size=preview.src",
+        "oldSha256": "42e17797fe599b5b8469feb2c3cff61b70fc993c384aba22b19fae87f330104c",
+        "newSha256": "a83dc9adc3834f23e6ed12f43bef933af8a521d9655023ac4c6a6e45b4349434",
+        "valueType": "str"
+      }
+    ],
+    "snapshotDiff": "Only3newPallas bodyImages plus recorded five SDO time/disk/src refreshes; prior bodyImages exact. No sole-asset or compression-saving attribution."
+  },
+  "remaining": [
+    "Prepared Hygiea, Juno and Iris dossiers and outstanding native-map/craft/shape work continue.",
+    "Frame/product/pixel/epoch/filter/photometry and rotation-label cause remain open; no silent catalogue or ranking change.",
+    "All prior limitations, original PNGs, prepared masters, native science, model/shape/map bytes and provenance preserved. Backlog ACTIVE."
+  ]
+}

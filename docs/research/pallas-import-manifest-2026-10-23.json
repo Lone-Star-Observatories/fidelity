@@ -1,0 +1,181 @@
+{
+  "generated": "2026-10-21",
+  "bodies": [
+    {
+      "id": "pallas",
+      "name": "Pallas",
+      "kind": "asteroid",
+      "aliases": [
+        "Pallas",
+        "2 Pallas",
+        "(2) Pallas",
+        "2 Pallas (A802 FA)"
+      ],
+      "researchDate": "2026-10-23",
+      "previewWidth": 256,
+      "nativeSurface": "No registered globe or digital shape adopted. ESO processed near-infrared context is not a texture; two independent IMAGINED illustrations are separate from native science.",
+      "measured": [
+        "Identity: asteroid2 Pallas, distinct spacecraft or other asteroids. ESO/SPHERE publisher collage released2020-02-24; exact acquisitionUTC/coadd/product association remains open. Near-infrared deconvolution is not calibrated visibleRGB or local chemistry.",
+        "Existing catalogue radius256.5km and mass2.04e20kg retained as catalogue values, not new axes/local normal or an independent mass determination."
+      ],
+      "modelled": [
+        "Marsset2020 reconstructed volume-equivalent diameter513\u00b16km; principal SEMIAXES284\u00d7266\u00d7224\u00b16km, not full diameters. Southern flattening/basin inferred partly from complementary shape/lightcurve inversion, not directly resolved in nearly pole-on SPHERE data. ESO512km rounded caption is separate.",
+        "Supplement Table4 mass2.04\u00b1.03e20kg uses stated3sigma errors; derived bulk density2.89\u00b1.08g/cm3 is not local material fractions. Hydrated/aqueously evolved interpretations and bright-patch salt analogy are nonunique remote evidence/models, not identified local salt deposits or present liquid.",
+        "Main text36craters largerthan30km conflicts with printed36rows including27km and37km:35 exceed30km,34 at least40km. No repair/new raster measurement. Better-fit impact excavations.016\u2013.027parent masses differ from all-simulation ranges/ejected mass/fallback; >=250km transient crater is simulated. Thermal T0<3Ma figure versus<2.5Ma prose and literal232Al heading retained.",
+        "Carry2010 historical radius256\u00b13km versus HST272\u00b19km and later513\u00b16km diameter remain source alternatives. Historical map assumptions equal mean hemispheric albedo, K80percent/JH40percent coverage/~60km resolution are publisher estimates, not independent accuracy or a registered current globe. Pole equatorialJ2000(33,-3)\u00b15 versus ecliptic(30,-16)\u00b15 are coordinate representations.",
+        "JPL API calls7.8132214\u00b1.000002h synodic; cited Carry Table4 labels identical value sidereal. Cause unverified. Historical epochJD2433827.77154 distinct W0=38\u00b12deg atJ2000; no current attitude or prime-meridian transform adopted. Collision/family/thermal/origin models are not directly observed history, imminent events, exposed interior or measured local chemistry."
+      ],
+      "unknown": [
+        "Exact ESO pixel/exposure/coadd/filter/PSF, date, orientation and physical-frame crosswalk remain open. Paper Figure1 southern bright-patch LEFT differs from ESO RIGHT; do not assign figure dates2017-10-28/2019-03-15 to the unverified publisher product.",
+        "Retained full1540x768TIFF has no vertical divider; separate1280x638screenJPEG has a divider and different display layout. Neither is a calibrated map; no pixel identity/full-pixel preservation asserted between renditions. Black background, blur, ringing and panel separator are not rocks, material darkness or atmosphere absence.",
+        "Local chemistry/fractions/grain/block scale/BRDF, visible colour, normal/attitude/phase, coverage and calibrated photometry unknown. No exhaustive newest-image claim or digital shape adoption.",
+        "Current retained ESO visible terms body CC BY4 versus social metadata CC BY3Unported preserved. No blanket paper/raw licence: ORBi availability notCCBY; Carry Elsevier all rights reserved, no paper figures embedded."
+      ],
+      "assumed": [
+        "All generated terrain/craters/ridges/blocks/grains, chemistry/fractions, charcoal-grey colour, scale, orientation/horizon/phase/light/exposure imagined independently; no image input or other-body map reuse. No dated observed site, exposed interior, atmosphere/plume/liquid/ocean/biology/people/craft/landing implication. Blacksky/omittedstars not measured absence.",
+        "Sun off frame. skyGeometry solar radius695700km at representative2.769559010737709AU gives.1924149447578221degrees/2.807519966834849targetpixels at1672/90HFOV. Separate perihelion/aphelion scalar alternatives retained in source record, not current ephemeris/jointfit/normal/uncertainty envelope. Helper colour/irradiance discarded; no raster disk measured or photometric calibration.",
+        "The local and sky illustrations show hypothetical terrain and lighting. Their IMAGINED card labels identify that status at every display size. No registered globe or shape is established."
+      ],
+      "surfaceLabel": "IMAGINED \u00b7 PALLAS LOCAL VIEW",
+      "skyLabel": "IMAGINED \u00b7 SKY FROM PALLAS",
+      "skyCaption": "Hypothetical unregistered horizon; Sun off frame. Terrain, material, colour, attitude and light invented, not an ESO-observed site.",
+      "heroFacts": [
+        [
+          "RADIUS",
+          "256.5 KM \u00b7 CATALOGUE"
+        ],
+        [
+          "MASS",
+          "2.04e20 KG \u00b7 CATALOGUE"
+        ],
+        [
+          "ROTATION",
+          "SIDEREAL / SYNODIC LABEL CONFLICT"
+        ],
+        [
+          "SURFACE",
+          "NO REGISTERED GLOBE"
+        ]
+      ],
+      "skyModel": {
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 2.769559010737709,
+        "horizontalFovDeg": 90,
+        "angularOnly": true,
+        "star": "Sun \u00b7 representative geometry, off frame"
+      },
+      "contextImages": [
+        {
+          "url": "/references/pallas-eso-potw2008a-screen.jpg",
+          "tier": "measured",
+          "label": "NATIVE \u00b7 PALLAS PROCESSED NEAR-INFRARED",
+          "credit": "ESO/M. Marsset et al./MISTRAL algorithm (ONERA/CNRS)",
+          "source": "https://cdn.eso.org/images/screen/potw2008a.jpg",
+          "sourcePage": "https://www.eso.org/public/images/potw2008a/",
+          "observationDate": null,
+          "publicationDate": "2020-02-24",
+          "description": "Two processed near-infrared Pallas disks; bright patch at right. Vertical separator in this screen rendition is annotation. Exact exposure/dates/frame crosswalk open; blur/ringing not uniquely terrain. No calibrated visible colour or mapped local chemistry.",
+          "processing": "Unchanged ESO-served1280x638screenJPEG. Publisher resized/re-encoded/layout rendition, not full-pixel preservation of retained1540x768TIFF; no local native transformation.",
+          "terms": "ESO visible terms body: CC BY4 International with full unaltered credit and active source/terms links, exceptions/no endorsement. Social metadata separately saysCCBY3Unported. Not blanket paper/raw-data licence.",
+          "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sha256": "64fbe3174fc1c3698ef02aa3aa20dbc149b3e5f8e298839a8134e60f1875681e",
+          "sourceSha256": "64fbe3174fc1c3698ef02aa3aa20dbc149b3e5f8e298839a8134e60f1875681e",
+          "bytes": 42869,
+          "width": 1280,
+          "height": 638
+        }
+      ],
+      "references": [
+        {
+          "title": "ESO \u00b7 Pallas and full processing credit",
+          "url": "https://www.eso.org/public/images/potw2008a/"
+        },
+        {
+          "title": "ESO current visible usage terms \u00b7 CC BY4 body / CC BY3 metadata distinction",
+          "url": "https://www.eso.org/public/outreach/copyright/"
+        },
+        {
+          "title": "The violent collisional history of aqueously evolved (2) Pallas",
+          "url": "https://www.nature.com/articles/s41550-019-1007-5",
+          "authors": [
+            "Micha\u00ebl Marsset",
+            "Miroslav Bro\u017e",
+            "Pierre Vernazza",
+            "Alexis Drouard",
+            "Julie Castillo-Rogez",
+            "Josef Hanu\u0161",
+            "Matti Viikinkoski",
+            "Nicolas Rambaux",
+            "Beno\u00eet Carry",
+            "Laurent Jorda",
+            "Pavel \u0160eve\u010dek",
+            "Mirel Birlan",
+            "Franck Marchis",
+            "Edyta Podlewska-Gaca",
+            "Erik Asphaug",
+            "Przemyslaw Bartczak",
+            "J\u00e9r\u00f4me Berthier",
+            "Fabrice Cipriani",
+            "Fran\u00e7ois Colas",
+            "Grzegorz Dudzi\u0144ski",
+            "Christophe Dumas",
+            "Josef \u010eurech",
+            "Marin Ferrais",
+            "Romain F\u00e9tick",
+            "Thierry Fusco",
+            "Emmanuel Jehin",
+            "Mikko Kaasalainen",
+            "Agnieszka Kryszczynska",
+            "Philippe Lamy",
+            "Herv\u00e9 Le Coroller",
+            "Anna Marciniak",
+            "Tadeusz Michalowski",
+            "Patrick Michel",
+            "Derek C. Richardson",
+            "Toni Santana-Ros",
+            "Paolo Tanga",
+            "Fr\u00e9d\u00e9ric Vachier",
+            "Arthur Vigan",
+            "Olivier Witasse",
+            "Bin Yang"
+          ]
+        },
+        {
+          "title": "Marsset2020 unchanged ORBi manuscript \u00b7 not blanket figure licence",
+          "url": "https://orbi.uliege.be/bitstream/2268/246670/1/Pallas_Marsset.pdf"
+        },
+        {
+          "title": "Author-provided publisher supplement \u00b7 shape/crater/error conventions",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41550-019-1007-5/MediaObjects/41550_2019_1007_MOESM1_ESM.pdf"
+        },
+        {
+          "title": "Carry2010 Physical properties of (2) Pallas \u00b7 historical map/spin conventions",
+          "url": "https://www.boulder.swri.edu/merline/GPI-proposal-publications/carry.pallas.icarus-2010.pdf",
+          "authors": [
+            "Beno\u00eet Carry",
+            "Christophe Dumas",
+            "Mikko Kaasalainen",
+            "J\u00e9r\u00f4me Berthier",
+            "William J. Merline",
+            "St\u00e9phane Erard",
+            "Al Conrad",
+            "Jack D. Drummond",
+            "Daniel Hestroffer",
+            "Marcello Fulchignoni",
+            "Thierry Fusco"
+          ]
+        },
+        {
+          "title": "JPL Small-Body Database \u00b7 source label conflict retained",
+          "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=2&phys-par=true"
+        }
+      ],
+      "inputs": {
+        "surfaceImage": "pallas-generated-surfaceImage-original.png",
+        "skyImage": "pallas-generated-skyImage-original.png"
+      }
+    }
+  ]
+}
