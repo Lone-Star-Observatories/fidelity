@@ -501,12 +501,13 @@ export function unpackUtf8SnapshotBytes(packed){
 }
 
 // Fixed-width BMP raw-script transport for BOM-marked UTF-16LE documents.
-// 255 bytes fit in 128 code units; exclude HTML/parser-sensitive scalars.
+// 255 bytes fit in 128 code units; exclude HTML/parser-sensitive scalars, and U+FFFD (hosts such as Claude
+// artifacts refuse it as a lost character).
 let utf16TransportCache;
 function utf16TransportTables(){
 if(utf16TransportCache)return utf16TransportCache;
 const alphabet=[];
-for(let c=32;c<=0xfffd;c++)if(c!==60&&!(c>=0x7f&&c<=0x9f)&&!(c>=0xd800&&c<=0xdfff)&&!(c>=0xfdd0&&c<=0xfdef)&&![0xfeff,0x2028,0x2029].includes(c))alphabet.push(String.fromCharCode(c));
+for(let c=32;c<0xfffd;c++)if(c!==60&&!(c>=0x7f&&c<=0x9f)&&!(c>=0xd800&&c<=0xdfff)&&!(c>=0xfdd0&&c<=0xfdef)&&![0xfeff,0x2028,0x2029].includes(c))alphabet.push(String.fromCharCode(c));
 const index=new Map(alphabet.map((c,i)=>[c,BigInt(i)])),radix=BigInt(alphabet.length);
 return utf16TransportCache={alphabet,index,radix};
 }

@@ -14,8 +14,8 @@ test('UTF16 snapshot transport rejects corrupt length, digits, overflow and padd
  const one=encode(Uint8Array.of(1));
  for(const byteLength of [-1,1.5,NaN,Infinity,536870913])assert.throws(()=>decode({...one,byteLength}),/length/);
  for(const data of [one.data.slice(1),one.data+' '])assert.throws(()=>decode({...one,data}),/length/);
- for(const bad of ['<','\r','\n','\0','\ud800','\ufeff','\ufffe','\u2028'])assert.throws(()=>decode({...one,data:bad+one.data.slice(1)}),/digit/);
- assert.throws(()=>decode({...one,data:'\ufffd'.repeat(128)}),/overflow/);
+ for(const bad of ['<','\r','\n','\0','\ud800','\ufeff','\ufffe','\ufffd','\u2028'])assert.throws(()=>decode({...one,data:bad+one.data.slice(1)}),/digit/);
+ assert.throws(()=>decode({...one,data:'\ufffc'.repeat(128)}),/overflow/); // the top digit (U+FFFD is not one)
  assert.throws(()=>decode({...encode(Uint8Array.of(1,2)),byteLength:1}),/padding/);
 });
 
@@ -38,9 +38,20 @@ test('UTF16 v2 rejects malformed envelopes, overflow, digits, padding and wrong 
  const one=encode(Uint8Array.of(1),2);
  for(const byteLength of [-1,1.5,NaN,Infinity,536870913])assert.throws(()=>decode({...one,byteLength}),/length/);
  for(const data of [one.data.slice(1),one.data+' '])assert.throws(()=>decode({...one,data}),/length/);
- for(const bad of ['<','\r','\n','\0','\ud800','\ufeff','\ufffe','\u2028'])assert.throws(()=>decode({...one,data:bad+one.data.slice(1)}),/digit/);
- assert.throws(()=>decode({...one,data:'\ufffd'.repeat(166)}),/overflow/);
+ for(const bad of ['<','\r','\n','\0','\ud800','\ufeff','\ufffe','\ufffd','\u2028'])assert.throws(()=>decode({...one,data:bad+one.data.slice(1)}),/digit/);
+ assert.throws(()=>decode({...one,data:'\ufffc'.repeat(166)}),/overflow/); // the top digit (U+FFFD is not one)
  assert.throws(()=>decode({...encode(Uint8Array.of(1,2),2),byteLength:1}),/padding/);
  assert.throws(()=>decode({...one,encoding:'gzip-raw-utf16le-enumerative-v1'}),/length/);
  assert.throws(()=>encode(Uint8Array.of(1),3),/version/);
+});
+
+test('the UTF-16 transport never emits U+FFFD (artifact hosts refuse it as a lost character)', () => {
+  const bytes = new Uint8Array(331 * 64);
+  for (let i = 0; i < bytes.length; i++) bytes[i] = (i * 2654435761) >>> 24;
+  bytes.fill(255, 0, 662); // all-ones blocks reach the top of the alphabet
+  for (const v of [1, 2]) {
+    const packed = encode(bytes, v);
+    assert.ok(!packed.data.includes('�'));
+    assert.deepEqual(Buffer.from(decode(packed)), Buffer.from(bytes));
+  }
 });
